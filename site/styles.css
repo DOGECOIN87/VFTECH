@@ -148,18 +148,6 @@ h1,h2,h3,h4{margin:0;font-family:var(--f-display);font-weight:580;letter-spacing
   line-height:1.12;letter-spacing:-.025em;
 }
 .hero-title .ln{display:block}
-.hero-title .ln.annotated{padding-top:var(--s5)} /* a band for the dimension, as on a drawing */
-.dimspan{position:relative;display:inline-block}
-.dim{position:absolute;left:0;right:0;bottom:calc(100% - .2em + var(--s1));height:var(--s4);pointer-events:none;color:var(--blueline)}
-.dim::before{ /* extension lines + dimension line */
-  content:"";position:absolute;left:0;right:0;bottom:0;height:var(--s3);
-  border-left:1px solid currentColor;border-right:1px solid currentColor;
-  background:linear-gradient(currentColor,currentColor) 0 50%/100% 1px no-repeat;
-}
-.dim i{position:absolute;bottom:calc(var(--s3)/2 - 6px);width:1px;height:12px;background:currentColor;transform:rotate(30deg)} /* 60° oblique ticks */
-.dim i:first-of-type{left:0}
-.dim i:last-of-type{right:0}
-.dim-label{position:absolute;left:50%;bottom:calc(var(--s3) + 3px);transform:translateX(-50%);white-space:nowrap;font:500 var(--t-1)/1 var(--f-note);letter-spacing:.06em;text-transform:uppercase}
 .hero-sub{margin-top:var(--s5);max-width:34em;font-size:var(--t1);line-height:1.5}
 .cta-row{margin-top:var(--s5);display:flex;flex-wrap:wrap;align-items:center;gap:var(--s4) var(--s5)}
 .cta-note{max-width:22em;color:var(--graphite);font-size:var(--t0);line-height:1.5}
@@ -192,8 +180,6 @@ h1,h2,h3,h4{margin:0;font-family:var(--f-display);font-weight:580;letter-spacing
 @media (max-width:640px){
   .hero{padding-block:var(--s6)}
   .hero-title{font-stretch:104%;line-height:1.2}
-  .hero-title .ln.annotated{padding-top:var(--s4)}
-  .dim-label{font-size:var(--t-2)}
   .hero-sub{font-size:var(--t0);line-height:1.618}
   .cta{--h:68px;font-stretch:100%} /* sized for two lines so the ends stay at 60° */
 }

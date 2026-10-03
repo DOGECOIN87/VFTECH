@@ -119,6 +119,22 @@
       drawingObserver.observe(diagram);
     });
   }
+  /* ---- studio hero: aim the key light at the 3D mark, wherever the layout puts it ---- */
+  var studio = document.querySelector('.hero--studio');
+  var stage = studio && studio.querySelector('.chrome-stage');
+  if (studio && stage) {
+    var aimLight = function () {
+      var h = studio.getBoundingClientRect(), s = stage.getBoundingClientRect();
+      if (!s.width) return;
+      studio.style.setProperty('--mark-x', (s.left - h.left + s.width / 2).toFixed(1) + 'px');
+      studio.style.setProperty('--mark-y', (s.top - h.top + s.height * 0.48).toFixed(1) + 'px');  // the mark's optical centre
+      studio.style.setProperty('--mark-w', s.width.toFixed(1) + 'px');
+    };
+    aimLight();
+    if ('ResizeObserver' in window) { var aim = new ResizeObserver(aimLight); aim.observe(studio); aim.observe(stage); }
+    else window.addEventListener('resize', aimLight);
+  }
+
   function syncPageVisibility() { root.classList.toggle('page-hidden', document.hidden); }
   document.addEventListener('visibilitychange', syncPageVisibility);
   syncPageVisibility();

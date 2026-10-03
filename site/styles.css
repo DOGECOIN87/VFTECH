@@ -482,14 +482,29 @@ fieldset.field{border:0;margin:0;padding:0}
 .hero--studio{
   --paper:#0C1013; --sheet:#141B20; --ink:#ECF1F2; --graphite:#AAB7BD; --rule:#26313A; --rule-strong:#44525B;
   --nonphoto:#2D6282; --blueline:#8CC6E6; --on-ink:#0C1013;
-  --studio-glow:#2B3A44; --studio-mid:#141C22; --studio-deep:#080B0D;
+  --studio-mid:#141C22; --studio-deep:#080B0D;
+  /* the key light, as rgb channels for the gradient stops; aimed at the mark by site.js */
+  --light:140 198 230; --halo:112 172 212; --ambient:45 98 130; --hot:236 241 242;
+  --mark-x:76%; --mark-y:46%; --mark-w:540px;
   color-scheme:dark;position:relative;isolation:isolate;overflow:hidden;
   background:var(--paper);color:var(--ink);border-bottom:0;padding-block:var(--s7) var(--s6);
 }
 .hero-backdrop{position:absolute;inset:0;z-index:-1;pointer-events:none}
+/* the key light behind the mark: layered gaussian falloffs (no visible edge), centred on the mark */
 .hero-spot{position:absolute;inset:0;background:
-  radial-gradient(38% 55% at 76% 42%, color-mix(in oklab, var(--studio-glow) 90%, var(--blueline)) 0%, transparent 72%),
-  radial-gradient(90% 100% at 76% 38%, var(--studio-mid) 0%, var(--paper) 58%, var(--studio-deep) 100%)}
+  /* light pooled on the floor under the mark */
+  radial-gradient(calc(var(--mark-w)*.9) calc(var(--mark-w)*.22) at var(--mark-x) 100%,rgb(var(--light)/.120),rgb(var(--light)/.108) 15%,rgb(var(--light)/.079) 30%,rgb(var(--light)/.047) 45%,rgb(var(--light)/.023) 60%,rgb(var(--light)/.009) 75%,rgb(var(--light)/0) 100%),
+  /* a soft white hot spot directly behind the mark */
+  radial-gradient(calc(var(--mark-w)*.24) calc(var(--mark-w)*.32) at var(--mark-x) var(--mark-y),rgb(var(--hot)/.070),rgb(var(--hot)/.063) 15%,rgb(var(--hot)/.046) 30%,rgb(var(--hot)/.028) 45%,rgb(var(--hot)/.013) 60%,rgb(var(--hot)/.005) 75%,rgb(var(--hot)/0) 100%),
+  /* the blue halo around it */
+  radial-gradient(calc(var(--mark-w)*.6) calc(var(--mark-w)*.7) at var(--mark-x) var(--mark-y),rgb(var(--halo)/.170),rgb(var(--halo)/.153) 15%,rgb(var(--halo)/.112) 30%,rgb(var(--halo)/.067) 45%,rgb(var(--halo)/.032) 60%,rgb(var(--halo)/.013) 75%,rgb(var(--halo)/0) 100%),
+  /* a wide, deep-blue ambient wash */
+  radial-gradient(calc(var(--mark-w)*1.1) calc(var(--mark-w)*1.1) at var(--mark-x) var(--mark-y),rgb(var(--ambient)/.140),rgb(var(--ambient)/.126) 15%,rgb(var(--ambient)/.093) 30%,rgb(var(--ambient)/.055) 45%,rgb(var(--ambient)/.027) 60%,rgb(var(--ambient)/.011) 75%,rgb(var(--ambient)/0) 100%),
+  /* the studio falls off to near-black in the corners */
+  radial-gradient(farthest-corner at var(--mark-x) var(--mark-y),var(--studio-mid),var(--paper) 44%,var(--studio-deep))}
+/* fine grain dithers the dark gradients, so they don't band on 8-bit screens */
+.hero-spot::after{content:"";position:absolute;inset:0;opacity:.55;mix-blend-mode:overlay;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='.33 .33 .33 0 0 .33 .33 .33 0 0 .33 .33 .33 0 0 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E") 0 0/160px 160px}
 /* the 60° lattice laid flat as a stage floor, receding to a horizon behind the mark */
 .hero-floor{position:absolute;left:-30%;right:-30%;bottom:-2%;height:56%;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='62' height='107.39' viewBox='0 0 62 107.39' fill='none' stroke='%238CC6E6' stroke-opacity='.5' stroke-width='1'%3E%3Cpath d='M0 0H62M0 53.695H62M0 107.39H62M0 0L62 107.39M62 0L0 107.39'/%3E%3C/svg%3E") 50% 100%/62px 107.39px repeat;
@@ -503,9 +518,7 @@ fieldset.field{border:0;margin:0;padding:0}
 .hero--studio .hero-title{text-shadow:0 1px 0 var(--studio-deep)}
 @media (max-width:980px){
   .hero--studio .hero-figure{margin-left:0;margin-right:0;max-width:34rem;justify-self:center;width:100%}
-  .hero-spot{background:
-    radial-gradient(70% 38% at 50% 74%, color-mix(in oklab, var(--studio-glow) 90%, var(--blueline)) 0%, transparent 72%),
-    radial-gradient(120% 80% at 50% 70%, var(--studio-mid) 0%, var(--paper) 60%, var(--studio-deep) 100%)}
+  .hero--studio{--mark-x:50%;--mark-y:80%;--mark-w:min(34rem,90vw)} /* until site.js measures the stacked layout */
   .hero-floor{height:34%}
 }
 @media (max-width:640px){

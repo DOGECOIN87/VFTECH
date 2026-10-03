@@ -1,7 +1,9 @@
 """Rebuild the VFTech logo SVGs.
 
-Usage:  python3 build.py FONT [--wght 700] [--suffix=-ttnorms]
+Usage:  python3 build.py FONT [--wght 700] [--suffix=-ttnorms] [--gaps 14.2,23.2]
 FONT is a variable font (instanced at --wght) or a static Bold-ish cut (used as is),
+spaced by its own sidebearings plus uniform tracking. A monospaced font (or --gaps) is
+instead spaced with fixed e→c, c→h gaps, since monospaced advances are not logo spacing;
 e.g. Montserrat[wght].ttf from Google Fonts (OFL) or `npm pack @fontsource-variable/montserrat`.
 Writes vftech-logo{suffix}.svg plus the font-independent vftech-monogram.svg / vftech-icon.svg.
 Needs: pip install fonttools skia-pathops brotli
@@ -14,10 +16,13 @@ from fontTools.pens.transformPen import TransformPen
 from fontTools.pens.boundsPen import BoundsPen
 from fontTools.pens.basePen import BasePen
 ap=argparse.ArgumentParser(); ap.add_argument('font'); ap.add_argument('--wght',type=float,default=700)
-ap.add_argument('--suffix',default=''); args=ap.parse_args()
+ap.add_argument('--suffix',default=''); ap.add_argument('--gaps',help='e→c,c→h gaps in logo units')
+args=ap.parse_args()
 R3=math.sqrt(3); T60=R3
 f=TTFont(args.font)
-if 'fvar' in f: f=instantiateVariableFont(f,{'wght':args.wght},overlap=2)
+if 'fvar' in f:
+    axes={a.axisTag for a in f['fvar'].axes}
+    f=instantiateVariableFont(f,{'wght':args.wght,**({'slnt':0} if 'slnt' in axes else {})},overlap=2)
 gs=f.getGlyphSet(); cm=f.getBestCmap(); hm=f['hmtx']
 def g(ch): return gs[cm[ord(ch)]]
 def fbounds(ch):
@@ -32,11 +37,20 @@ def glyph_d(ch,x_left):
 def rsb(ch): b=fbounds(ch); return (hm[cm[ord(ch)]][0]-b[2])*S
 def lsb(ch): return fbounds(ch)[0]*S
 def width(ch): b=fbounds(ch); return (b[2]-b[0])*S
-# --- horizontal layout: e stays where it was; uniform tracking chosen so h ends where it did (1361.8)
-E_LEFT=748.0; H_RIGHT=1361.83
-natural=width('e')+rsb('e')+lsb('c')+width('c')+rsb('c')+lsb('h')+width('h')
-TRACK=(H_RIGHT-E_LEFT-natural)/2
-x_e=E_LEFT; x_c=x_e+width('e')+rsb('e')+lsb('c')+TRACK; x_h=x_c+width('c')+rsb('c')+lsb('h')+TRACK
+# --- horizontal layout: e stays where it was
+E_LEFT=748.0
+mono=len({hm[cm[ord(ch)]][0] for ch in 'Tech'})==1
+if args.gaps or mono:
+    # fixed optical gaps; defaults are the ones the Montserrat lockup ends up with
+    G_EC,G_CH=(float(v) for v in (args.gaps or '14.2,23.2').split(','))
+    TRACK=float('nan')
+    x_e=E_LEFT; x_c=x_e+width('e')+G_EC; x_h=x_c+width('c')+G_CH; H_RIGHT=x_h+width('h')
+else:
+    # font sidebearings + uniform tracking chosen so h ends where the original did (1361.8)
+    H_RIGHT=1361.83
+    natural=width('e')+rsb('e')+lsb('c')+width('c')+rsb('c')+lsb('h')+width('h')
+    TRACK=(H_RIGHT-E_LEFT-natural)/2
+    x_e=E_LEFT; x_c=x_e+width('e')+rsb('e')+lsb('c')+TRACK; x_h=x_c+width('c')+rsb('c')+lsb('h')+TRACK
 hb=fbounds('h'); ASC=BASE-hb[3]*S        # h ascender top -> cap line for the custom T
 class _Flat(BasePen):
     """Flattens a glyph to polylines so its stems can be measured with a scanline."""

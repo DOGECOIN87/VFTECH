@@ -46,6 +46,7 @@ then rotates clockwise around the vertical axis once every eight seconds (viewed
 from above). The construction lattice tilts and breathes independently. The AI
 workflow diagram also reveals its steps in order when scrolled into view.
 
+- The hero is a dark, lit "studio" in both page themes (`.hero--studio` in `styles.css`). It has a spotlight behind the mark and the 60° lattice laid flat as a stage floor, so the chrome always reads against a dark backdrop. Its tokens are re-pointed locally, so the components inside it adapt. The stage sets `data-backdrop="dark"`, so the renderer always uses its dark-studio exposure.
 - Both pause buttons control the hero, diagrams and footer. The preference is remembered.
 - Reduced-motion visitors see a still chrome logo; no WebGL or JavaScript leaves the original SVG construction visible.
 - The render loop stops offscreen or in a hidden tab. Rendering is capped at 30 FPS and device pixel ratio at 1.75.

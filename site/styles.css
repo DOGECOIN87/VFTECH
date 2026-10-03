@@ -472,3 +472,44 @@ fieldset.field{border:0;margin:0;padding:0}
 @media (prefers-reduced-motion:reduce){
   .motion-controls-ready .hero-motion-btn{display:none}
 }
+
+/* ---------- studio hero: the chrome mark on a lit stage ----------
+   The hero is one dark, lit "studio" in both page themes, so the chrome reads as a polished object.
+   It re-points the shared tokens locally, so every component inside (headline, CTA, step strip,
+   the construction drawing) adapts without one-off overrides. */
+.hero--studio{
+  --paper:#0C1013; --sheet:#141B20; --ink:#ECF1F2; --graphite:#AAB7BD; --rule:#26313A; --rule-strong:#44525B;
+  --nonphoto:#2D6282; --blueline:#8CC6E6; --on-ink:#0C1013;
+  --studio-glow:#2B3A44; --studio-mid:#141C22; --studio-deep:#080B0D;
+  color-scheme:dark;position:relative;isolation:isolate;overflow:hidden;
+  background:var(--paper);color:var(--ink);border-bottom:0;padding-block:var(--s7) var(--s6);
+}
+.hero-backdrop{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.hero-spot{position:absolute;inset:0;background:
+  radial-gradient(38% 55% at 76% 42%, color-mix(in oklab, var(--studio-glow) 90%, var(--blueline)) 0%, transparent 72%),
+  radial-gradient(90% 100% at 76% 38%, var(--studio-mid) 0%, var(--paper) 58%, var(--studio-deep) 100%)}
+/* the 60° lattice laid flat as a stage floor, receding to a horizon behind the mark */
+.hero-floor{position:absolute;left:-30%;right:-30%;bottom:-2%;height:56%;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='62' height='107.39' viewBox='0 0 62 107.39' fill='none' stroke='%238CC6E6' stroke-opacity='.5' stroke-width='1'%3E%3Cpath d='M0 0H62M0 53.695H62M0 107.39H62M0 0L62 107.39M62 0L0 107.39'/%3E%3C/svg%3E") 50% 100%/62px 107.39px repeat;
+  transform:perspective(640px) rotateX(66deg);transform-origin:50% 100%;
+  -webkit-mask-image:linear-gradient(to top,#000 0%,rgba(0,0,0,.55) 40%,transparent 88%);mask-image:linear-gradient(to top,#000 0%,rgba(0,0,0,.55) 40%,transparent 88%);
+  opacity:.75}
+.hero--studio::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--blueline) 50%,transparent);opacity:.5}
+/* a larger mark: the stage bleeds past its column toward the right edge */
+.hero--studio .hero-figure{margin-right:calc(var(--gutter) * -1);margin-left:calc(var(--s6) * -1)}
+.hero--studio .figure-tools,.hero--studio .hero-figure figcaption{padding-right:var(--gutter);padding-left:var(--s6)}
+.hero--studio .hero-sub{color:var(--ink)}
+.hero--studio .hero-title{text-shadow:0 1px 0 var(--studio-deep)}
+@media (max-width:980px){
+  .hero--studio .hero-figure{margin-left:0;margin-right:0;max-width:34rem;justify-self:center;width:100%}
+  .hero--studio .figure-tools,.hero--studio .hero-figure figcaption{padding-inline:0}
+  .hero-spot{background:
+    radial-gradient(70% 38% at 50% 74%, color-mix(in oklab, var(--studio-glow) 90%, var(--blueline)) 0%, transparent 72%),
+    radial-gradient(120% 80% at 50% 70%, var(--studio-mid) 0%, var(--paper) 60%, var(--studio-deep) 100%)}
+  .hero-floor{height:34%}
+}
+@media (max-width:640px){
+  .hero--studio{padding-block:var(--s6) var(--s5)}
+  .hero--studio .hero-figure{margin-inline:calc(var(--gutter) * -1);width:auto;max-width:none}
+  .hero--studio .figure-tools,.hero--studio .hero-figure figcaption{padding-inline:var(--gutter)}
+}

@@ -41,7 +41,8 @@
 </header>
 
 <main id="main">
-  <section class="hero" aria-labelledby="hero-title">
+  <section class="hero hero--studio" aria-labelledby="hero-title">
+    <div class="hero-backdrop" aria-hidden="true"><div class="hero-spot"></div><div class="hero-floor"></div></div>
     <div class="wrap hero-grid">
       <div>
         <h1 class="hero-title" id="hero-title">
@@ -63,7 +64,7 @@
       </div>
 
       <figure class="fig hero-figure">
-        <div class="chrome-stage" data-chrome-hero>
+        <div class="chrome-stage" data-chrome-hero data-backdrop="dark">
         <canvas class="chrome-canvas" aria-hidden="true"></canvas>
         <svg class="hero-drawing" viewBox="-190 -250 1380 1300" role="img" aria-labelledby="fig1-title">
           <title id="fig1-title">The VFTech mark: a dimensioned drawing that becomes a beveled, mirror-polished chrome object rotating clockwise on its vertical axis. A 60-degree lattice shows its construction.</title>

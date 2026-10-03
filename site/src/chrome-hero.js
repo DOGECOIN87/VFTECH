@@ -103,7 +103,9 @@ function initChrome(stage) {
     camera.lookAt(0,0,0);
 
     function updateTheme() {
-      const isDark = root.dataset.theme === 'dark' || (!root.dataset.theme && dark.matches);
+      // A stage can declare its own backdrop (the studio hero is dark in both page themes).
+      const backdrop = stage.dataset.backdrop;
+      const isDark = backdrop === 'dark' || (backdrop !== 'light' && (root.dataset.theme === 'dark' || (!root.dataset.theme && dark.matches)));
       renderer.toneMappingExposure = isDark ? 1.15 : 0.95;
       chrome.envMapIntensity = isDark ? 1.65 : 1.25;
       if (!failed && !disposed) render();

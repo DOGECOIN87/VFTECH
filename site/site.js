@@ -71,24 +71,48 @@
     });
   });
 
-  /* ---- footer pattern: a pause control for the drifting monograms (WCAG 2.2.2) ---- */
+  /* ---- shared motion: chrome hero, schematic figures and footer pattern ---- */
   var foot = document.querySelector('.site-foot');
-  var motionBtn = document.querySelector('.motion-btn');
+  var motionButtons = document.querySelectorAll('.motion-btn, [data-motion-control]');
+  root.classList.add('motion-controls-ready');
   function setPaused(paused) {
-    if (!foot || !motionBtn) return;
-    foot.classList.toggle('paused', paused);
-    motionBtn.textContent = paused ? 'Resume motion' : 'Pause motion';
+    root.classList.toggle('motion-paused', paused);
+    if (foot) foot.classList.toggle('paused', paused);
+    motionButtons.forEach(function (btn) {
+      btn.textContent = paused ? 'Resume motion' : 'Pause motion';
+      btn.setAttribute('aria-pressed', String(paused));
+    });
+    document.dispatchEvent(new CustomEvent('vftech:motion-change'));
   }
-  if (foot && motionBtn) {
-    var saved = null;
-    try { saved = localStorage.getItem('vftech-pattern'); } catch (e) {}
-    setPaused(saved === 'paused');
-    motionBtn.addEventListener('click', function () {
-      var paused = !foot.classList.contains('paused');
+  var savedMotion = null;
+  try { savedMotion = localStorage.getItem('vftech-pattern'); } catch (e) {}
+  setPaused(savedMotion === 'paused');
+  motionButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var paused = !root.classList.contains('motion-paused');
       setPaused(paused);
       try { localStorage.setItem('vftech-pattern', paused ? 'paused' : 'moving'); } catch (e) {}
     });
+  });
+
+  // Reveal the technical drawings when they enter the viewport. Content stays
+  // fully visible without JS, and each diagram is animated only while in view.
+  if ('IntersectionObserver' in window) {
+    var diagrams = document.querySelectorAll('.hero-figure, .flowfig');
+    var drawingObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.classList.toggle('drawing-in-view', entry.isIntersecting);
+        if (entry.isIntersecting) entry.target.classList.add('drawing-revealed');
+      });
+    }, { threshold: 0.12 });
+    diagrams.forEach(function (diagram) {
+      diagram.classList.add('drawing-motion');
+      drawingObserver.observe(diagram);
+    });
   }
+  function syncPageVisibility() { root.classList.toggle('page-hidden', document.hidden); }
+  document.addEventListener('visibilitychange', syncPageVisibility);
+  syncPageVisibility();
 
   /* ---- contact form: not connected to delivery yet, so compose the request and offer to copy it ---- */
   var form = document.getElementById('book-form');

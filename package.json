@@ -1,0 +1,11 @@
+{
+  "name": "vftech-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild site/src/chrome-hero.js --bundle --minify --format=esm --target=es2020 --outfile=site/assets/chrome-hero.js --legal-comments=linked",
+    "check": "node --check site/site.js && node --check site/src/chrome-hero.js"
+  },
+  "dependencies": { "three": "0.180.0" },
+  "devDependencies": { "esbuild": "0.28.2" }
+}

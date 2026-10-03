@@ -62,9 +62,11 @@
         </div>
       </div>
 
-      <figure class="fig">
-        <svg viewBox="-190 -250 1380 1300" role="img" aria-labelledby="fig1-title">
-          <title id="fig1-title">The VFTech mark drawn as a sectioned figure on a 60-degree lattice, with its 1000-unit side, 85-unit gap and 60-degree vertex dimensioned.</title>
+      <figure class="fig hero-figure">
+        <div class="chrome-stage" data-chrome-hero>
+        <canvas class="chrome-canvas" aria-hidden="true"></canvas>
+        <svg class="hero-drawing" viewBox="-190 -250 1380 1300" role="img" aria-labelledby="fig1-title">
+          <title id="fig1-title">The VFTech mark: a dimensioned drawing that becomes a beveled, mirror-polished chrome object rotating clockwise on its vertical axis. A 60-degree lattice shows its construction.</title>
           <defs>
             <pattern id="lat" class="lat" patternUnits="userSpaceOnUse" width="125" height="216.506">
               <line x1="0" y1="0" x2="125" y2="0"/><line x1="0" y1="108.253" x2="125" y2="108.253"/><line x1="0" y1="216.506" x2="125" y2="216.506"/>
@@ -80,17 +82,22 @@
               <rect x="-190" y="-250" width="1380" height="1300" fill="url(#fade)"/>
             </mask>
           </defs>
-          <rect x="-190" y="-250" width="1380" height="1300" fill="url(#lat)" mask="url(#latmask)" opacity=".6"/>
+          <g class="schematic-lattice"><rect x="-190" y="-250" width="1380" height="1300" fill="url(#lat)" mask="url(#latmask)" opacity=".6"/></g>
           <path class="construct" d="M-120 0H1120M-60 -103.92 560 969.95M1060 -103.92 440 969.95"/>
-          <path class="fig-mark" d="M0 0 175 0 405 398.37 405 0 1000 0 945.15 95 500 95 500 866.03ZM585 180 896.08 180 585 718.8 585 370 700.93 370 750 285 585 285Z"/>
+          <path class="fig-mark hero-sketch" pathLength="1" d="M0 0 175 0 405 398.37 405 0 1000 0 945.15 95 500 95 500 866.03ZM585 180 896.08 180 585 718.8 585 370 700.93 370 750 285 585 285Z"/>
+          <g class="schematic-dimensions">
           <path class="dline" d="M0 -26V-168M1000 -26V-168M0 -128H1000M-11 -109 11 -147M989 -109 1011 -147"/>
           <text class="dtext" x="500" y="-146" text-anchor="middle">1000</text>
           <path class="dline" d="M500 880V830M585 735V830M500 806H585M489 825 511 787M574 825 596 787M585 806H680"/>
           <text class="dtext" x="694" y="818">85</text>
           <path class="dline" d="M570 987.27A140 140 0 0 1 430 987.27"/>
           <text class="dtext" x="500" y="1046" text-anchor="middle">60°</text>
+          </g>
+          <g class="schematic-nodes" aria-hidden="true"><circle cx="0" cy="0" r="7"/><circle cx="1000" cy="0" r="7"/><circle cx="500" cy="866.03" r="7"/></g>
         </svg>
-        <figcaption><span class="note">Fig. 1 — The mark, drawn to its construction</span>Every system we hand over comes with written documentation of how it is built, deployed and maintained.</figcaption>
+        </div>
+        <div class="figure-tools"><span class="note">Drawing → dimension</span><button class="hero-motion-btn" data-motion-control type="button" aria-pressed="false">Pause motion</button></div>
+        <figcaption><span class="note">Fig. 1 — From construction to chrome</span>Every system we hand over comes with written documentation of how it is built, deployed and maintained.</figcaption>
       </figure>
     </div>
   </section>
@@ -270,5 +277,6 @@
   </div>
 </footer>
 <script src="site.js"></script>
+<script type="module" src="assets/chrome-hero.js"></script>
 </body>
 </html>

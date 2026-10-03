@@ -54,3 +54,12 @@ workflow diagram also reveals its steps in order when scrolled into view.
 - Source: `site/src/chrome-hero.js`. Built output: `site/assets/chrome-hero.js`.
 - To edit/rebuild, from the repo root: `npm ci`, `npm run check`, `npm run build`.
 - The production output and `THREE-LICENSE.txt` must ship with the site.
+
+## Sharing and hosting
+
+- **GitHub Pages**: `.github/workflows/pages.yml` publishes `site/` to https://dogecoin87.github.io/VFTECH/ on every push to `main`. One-time setup: Settings → Pages → Source: **GitHub Actions**.
+- **Share cards**: every page carries Open Graph and Twitter tags.
+  - `social/vftech-card.jpg` is the desktop still (1200×630, about 80 KB, under WhatsApp's limit).
+  - `social/vftech-card.mp4` is a seamless 8-second loop of the chrome mark, offered as `og:video`.
+  - `social/vftech-card.gif` is the same loop as an animated GIF, for posting directly.
+  - Whether a link preview animates is up to each app. Most show the still.

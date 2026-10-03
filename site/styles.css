@@ -512,3 +512,39 @@ fieldset.field{border:0;margin:0;padding:0}
   .hero--studio{padding-block:var(--s6) var(--s5)}
   .hero--studio .hero-figure{margin-inline:calc(var(--gutter) * -1);width:auto;max-width:none}
 }
+
+/* ---------- hero intro ----------
+   Rays of light run along the hero's borders and meet at the triangle's corners while lattice
+   triangles sweep in (hero-intro.js, on the canvas below). The type then rises in reading order.
+   The reveal is pure CSS on a fixed schedule, so the text appears even if the script never runs. */
+.hero-intro{position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none}
+.hero--studio > .wrap{position:relative;z-index:1}
+@keyframes intro-rise{from{opacity:0;transform:translateY(var(--s4))}to{opacity:1;transform:none}}
+@keyframes intro-fade{from{opacity:0}to{opacity:1}}
+.hero-intro-pending .hero-title .ln,
+.hero-intro-pending .hero-sub,
+.hero-intro-pending .cta-row > *,
+.hero-intro-pending .seq{animation:intro-rise .9s cubic-bezier(.16,.84,.3,1) both}
+.hero-intro-pending .hero-title .ln:nth-child(1){animation-delay:1.45s}
+.hero-intro-pending .hero-title .ln:nth-child(2){animation-delay:1.6s}
+.hero-intro-pending .hero-title .ln:nth-child(3){animation-delay:1.75s}
+.hero-intro-pending .hero-sub{animation-delay:2s}
+.hero-intro-pending .cta-row > .cta{animation-delay:2.25s}
+.hero-intro-pending .cta-row > .cta-note{animation-delay:2.4s}
+.hero-intro-pending .seq{animation-delay:2.6s}
+.hero-intro-pending .hero-pause{animation:intro-fade .6s 3s both}
+/* the stage's own drawing waits for the rays: lattice at 1.0s, construction lines and outline at the meet */
+@keyframes intro-lattice{from{opacity:0}to{opacity:.6}} /* ends at the drawing's own .6 */
+.hero-intro-pending .schematic-lattice rect{animation:intro-lattice 1s 1s both}
+.hero-intro-pending .construct{animation-delay:1.2s}
+.hero-intro-pending .drawing-motion .hero-sketch{animation-delay:1.3s}
+.hero-intro-pending .drawing-motion .schematic-dimensions{animation-delay:1.9s}
+/* a visitor who has paused motion gets the finished hero at once */
+.motion-paused.hero-intro-pending .hero-title .ln,
+.motion-paused.hero-intro-pending .hero-sub,
+.motion-paused.hero-intro-pending .cta-row > *,
+.motion-paused.hero-intro-pending .seq,
+.motion-paused.hero-intro-pending .hero-pause,
+.motion-paused.hero-intro-pending .schematic-lattice rect,
+.motion-paused.hero-intro-pending .construct{animation:none}
+

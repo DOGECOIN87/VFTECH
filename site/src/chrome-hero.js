@@ -21,6 +21,12 @@ function initChrome(stage) {
   let frame = 0;
   let lastTime = 0;
   let elapsed = root.classList.contains('motion-paused') ? 3.2 : 0;
+  // The hero intro (hero-intro.js) runs light along the borders to the triangle's corners first; the
+  // mark starts drawing when they meet. A failsafe releases it if the intro never signals.
+  let introHold = root.classList.contains('hero-intro-pending') && !root.classList.contains('motion-paused');
+  const releaseIntro = () => { introHold = false; };
+  document.addEventListener('vftech:intro-arrived', releaseIntro, {once: true});
+  setTimeout(releaseIntro, 3000);
   let lastDraw = -Infinity;
   let disposed = false;
 
@@ -145,7 +151,7 @@ function initChrome(stage) {
     function tick(now) {
       frame = 0;
       if (!running()) { lastTime=0; return; }
-      if (lastTime) elapsed += Math.min((now-lastTime)/1000, 0.1);
+      if (lastTime && !introHold) elapsed += Math.min((now-lastTime)/1000, 0.1);
       lastTime = now;
       if (now-lastDraw >= 1000/30) { render(); lastDraw=now; }
       frame = requestAnimationFrame(tick);

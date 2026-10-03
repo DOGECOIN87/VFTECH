@@ -1,17 +1,23 @@
 """Rebuild the VFTech logo SVGs.
 
-Usage:  python3 build.py path/to/Montserrat[wght].ttf|woff2
-Get the variable font from Google Fonts (OFL) or `npm pack @fontsource-variable/montserrat`.
+Usage:  python3 build.py FONT [--wght 700] [--suffix=-ttnorms]
+FONT is a variable font (instanced at --wght) or a static Bold-ish cut (used as is),
+e.g. Montserrat[wght].ttf from Google Fonts (OFL) or `npm pack @fontsource-variable/montserrat`.
+Writes vftech-logo{suffix}.svg plus the font-independent vftech-monogram.svg / vftech-icon.svg.
 Needs: pip install fonttools skia-pathops brotli
 """
-import math, re, sys
+import argparse, math, re
 from fontTools.ttLib import TTFont
 from fontTools.varLib.instancer import instantiateVariableFont
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.pens.boundsPen import BoundsPen
+from fontTools.pens.basePen import BasePen
+ap=argparse.ArgumentParser(); ap.add_argument('font'); ap.add_argument('--wght',type=float,default=700)
+ap.add_argument('--suffix',default=''); args=ap.parse_args()
 R3=math.sqrt(3); T60=R3
-f=instantiateVariableFont(TTFont(sys.argv[1]),{'wght':700},overlap=2)
+f=TTFont(args.font)
+if 'fvar' in f: f=instantiateVariableFont(f,{'wght':args.wght},overlap=2)
 gs=f.getGlyphSet(); cm=f.getBestCmap(); hm=f['hmtx']
 def g(ch): return gs[cm[ord(ch)]]
 def fbounds(ch):
@@ -20,7 +26,7 @@ def fbounds(ch):
 eb=fbounds('e'); S=192.7/(eb[3]-eb[1]); BASE=510.0
 def fmt(v): s=('%.2f'%v).rstrip('0').rstrip('.'); return '0' if s=='-0' else s
 def glyph_d(ch,x_left):
-    """Montserrat outline, scaled, its bbox-left placed at x_left (y flipped onto baseline)."""
+    """Font outline, scaled, its bbox-left placed at x_left (y flipped onto baseline)."""
     b=fbounds(ch); pen=SVGPathPen(gs,ntos=fmt)
     tp=TransformPen(pen,(S,0,0,-S,x_left-b[0]*S,BASE)); g(ch).draw(tp); return pen.getCommands()
 def rsb(ch): b=fbounds(ch); return (hm[cm[ord(ch)]][0]-b[2])*S
@@ -32,8 +38,28 @@ natural=width('e')+rsb('e')+lsb('c')+width('c')+rsb('c')+lsb('h')+width('h')
 TRACK=(H_RIGHT-E_LEFT-natural)/2
 x_e=E_LEFT; x_c=x_e+width('e')+rsb('e')+lsb('c')+TRACK; x_h=x_c+width('c')+rsb('c')+lsb('h')+TRACK
 hb=fbounds('h'); ASC=BASE-hb[3]*S        # h ascender top -> cap line for the custom T
-# --- custom T: stem = Montserrat Bold h stem, crossbar same weight, 60° parallelogram ends
-STEM=54.3; BAR=STEM; T_CX=683.36; BAR_LEN=234.5   # stem centre & bar midline length kept from original
+class _Flat(BasePen):
+    """Flattens a glyph to polylines so its stems can be measured with a scanline."""
+    def __init__(s,gs): super().__init__(gs); s.c=[]
+    def _moveTo(s,p): s.c.append([p])
+    def _lineTo(s,p): s.c[-1].append(p)
+    def _curveToOne(s,a,b,c):
+        p0=s.c[-1][-1]
+        for i in range(1,17):
+            t=i/16; s.c[-1].append(tuple((1-t)**3*p0[k]+3*(1-t)**2*t*a[k]+3*(1-t)*t*t*b[k]+t**3*c[k] for k in (0,1)))
+    def _qCurveToOne(s,a,b):
+        p0=s.c[-1][-1]
+        for i in range(1,13):
+            t=i/12; s.c[-1].append(tuple((1-t)**2*p0[k]+2*(1-t)*t*a[k]+t*t*b[k] for k in (0,1)))
+def stem_width(ch):
+    """Width of the left stem up in the ascender (85% of the glyph height), clear of the shoulder."""
+    pen=_Flat(gs); g(ch).draw(pen); b=fbounds(ch); y=b[1]+0.85*(b[3]-b[1]); xs=[]
+    for c in pen.c:
+        for (x0,y0),(x1,y1) in zip(c,c[1:]+c[:1]):
+            if (y0-y)*(y1-y)<0: xs.append(x0+(y-y0)*(x1-x0)/(y1-y0))
+    xs.sort(); return (xs[1]-xs[0])*S
+# --- custom T: stem = the font's h stem, crossbar same weight, 60° parallelogram ends
+STEM=round(stem_width('h'),1); BAR=STEM; T_CX=683.36; BAR_LEN=234.5   # stem centre & bar midline length kept from original
 off=BAR/T60                                       # horizontal run of a 60° cut over the bar height
 mx0,mx1=T_CX-BAR_LEN/2,T_CX+BAR_LEN/2
 yt,yb=ASC,ASC+BAR
@@ -57,7 +83,7 @@ x0=M_LEFT-24; y0=M_TOP-24; x1=H_RIGHT+24; y1=M_TOP+500*R3*MS+24
 W,H=x1-x0,y1-y0
 svg=f'''<svg xmlns="http://www.w3.org/2000/svg" width="{fmt(W)}" height="{fmt(H)}" viewBox="{fmt(x0)} {fmt(y0)} {fmt(W)} {fmt(H)}" role="img" aria-labelledby="title"><title id="title">VFTech</title><g id="vftech-artwork" fill="#000"><path id="vf-monogram" d="{mono_d}"/><g id="tech-lettering"><path id="letter-t" d="{T_d}"/><path id="letter-e" d="{parts['letter-e']}"/><path id="letter-c" d="{parts['letter-c']}"/><path id="letter-h" d="{parts['letter-h']}"/></g></g></svg>
 '''
-open('vftech-logo.svg','w').write(svg)
+open(f'vftech-logo{args.suffix}.svg','w').write(svg)
 # standalone monogram master (no transforms, tight box) + square icon
 mono_master=f'''<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="{fmt(500*R3)}" viewBox="0 0 1000 {fmt(500*R3)}" role="img" aria-labelledby="title"><title id="title">VFTech monogram</title><path fill="#000" d="{poly(V,0,0,1)}{poly(F,0,0,1)}"/></svg>
 '''
@@ -68,7 +94,7 @@ ox,oy=177,(1254-0.9*500*R3)/2+nudge
 icon=f'''<svg xmlns="http://www.w3.org/2000/svg" width="1254" height="1254" viewBox="0 0 1254 1254" role="img" aria-labelledby="title"><title id="title">VFTech app icon</title><rect width="1254" height="1254" fill="#fff"/><path fill="#000" d="{poly(V,ox,oy,0.9)}{poly(F,ox,oy,0.9)}"/></svg>
 '''
 open('vftech-icon.svg','w').write(icon)
-print('scale %.4f track %.2f  x_e %.1f x_c %.1f x_h %.1f  asc %.2f'%(S,TRACK,x_e,x_c,x_h,ASC))
+print('stem %.1f  scale %.4f track %.2f  x_e %.1f x_c %.1f x_h %.1f  asc %.2f'%(STEM,S,TRACK,x_e,x_c,x_h,ASC))
 print('gaps: T-stem->e %.1f  e->c %.1f  c->h %.1f'%(x_e-(T_CX+STEM/2), x_c-(x_e+width('e')), x_h-(x_c+width('c'))))
 print('mark left %.1f top-right %.1f, scale %.4f, stem %.1f, V-arm %.1f, internal gap %.1f'%(M_LEFT,mx,MS,95*MS,175*MS*R3/2,85*MS))
 print('T bar %.1f..%.1f top, %.1f..%.1f bottom; e top %.1f'%(T[0][0],T[1][0],T[7][0],T[2][0],BASE-fbounds('e')[3]*S))

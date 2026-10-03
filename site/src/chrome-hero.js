@@ -15,7 +15,6 @@ function initChrome(stage) {
   const canvas = stage.querySelector('canvas');
   const figure = stage.closest('figure');
   const root = document.documentElement;
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const dark = matchMedia('(prefers-color-scheme: dark)');
   let failed = false;
   let visible = false;
@@ -30,6 +29,7 @@ function initChrome(stage) {
     cancelAnimationFrame(frame);
     frame = 0;
     figure.classList.remove('chrome-ready', 'chrome-solid');
+    figure.classList.add('chrome-fallback');
     stage.style.removeProperty('--chrome-opacity');
     stage.style.removeProperty('--sketch-opacity');
     canvas.hidden = true;
@@ -117,12 +117,12 @@ function initChrome(stage) {
       const reveal = THREE.MathUtils.smoothstep(elapsed, 1.25, 2.5);
       const rotationTime = Math.max(0, elapsed-3.2);
       // Negative yaw is clockwise when viewed from above the vertical axis.
-      logo.rotation.y = reduce.matches ? -0.16 : -(rotationTime * Math.PI*2 / 8);
-      logo.rotation.x = reduce.matches ? 0.05 : 0.06*growth;
-      logo.scale.z = reduce.matches ? 1 : 0.02+0.98*growth;
-      stage.style.setProperty('--chrome-opacity', reduce.matches ? '1' : String(reveal));
-      stage.style.setProperty('--sketch-opacity', reduce.matches ? '0' : String(1-reveal));
-      figure.classList.toggle('chrome-solid', reduce.matches || reveal === 1);
+      logo.rotation.y = -(rotationTime * Math.PI*2 / 8);
+      logo.rotation.x = 0.06*growth;
+      logo.scale.z = 0.02+0.98*growth;
+      stage.style.setProperty('--chrome-opacity', String(reveal));
+      stage.style.setProperty('--sketch-opacity', String(1-reveal));
+      figure.classList.toggle('chrome-solid', reveal === 1);
       renderer.render(scene,camera);
     }
     function resize() {
@@ -140,7 +140,7 @@ function initChrome(stage) {
       render();
     }
     function running() {
-      return visible && !document.hidden && !reduce.matches && !root.classList.contains('motion-paused') && !failed && !disposed;
+      return visible && !document.hidden && !root.classList.contains('motion-paused') && !failed && !disposed;
     }
     function tick(now) {
       frame = 0;
@@ -151,7 +151,6 @@ function initChrome(stage) {
       frame = requestAnimationFrame(tick);
     }
     function syncMotion() {
-      if (reduce.matches) elapsed = Math.max(elapsed, 3.2);
       if (running()) {
         if (!frame) { lastTime=0; frame=requestAnimationFrame(tick); }
       } else {
@@ -177,7 +176,6 @@ function initChrome(stage) {
     viewObserver.observe(stage);
     document.addEventListener('visibilitychange', syncMotion);
     document.addEventListener('vftech:motion-change', syncMotion);
-    reduce.addEventListener('change', syncMotion);
     dark.addEventListener('change', updateTheme);
     window.addEventListener('pagehide', event => {
       if (event.persisted) return; // Keep the scene intact for back/forward-cache restoration.
@@ -186,7 +184,6 @@ function initChrome(stage) {
       sizeObserver.disconnect(); themeObserver.disconnect(); viewObserver.disconnect();
       document.removeEventListener('visibilitychange', syncMotion);
       document.removeEventListener('vftech:motion-change', syncMotion);
-      reduce.removeEventListener('change', syncMotion);
       dark.removeEventListener('change', updateTheme);
       scene.traverse(obj => obj.geometry?.dispose());
       chrome.dispose(); envTarget.dispose(); renderer.dispose();

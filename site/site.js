@@ -84,14 +84,16 @@
     });
     document.dispatchEvent(new CustomEvent('vftech:motion-change'));
   }
+  // A pause lasts for this visit only, so motion is back on the next one. (The old permanent
+  // preference is cleared, so nobody stays stuck on a pause made while testing.)
   var savedMotion = null;
-  try { savedMotion = localStorage.getItem('vftech-pattern'); } catch (e) {}
+  try { localStorage.removeItem('vftech-pattern'); savedMotion = sessionStorage.getItem('vftech-motion'); } catch (e) {}
   setPaused(savedMotion === 'paused');
   motionButtons.forEach(function (btn) {
     btn.addEventListener('click', function () {
       var paused = !root.classList.contains('motion-paused');
       setPaused(paused);
-      try { localStorage.setItem('vftech-pattern', paused ? 'paused' : 'moving'); } catch (e) {}
+      try { sessionStorage.setItem('vftech-motion', paused ? 'paused' : 'moving'); } catch (e) {}
     });
   });
 

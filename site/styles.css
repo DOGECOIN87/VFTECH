@@ -434,12 +434,15 @@ fieldset.field{border:0;margin:0;padding:0}
 .chrome-ready .chrome-canvas{opacity:var(--chrome-opacity,0)}
 .chrome-ready .hero-sketch{opacity:var(--sketch-opacity,1)}
 .schematic-nodes{fill:var(--blueline);opacity:.7}
-.figure-tools{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-top:var(--s3)}
-.figure-tools .note{font-size:var(--t-2);color:var(--blueline)}
-.hero-motion-btn{display:none;border:1px solid var(--rule-strong);background:transparent;color:var(--graphite);font:500 var(--t-2)/1.3 var(--f-note);padding:9px 12px;min-height:36px;cursor:pointer}
-.motion-controls-ready .hero-motion-btn{display:inline-block}
-.hero-motion-btn:hover{border-color:var(--blueline);color:var(--ink)}
-.hero-motion-btn:focus-visible{outline:2px solid var(--blueline);outline-offset:4px}
+/* the hero's pause control: a quiet icon in the stage corner (WCAG 2.2.2), no caption text */
+.hero-pause{position:absolute;right:var(--s3);bottom:var(--s3);z-index:2;width:44px;height:44px;display:none;place-items:center;padding:0;
+  border:1px solid var(--rule-strong);background:color-mix(in oklab,var(--paper) 72%,transparent);color:var(--graphite);cursor:pointer}
+.motion-controls-ready .hero-pause{display:grid}
+.hero-pause:hover{color:var(--ink);border-color:var(--blueline)}
+.hero-pause:focus-visible{outline:2px solid var(--blueline);outline-offset:3px}
+.hero-pause svg{width:14px;height:14px;fill:currentColor}
+.hero-pause .i-play,.hero-pause[aria-pressed="true"] .i-pause{display:none}
+.hero-pause[aria-pressed="true"] .i-play{display:inline}
 @media all{ /* every device; paused only by the Pause motion buttons */
   .drawing-motion .schematic-lattice{animation:lattice-breathe 12s ease-in-out infinite}
   .drawing-motion .hero-sketch{stroke-dasharray:1;animation:mark-draw 1.8s cubic-bezier(.2,.7,.2,1) both}
@@ -496,12 +499,10 @@ fieldset.field{border:0;margin:0;padding:0}
 .hero--studio::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--blueline) 50%,transparent);opacity:.5}
 /* a larger mark: the stage bleeds past its column toward the right edge */
 .hero--studio .hero-figure{margin-right:calc(var(--gutter) * -1);margin-left:calc(var(--s6) * -1)}
-.hero--studio .figure-tools,.hero--studio .hero-figure figcaption{padding-right:var(--gutter);padding-left:var(--s6)}
 .hero--studio .hero-sub{color:var(--ink)}
 .hero--studio .hero-title{text-shadow:0 1px 0 var(--studio-deep)}
 @media (max-width:980px){
   .hero--studio .hero-figure{margin-left:0;margin-right:0;max-width:34rem;justify-self:center;width:100%}
-  .hero--studio .figure-tools,.hero--studio .hero-figure figcaption{padding-inline:0}
   .hero-spot{background:
     radial-gradient(70% 38% at 50% 74%, color-mix(in oklab, var(--studio-glow) 90%, var(--blueline)) 0%, transparent 72%),
     radial-gradient(120% 80% at 50% 70%, var(--studio-mid) 0%, var(--paper) 60%, var(--studio-deep) 100%)}
@@ -510,5 +511,4 @@ fieldset.field{border:0;margin:0;padding:0}
 @media (max-width:640px){
   .hero--studio{padding-block:var(--s6) var(--s5)}
   .hero--studio .hero-figure{margin-inline:calc(var(--gutter) * -1);width:auto;max-width:none}
-  .hero--studio .figure-tools,.hero--studio .hero-figure figcaption{padding-inline:var(--gutter)}
 }

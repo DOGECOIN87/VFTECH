@@ -79,8 +79,15 @@
     root.classList.toggle('motion-paused', paused);
     if (foot) foot.classList.toggle('paused', paused);
     motionButtons.forEach(function (btn) {
-      btn.textContent = paused ? 'Resume motion' : 'Pause motion';
-      btn.setAttribute('aria-pressed', String(paused));
+      if (btn.hasAttribute('data-motion-icon')) {
+        // icon toggle: a constant name, with the state carried by aria-pressed and the icon
+        btn.setAttribute('aria-pressed', String(paused));
+        btn.title = paused ? 'Resume motion' : 'Pause motion';
+      } else {
+        // text button: the label itself says what the next click does
+        btn.textContent = paused ? 'Resume motion' : 'Pause motion';
+        btn.removeAttribute('aria-pressed');
+      }
     });
     document.dispatchEvent(new CustomEvent('vftech:motion-change'));
   }

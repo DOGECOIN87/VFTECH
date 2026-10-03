@@ -71,6 +71,25 @@
     });
   });
 
+  /* ---- footer pattern: a pause control for the drifting monograms (WCAG 2.2.2) ---- */
+  var foot = document.querySelector('.site-foot');
+  var motionBtn = document.querySelector('.motion-btn');
+  function setPaused(paused) {
+    if (!foot || !motionBtn) return;
+    foot.classList.toggle('paused', paused);
+    motionBtn.textContent = paused ? 'Resume motion' : 'Pause motion';
+  }
+  if (foot && motionBtn) {
+    var saved = null;
+    try { saved = localStorage.getItem('vftech-pattern'); } catch (e) {}
+    setPaused(saved === 'paused');
+    motionBtn.addEventListener('click', function () {
+      var paused = !foot.classList.contains('paused');
+      setPaused(paused);
+      try { localStorage.setItem('vftech-pattern', paused ? 'paused' : 'moving'); } catch (e) {}
+    });
+  }
+
   /* ---- contact form: not connected to delivery yet, so compose the request and offer to copy it ---- */
   var form = document.getElementById('book-form');
   if (form) {

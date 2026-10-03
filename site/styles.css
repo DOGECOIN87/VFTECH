@@ -18,6 +18,7 @@
   --nonphoto:#8DC1DD;     /* construction lines; never text */
   --blueline:#2A6889;     /* annotation: dimensions, captions, links */
   --on-ink:#F3F4F1;       /* text on ink fills */
+  --mark-tint:#DDDFDB;    /* the drifting footer monograms: ink at about 10% on paper */
 
   /* type: Archivo for title lettering, Source Serif 4 for the written documentation, Plex Mono for annotation */
   --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
@@ -44,12 +45,14 @@
   :root:not([data-theme="light"]){
     --paper:#0E1215; --sheet:#151B1F; --ink:#E4E9EA; --graphite:#9DABB2;
     --rule:#283237; --rule-strong:#4C595F; --nonphoto:#2F6584; --blueline:#86C0E0; --on-ink:#0E1215;
+    --mark-tint:#22282B;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --paper:#0E1215; --sheet:#151B1F; --ink:#E4E9EA; --graphite:#9DABB2;
   --rule:#283237; --rule-strong:#4C595F; --nonphoto:#2F6584; --blueline:#86C0E0; --on-ink:#0E1215;
+  --mark-tint:#22282B;
   color-scheme:dark;
 }
 
@@ -388,8 +391,16 @@ fieldset.field{border:0;margin:0;padding:0}
 @media (max-width:860px){.closing-grid{grid-template-columns:1fr}.closing{padding-block:var(--s6)}}
 
 /* ---------- footer: the title block ---------- */
-.site-foot{padding-block:var(--s7) var(--s5)}
-.tblock{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--ink)}
+.site-foot{position:relative;isolation:isolate;overflow:hidden;padding-block:var(--s7) var(--s5)}
+/* a field of VF monograms in staggered rows, drifting slowly from bottom-right to top-left.
+   One loop moves exactly one tile (89 × 77.08 = 89·√3/2), so it repeats seamlessly. */
+.foot-pattern{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 var(--s7));mask-image:linear-gradient(to bottom,transparent,#000 var(--s7))}
+.foot-pattern::before{content:"";position:absolute;top:0;left:0;right:-89px;bottom:-77.08px;background:var(--mark-tint);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='89' height='77.08' viewBox='0 0 89 77.08'%3E%3Cpath transform='translate%285.25 4.55%29 scale%280.034%29' d='M0 0 175 0 405 398.37 405 0 1000 0 945.15 95 500 95 500 866.03ZM585 180 896.08 180 585 718.8 585 370 700.93 370 750 285 585 285Z'/%3E%3Cpath transform='translate%2849.75 43.09%29 scale%280.034%29' d='M0 0 175 0 405 398.37 405 0 1000 0 945.15 95 500 95 500 866.03ZM585 180 896.08 180 585 718.8 585 370 700.93 370 750 285 585 285Z'/%3E%3C/svg%3E") 0 0/89px 77.08px repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='89' height='77.08' viewBox='0 0 89 77.08'%3E%3Cpath transform='translate%285.25 4.55%29 scale%280.034%29' d='M0 0 175 0 405 398.37 405 0 1000 0 945.15 95 500 95 500 866.03ZM585 180 896.08 180 585 718.8 585 370 700.93 370 750 285 585 285Z'/%3E%3Cpath transform='translate%2849.75 43.09%29 scale%280.034%29' d='M0 0 175 0 405 398.37 405 0 1000 0 945.15 95 500 95 500 866.03ZM585 180 896.08 180 585 718.8 585 370 700.93 370 750 285 585 285Z'/%3E%3C/svg%3E") 0 0/89px 77.08px repeat;
+  animation:vf-drift 21s linear infinite;will-change:transform}
+@keyframes vf-drift{to{transform:translate(-89px,-77.08px)}}
+.tblock{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--ink);background:var(--paper)}
 .tb{padding:var(--s4) var(--s4);border-right:1px solid var(--rule-strong);min-width:0}
 .tb:nth-child(3){border-right:0}
 .tb-brand svg{width:170px;height:auto;color:var(--ink)}

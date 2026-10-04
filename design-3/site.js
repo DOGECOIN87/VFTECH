@@ -142,8 +142,20 @@
         el.classList.add('in');
         revealObserver.unobserve(el);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    }, { rootMargin: '0px 0px -4% 0px', threshold: 0 });
     revealEls.forEach(function (el) { el.classList.add('reveal'); revealObserver.observe(el); });
+    // A safety net, so nothing can stay hidden: anything at or above the bottom of the screen is shown,
+    // and reaching the end of the page shows the rest (the last lines can sit too low to ever "enter").
+    var sweepQueued = false;
+    var sweep = function () {
+      sweepQueued = false;
+      var atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      document.querySelectorAll('.reveal:not(.in)').forEach(function (el) {
+        if (atEnd || el.getBoundingClientRect().top < window.innerHeight) { el.classList.add('in'); revealObserver.unobserve(el); }
+      });
+    };
+    window.addEventListener('scroll', function () { if (!sweepQueued) { sweepQueued = true; setTimeout(sweep, 250); } }, { passive: true });
+    window.addEventListener('load', function () { setTimeout(sweep, 600); });
 
     // the heavy rule over each list or table draws across from the left
     var ruleObserver = new IntersectionObserver(function (entries) {

@@ -644,3 +644,6 @@ fieldset.field{border:0;margin:0;padding:0}
 .design-switch .ds-seg [aria-current]{color:var(--on-accent)}
 .design-switch .ds-seg b{font-weight:600;margin-right:.3em}
 @media (max-width:640px){.design-switch .ds-seg a,.design-switch .ds-seg span{padding:0 var(--s2)}.design-switch .ds-theme span{display:none}}
+
+/* room under the footer, so the pinned design switcher never covers its last line */
+.site-foot{padding-bottom:calc(var(--s5) + 64px)}

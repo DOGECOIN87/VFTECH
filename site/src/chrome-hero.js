@@ -14,6 +14,8 @@ function initChrome(stage) {
   let scene;
   const canvas = stage.querySelector('canvas');
   const figure = stage.closest('figure');
+  // the light the mark throws on the floor (index.html .hero-pool) widens as its face turns to camera
+  const pool = stage.closest('.hero--studio')?.querySelector('.hero-pool');
   const root = document.documentElement;
   const dark = matchMedia('(prefers-color-scheme: dark)');
   let failed = false;
@@ -103,7 +105,10 @@ function initChrome(stage) {
     }
     // Pivot at the bounding-box center. Both pieces rotate as one registered mark.
     logo.position.y = -0.11;
-    scene.add(logo);
+    // The mark leans toward the pointer (hero-depth.js eases it into stage.vftechTilt), on top of its spin.
+    const tilt = new THREE.Group();
+    tilt.add(logo);
+    scene.add(tilt);
     const camera = new THREE.OrthographicCamera(-2.30,2.30,2.1667,-2.1667,0.1,30);
     camera.position.set(0,0,8);
     camera.lookAt(0,0,0);
@@ -126,6 +131,10 @@ function initChrome(stage) {
       logo.rotation.y = -(rotationTime * Math.PI*2 / 8);
       logo.rotation.x = 0.06*growth;
       logo.scale.z = 0.02+0.98*growth;
+      const lean = stage.vftechTilt;
+      tilt.rotation.x = lean ? lean.y*0.16 : 0;
+      tilt.rotation.y = lean ? lean.x*0.24 : 0;
+      if (pool) pool.style.setProperty('--mark-turn', Math.abs(Math.cos(logo.rotation.y)).toFixed(3));
       stage.style.setProperty('--chrome-opacity', String(reveal));
       stage.style.setProperty('--sketch-opacity', String(1-reveal));
       figure.classList.toggle('chrome-solid', reveal === 1);

@@ -119,6 +119,47 @@
       drawingObserver.observe(diagram);
     });
   }
+  /* ---- scroll reveal: sheet content rises into place as it enters the viewport ----
+     Rows of a list reveal one by one; otherwise each block reveals whole. Items entering together are
+     staggered in reading order. Nothing is hidden until this runs, so content never depends on it. */
+  if ('IntersectionObserver' in window) {
+    var ROWS = '.ledger > div, .sits > .sit, .tier, .steps > li, .decl li, .frame .cell, .tours > *, .parts > *';
+    var BLOCKS = '.page-head-grid > div > *, .page-head-grid > :not(div), .sect-aside > *, .sect-grid > :not(.sect-aside) > *, .closing-grid > *, .tblock, .foot-meta';
+    var revealEls = [];
+    document.querySelectorAll(ROWS).forEach(function (el) { if (!el.closest('.hero')) revealEls.push(el); });
+    document.querySelectorAll(BLOCKS).forEach(function (el) {
+      if (el.closest('.hero') || el.matches(ROWS) || el.querySelector(ROWS) || el.parentElement.closest(ROWS)) return;
+      revealEls.push(el);
+    });
+    var revealObserver = new IntersectionObserver(function (entries) {
+      var batch = entries.filter(function (e) { return e.isIntersecting; }).map(function (e) { return e.target; });
+      batch.sort(function (a, b) { return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1; });
+      batch.forEach(function (el, i) {
+        el.style.setProperty('--rd', Math.min(i, 7) * 0.075 + 's');
+        el.classList.add('in');
+        revealObserver.unobserve(el);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    revealEls.forEach(function (el) { el.classList.add('reveal'); revealObserver.observe(el); });
+
+    // the heavy rule over each list or table draws across from the left
+    var ruleObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); ruleObserver.unobserve(e.target); } });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.ledger, .sits, .tiers, .steps, .toc ul, .table-wrap').forEach(function (el) {
+      el.classList.add('rule-draw'); ruleObserver.observe(el);
+    });
+    root.classList.add('reveal-ready');
+  }
+
+  /* ---- header: a soft shadow lifts it off the sheet once the page scrolls ---- */
+  var head = document.querySelector('.site-head');
+  if (head) {
+    var syncHead = function () { head.classList.toggle('scrolled', window.scrollY > 4); };
+    window.addEventListener('scroll', syncHead, { passive: true });
+    syncHead();
+  }
+
   /* ---- studio hero: aim the key light at the 3D mark, wherever the layout puts it ---- */
   var studio = document.querySelector('.hero--studio');
   var stage = studio && studio.querySelector('.chrome-stage');

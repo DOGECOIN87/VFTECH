@@ -233,7 +233,7 @@
     });
   }
 
-  /* ---- design switcher: the same page in each of the four designs (published side by side) ---- */
+  /* ---- design switcher: the same page in each of the five designs (published side by side) ---- */
   (function () {
     var HERE = 2, ROOT = '../';   // this design, and the path from here to the site root
     var file = location.pathname.split('/').pop();
@@ -243,7 +243,7 @@
       if (n === 3) return (ROOT || './') + page;
       return ROOT + 'design-' + n + '/' + (page || 'index.html');
     }
-    var names = ['Drafting', 'Kiln', 'Signal', 'Phosphor'];
+    var names = ['Drafting', 'Kiln', 'Signal', 'Phosphor', 'Orbit'];
     var seg = names.map(function (name, i) {
       var n = i + 1, label = '<b>' + n + '</b><span class="ds-name">' + name + '</span>';
       return n === HERE ? '<span aria-current="page">' + label + '</span>'
@@ -252,7 +252,7 @@
     var bar = document.createElement('nav');
     bar.className = 'design-switch';
     bar.setAttribute('aria-label', 'Design and theme');
-    bar.innerHTML = '<span class="ds-label">Design</span><span class="ds-seg" style="--on:' + HERE + '">' + seg + '</span>';
+    bar.innerHTML = '<span class="ds-label">Design</span><span class="ds-seg" style="--count:' + names.length + ';--on:' + HERE + '">' + seg + '</span>';
     bar.querySelectorAll('.ds-seg a').forEach(function (a) {
       a.addEventListener('click', function (e) {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;

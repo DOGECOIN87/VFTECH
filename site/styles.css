@@ -666,3 +666,13 @@ html{scroll-behavior:smooth}
 .design-switch .ds-toggle:hover[data-on="1"] .ds-opt:first-child,.design-switch .ds-toggle:hover[data-on="2"] .ds-opt:last-child{color:var(--on-ink)}
 .design-switch .ds-toggle:hover[data-on="1"]::before{transform:translateX(6%)}
 .design-switch .ds-toggle:hover[data-on="2"]::before{transform:translateX(94%)}
+
+/* three designs: a segmented block whose dark highlight sits on the design showing */
+.design-switch .ds-seg{position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(3,1fr)}
+.design-switch .ds-seg::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:0;width:calc(100% / 3);background:var(--ink);transform:translateX(calc((var(--on) - 1) * 100%));transition:transform .23s cubic-bezier(.65,0,.35,1)}
+.design-switch .ds-seg a,.design-switch .ds-seg span{display:flex;align-items:center;justify-content:center;min-height:32px;padding:0 var(--s3);color:var(--graphite);text-decoration:none;white-space:nowrap}
+.design-switch .ds-seg a:hover{color:var(--ink)}
+.design-switch .ds-seg [aria-current]{color:var(--on-ink)}
+.design-switch .ds-seg b{font-weight:500;margin-right:.3em;color:var(--blueline)}
+.design-switch .ds-seg [aria-current] b{color:inherit}
+@media (max-width:640px){.design-switch .ds-seg a,.design-switch .ds-seg span{padding:0 var(--s2)}.design-switch .ds-theme span{display:none}}

@@ -635,8 +635,8 @@ fieldset.field{border:0;margin:0;padding:0}
 .design-switch .ds-toggle:hover[data-on="2"]::before{transform:translateX(94%)}
 
 /* three designs: a pill whose ember highlight sits on the design showing */
-.design-switch .ds-seg{position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(3,1fr)}
-.design-switch .ds-seg::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:0;width:calc(100% / 3);border-radius:999px;background:var(--accent);transform:translateX(calc((var(--on) - 1) * 100%));transition:transform .23s cubic-bezier(.65,0,.35,1)}
+.design-switch .ds-seg{position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(4,1fr)}
+.design-switch .ds-seg::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:0;width:25%;border-radius:999px;background:var(--accent);transform:translateX(calc((var(--on) - 1) * 100%));transition:transform .23s cubic-bezier(.65,0,.35,1)}
 .design-switch .ds-seg a,.design-switch .ds-seg span{display:flex;align-items:center;justify-content:center;min-height:32px;padding:0 var(--s3);border-radius:999px;color:var(--graphite);text-decoration:none;white-space:nowrap}
 .design-switch .ds-seg a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
 .design-switch .ds-seg [aria-current]{color:var(--on-accent)}
@@ -648,3 +648,6 @@ fieldset.field{border:0;margin:0;padding:0}
 
 /* the schematic's pen: a glowing tip that rides the outline while it draws (schematic.js) */
 .schematic-pen{fill:var(--blueline);filter:drop-shadow(0 0 6px var(--blueline)) drop-shadow(0 0 16px var(--blueline));transition:opacity .25s ease;pointer-events:none}
+
+.design-switch .ds-seg span.ds-name,.design-switch .ds-seg [aria-current] .ds-name{display:inline;min-height:0;min-width:0;padding:0;color:inherit;background:none}
+@media (max-width:640px){.design-switch .ds-name{display:none!important}.design-switch .ds-seg b{margin:0}.design-switch .ds-seg a,.design-switch .ds-seg > span{min-width:38px;padding:0 var(--s2)}}

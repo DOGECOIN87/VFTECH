@@ -1,11 +1,11 @@
-# Publishes the static site in site/ to GitHub Pages on every push to main.
+# Publishes design-2/ at the site root and site/ (design 1) at /design-1/ to GitHub Pages on every push to main.
 # One-time setup: repository Settings → Pages → Build and deployment → Source: "GitHub Actions".
 name: Deploy site to GitHub Pages
 
 on:
   push:
     branches: [main]
-    paths: ['site/**', '.github/workflows/pages.yml']
+    paths: ['site/**', 'design-2/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -26,8 +26,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      # design 2 is the site; design 1 is kept alongside it at /design-1/ (each page links to the other)
+      - name: Assemble both designs
+        run: |
+          mkdir -p _site
+          cp -r design-2/. _site/
+          rm -rf _site/src _site/README.md
+          mkdir -p _site/design-1
+          cp -r site/. _site/design-1/
+          rm -rf _site/design-1/src _site/design-1/README.md _site/design-1/preview-*.png
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

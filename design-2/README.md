@@ -1,3 +1,26 @@
+# VFTech website, design 2 ("Kiln")
+
+A full remix of the design in `../site` (design 1). The content, pages and behaviour are the same; the visual system and layouts are new.
+
+- **Palette:** warm charcoal and unglazed-clay cream, lit by an ember accent (#FF7A3D on dark, #C2410C on light). The hero is an ember-lit "kiln" room in both themes.
+- **Type:** Instrument Serif for statements (titles, quotes, numerals), Space Grotesk for interface and body text, JetBrains Mono for labels.
+- **Shape:** soft and rounded instead of 60° cuts: pill buttons and nav, rounded cards, a floating glass header.
+- **Hero:** a centred poster with the mark above the headline. The mark is copper rather than chrome. A square tile floor glides toward the viewer, and the dust and light are warm. Parallax, the intro and the depth layers carry over from design 1.
+- **Layout:**
+  - sections are numbered, with the heading row above full-width content;
+  - situations become quote cards;
+  - the ledger becomes tiles;
+  - the four lines of work become a bento grid whose cards glow where the pointer is;
+  - the seven steps get large serif numerals;
+  - the closing call is a glowing panel;
+  - a ticker of services runs under the hero.
+- **Rebuild the copper hero** from the repo root: `npm run build:d2`.
+- **Hosting:** the GitHub Pages workflow still publishes `site/` only. To publish this design instead, point the workflow's `path` at `design-2`.
+
+---
+
+The notes below are carried over from design 1 and still describe the shared structure.
+
 # VFTech website
 
 A seven-page static site: plain HTML and CSS plus shared behaviour (`site.js`) and a self-hosted Three.js chrome hero. The compiled hero asset is committed, so deployment needs no build step or platform. It runs on any static host (GitHub Pages, Netlify, Cloudflare Pages, S3) by uploading this folder.

@@ -55,7 +55,7 @@ function initChrome(stage) {
     // Procedural studio: broad softboxes, narrow reflection strips, and dark gaps.
     // All reflections are local. No external HDR, image, font or model is needed by this scene.
     const studio = new THREE.Scene();
-    studio.add(new THREE.Mesh(new THREE.BoxGeometry(24,24,24), new THREE.MeshBasicMaterial({color:0x68737d, side:THREE.BackSide})));
+    studio.add(new THREE.Mesh(new THREE.BoxGeometry(24,24,24), new THREE.MeshBasicMaterial({color:0x6e5a4c, side:THREE.BackSide})));
     function card(width, height, color, x, y, z) {
       const panel = new THREE.Mesh(new THREE.PlaneGeometry(width,height), new THREE.MeshBasicMaterial({color, side:THREE.DoubleSide}));
       panel.material.color.multiplyScalar(color === 0xffffff ? 3 : 1);
@@ -72,16 +72,16 @@ function initChrome(stage) {
     card(5,10,0xffffff,-5,2,6);
     card(1.2,12,0xffffff,4,1,5);
     card(8,2.5,0xffffff,0,6,2);
-    card(4,8,0xcbdcea,6,-2,-5);
+    card(4,8,0xf2c9a8,6,-2,-5);
     card(2,10,0xffffff,-5,1,-6);
-    card(10,1,0x8a9aa8,0,-5,4);
+    card(10,1,0x9a7a62,0,-5,4);
     const pmrem = new THREE.PMREMGenerator(renderer);
     envTarget = pmrem.fromScene(studio, 0.025);
     scene.environment = envTarget.texture;
     pmrem.dispose();
     studio.traverse(obj => { obj.geometry?.dispose(); obj.material?.dispose(); });
 
-    const chrome = new THREE.MeshStandardMaterial({color:0xf5f7fa, metalness:1, roughness:0.065, envMapIntensity:1.65});
+    const chrome = new THREE.MeshStandardMaterial({color:0xf2a07a, metalness:1, roughness:0.09, envMapIntensity:1.65});
     const logo = new THREE.Group();
     for (const points of contours) {
       const shape = new THREE.Shape();

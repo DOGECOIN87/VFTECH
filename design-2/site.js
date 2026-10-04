@@ -146,11 +146,20 @@
     var ruleObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); ruleObserver.unobserve(e.target); } });
     }, { threshold: 0.05 });
-    document.querySelectorAll('.ledger, .sits, .tiers, .steps, .toc ul, .table-wrap').forEach(function (el) {
+    document.querySelectorAll('.toc ul').forEach(function (el) {
       el.classList.add('rule-draw'); ruleObserver.observe(el);
     });
     root.classList.add('reveal-ready');
   }
+
+  /* ---- linked cells: an ember glow follows the pointer ---- */
+  document.querySelectorAll('.cell.linked').forEach(function (cell) {
+    cell.addEventListener('pointermove', function (e) {
+      var r = cell.getBoundingClientRect();
+      cell.style.setProperty('--gx', (e.clientX - r.left).toFixed(0) + 'px');
+      cell.style.setProperty('--gy', (e.clientY - r.top).toFixed(0) + 'px');
+    });
+  });
 
   /* ---- header: a soft shadow lifts it off the sheet once the page scrolls ---- */
   var head = document.querySelector('.site-head');
@@ -217,8 +226,8 @@
     bar.className = 'design-switch';
     bar.setAttribute('aria-label', 'Site design');
     bar.innerHTML = '<span class="ds-label">Design</span>' +
-      '<a href="' + file + '" aria-current="page">1 · Drafting</a>' +
-      '<a href="../' + file + '">2 · Kiln</a>';
+      '<a href="design-1/' + file + '">1 · Drafting</a>' +
+      '<a href="' + file + '" aria-current="page">2 · Kiln</a>';
     document.body.appendChild(bar);
   })();
 })();

@@ -211,7 +211,8 @@
 
   /* ---- design switcher: the same page in the other design (published side by side) ---- */
   (function () {
-    var file = location.pathname.split('/').pop() || 'index.html';
+    var file = location.pathname.split('/').pop();
+    if (!/^[\w-]+\.html$/.test(file)) file = 'index.html';
     var bar = document.createElement('nav');
     bar.className = 'design-switch';
     bar.setAttribute('aria-label', 'Site design');

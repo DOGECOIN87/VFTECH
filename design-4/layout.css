@@ -1,0 +1,26 @@
+/* Different compositions, with the same content and navigation. */
+.home .hero--studio{padding-block:56px 64px}
+.home .hero--studio .hero-figure{margin:0;width:100%;min-width:0;max-width:none}
+.hero-depth-ready .hero--studio .hero-grid>div:first-child{transform:none;opacity:1}
+.hero-depth-ready .hero--studio .chrome-stage{transform:none}
+.hero-backdrop .hero-rays,.hero-backdrop .hero-dust{opacity:.35}
+.hero-intro{pointer-events:none}
+.hero-grid>*{min-width:0}
+.cta{max-width:100%;white-space:normal;overflow-wrap:normal}
+.home .cta-note{font-size:14px;line-height:1.6}
+.home .seq p{font-size:13px;line-height:1.6}
+@media(max-width:760px){.home .hero--studio{padding-block:36px 40px}.home .hero-sub{max-width:100%}.hero-grid .hero-figure{width:100%;max-width:100%}.hero-grid .chrome-stage{width:100%}.type-kicker>span{white-space:nowrap}.frame .cell{min-width:0}.design-switch{max-width:calc(100vw - 24px)}.tb,.copyline{min-width:0}.copyline code{overflow-wrap:anywhere}.page-title .dimspan{white-space:normal}.page-title .dim{display:none}.page-head{overflow:hidden}}
+
+/* Phosphor: a navigable console workspace with a stable contents rail. */
+.console-layout{display:grid;grid-template-columns:208px minmax(0,1fr);max-width:1600px;margin:auto}
+.console-rail{position:sticky;top:68px;align-self:start;min-height:calc(100vh - 68px);padding:34px 22px;border-right:1px solid var(--rule-strong)}.rail-title{font-family:var(--f-display);font-size:20px;font-weight:600;line-height:1.2;margin-bottom:36px;color:var(--blueline)}.rail-title span{display:block;margin-top:14px;font-family:var(--f-note);font-size:10px;line-height:1.7;color:var(--graphite);font-weight:400}
+.console-rail nav{display:grid;gap:4px}.console-rail nav a{font-family:var(--f-note);font-size:11px;padding:10px 0;border-bottom:1px solid var(--rule);text-decoration:none}.console-rail nav a:hover{color:var(--blueline)}.rail-contact{display:block;margin-top:28px;font-size:12px;line-height:1.8;color:var(--blueline)}.rail-foot{margin-top:40px;font-size:11px;line-height:1.9;color:var(--graphite)}
+.console-workspace{min-width:0}.console-workspace .wrap{max-width:1180px;padding-inline:32px}.console-workspace .hero-grid{grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);gap:16px;align-items:stretch}.console-intro .type-kicker{font-size:10px}.home .console-workspace .hero--studio{padding:32px 0}.console-workspace .hero-grid>div{padding:52px 24px 26px;border:1px solid var(--rule-strong)}.console-workspace .hero-grid>div::after{display:none}.console-workspace .hero-title{margin-top:10px}.console-workspace .hero-sub{font-size:14px;line-height:1.8}.console-workspace .hero-figure{padding:52px 10px 26px}.console-workspace .chrome-stage{margin-top:10px;aspect-ratio:1/1.1}.console-workspace .cta-row{gap:16px}.console-workspace .cta-note{font-size:12px}.console-workspace .seq{margin-top:24px}.home .console-workspace .sect-grid{grid-template-columns:1fr;gap:28px}.home .console-workspace .sect-aside{position:static;display:grid;grid-template-columns:1fr 1fr;gap:36px}.home .console-workspace .sect-lede{margin:0;max-width:none}.home .console-workspace .frame{display:grid;grid-template-columns:1fr 1fr}.home .console-workspace .frame-row{display:contents}.home .console-workspace .cell{padding:24px}.home .console-workspace .cell h3{font-size:19px;line-height:1.4}.home .console-workspace .sits{display:grid;grid-template-columns:1fr 1fr;gap:24px}.console-workspace .page-head{padding-top:44px}
+body::after{opacity:calc(var(--scan) * .35)}.hero--studio::after{opacity:.25}
+@media(max-width:1200px){.console-layout{grid-template-columns:170px minmax(0,1fr)}.console-rail{padding-inline:18px}.console-workspace .hero-grid{grid-template-columns:1fr}.console-workspace .hero-figure{max-width:320px!important;justify-self:center;order:0}.console-workspace .hero-grid>div{padding:46px 24px 26px}}
+@media(max-width:980px){.console-layout{grid-template-columns:1fr}.console-rail{display:none}.console-workspace .wrap{padding-inline:24px}}
+@media(max-width:760px){.console-workspace .wrap{padding-inline:18px}.console-workspace .hero-grid>div{padding:44px 18px 24px}.home .console-workspace .sect-aside{grid-template-columns:1fr;gap:16px}.home .console-workspace .frame,.home .console-workspace .sits{grid-template-columns:1fr}.console-workspace .hero-figure{max-width:300px!important}.console-workspace .page-head-grid{grid-template-columns:1fr}}
+
+/* A review page is available from every design. */
+.design-switch .ds-compare{min-height:32px;padding:0 10px;gap:6px;border-left:1px solid var(--rule-strong);font:11px/1.4 var(--f-note);letter-spacing:0;text-transform:none}.ds-compare i{font-style:normal;font-size:14px}
+@media(max-width:800px){.design-switch .ds-compare span{display:none}.design-switch .ds-compare{padding:0 8px;min-width:28px}}

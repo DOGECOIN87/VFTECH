@@ -22,9 +22,6 @@
 <meta name="twitter:description" content="VFTech puts AI where it removes work: a site assistant that drafts, previews and publishes only after a human approves, plus intake, extraction, internal assistants and workflow automation. Content and copy only; forms, payments, tracking and billing stay out of reach.">
 <meta name="twitter:image" content="https://dogecoin87.github.io/VFTECH/design-4/social/vftech-card.jpg">
 <script>try{var t=localStorage.getItem('vftech-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap">
 <link rel="stylesheet" href="styles.css">
 <style>
 /* Sheet 03 only. Tokens only. */
@@ -76,8 +73,11 @@
 /* pricing links */
 .links{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s5);margin-top:var(--s5)}
 </style>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="typography.css">
+<link rel="stylesheet" href="layout.css">
 </head>
-<body>
+<body class="layout-design-4">
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="site-head">
@@ -106,7 +106,7 @@
   </div>
 </header>
 
-<main id="main">
+<main id="main" class="console-layout"><aside class="console-rail" aria-label="Quick navigation"><p class="rail-title">VFTECH<br><span>YOUR SYSTEMS. YOUR CONTROL.</span></p><nav aria-label="Explore VFTech"><a href="index.html">00 / Overview</a><a href="websites.html">01 / Website rebuilds</a><a href="ai.html">02 / AI integration</a><a href="advisory.html">03 / Advisory</a><a href="process.html">04 / Our process</a><a href="about.html">05 / About</a></nav><a class="rail-contact" href="contact.html">Start a conversation ↗</a><p class="rail-foot">Source code.<br>Accounts.<br>Data.<br>All yours.</p></aside><div class="console-workspace">
   <section class="page-head" aria-labelledby="page-title">
     <div class="wrap page-head-grid">
       <div>
@@ -291,7 +291,7 @@
         <svg class="arrow" viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M0 6h15" stroke="currentColor" stroke-width="1.5"/><path d="M11.5 .6 17.6 6 11.5 11.4Z" fill="currentColor"/></svg></a></div>
     </div>
   </section>
-</main>
+</div></main>
 
 <footer class="site-foot">
   <div class="foot-pattern" aria-hidden="true"></div>

@@ -41,7 +41,7 @@ jobs:
       # every deploy gets fresh URLs for the stylesheet and scripts, so browsers never mix a new page with old CSS/JS
       - name: Stamp asset URLs
         run: |
-          find _site -name '*.html' -exec sed -i -E 's#(href|src)="((\.\./)?(styles\.css|site\.js|hero-intro\.js|hero-depth\.js|schematic\.js|remix\.css|assets/chrome-hero\.js))"#\1="\2?v=${{ github.run_number }}"#g' {} +
+          find _site -name '*.html' -exec sed -i -E 's#(href|src)="((\.\./)?(styles\.css|site\.js|hero-intro\.js|hero-depth\.js|schematic\.js|compare\.css|remix\.css|fonts\.css|typography\.css|layout\.css|assets/chrome-hero\.js))"#\1="\2?v=${{ github.run_number }}"#g' {} +
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

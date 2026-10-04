@@ -1,0 +1,24 @@
+/* Typography is a design system, including measure, hierarchy, and UI text. */
+html{font-synthesis:none;text-rendering:optimizeLegibility}
+body{font-kerning:normal;font-optical-sizing:auto;font-variant-numeric:lining-nums}
+h1,h2,h3,h4{font-stretch:normal;font-variation-settings:normal;text-wrap:balance}
+p,li,dd{overflow-wrap:break-word}
+.prose,.page-lede,.sect-lede,.hero-sub{max-width:62ch}
+.page-head-grid>*,.sect-grid>*{min-width:0}
+.nav a{font-family:var(--f-display);font-size:13px;font-weight:500;letter-spacing:0;line-height:1.4}
+.note,.ds-label,.ds-seg,.ds-theme,.type-kicker{font-family:var(--f-note);font-size:11px;line-height:1.5;letter-spacing:.04em}
+.cta,.textlink{font-size:16px;line-height:1.35}
+.tier,.prepared,.ledger{font-variant-numeric:tabular-nums lining-nums}
+.page-title .dimspan{max-width:100%}
+.type-kicker{display:flex;justify-content:space-between;align-items:center;gap:16px;text-transform:uppercase;color:var(--blueline);margin-bottom:24px}
+.type-kicker>span{color:var(--graphite)}
+@media(max-width:760px){.type-kicker{font-size:10px}.page-title{overflow-wrap:anywhere}.page-title .dim-label{font-size:10px}.sect h2{overflow-wrap:anywhere}.nav.open a{font-size:16px}.head-inner{gap:12px}.brand svg{width:112px}.menu-btn{font-size:12px;padding-inline:8px;gap:6px}.page-lede{font-size:17px;line-height:1.65}}
+
+:root{--f-display:'Martian Mono',monospace;--f-body:'IBM Plex Mono',monospace;--f-note:'IBM Plex Mono',monospace;--f-serif:var(--f-body)}
+body{font-size:15px;line-height:1.85;font-weight:400;font-variation-settings:normal}
+h1,h2,h3,h4{font-weight:600;font-variation-settings:'wdth' 75;letter-spacing:-.05em;text-shadow:none}
+.hero-title{font-size:clamp(31px,3.2vw,47px);line-height:1.2;font-weight:600;font-variation-settings:'wdth' 75;letter-spacing:-.055em}.hero-sub{font-size:15px;line-height:1.85;max-width:48ch}
+.hero--studio .hero-title,.prepared header strong,.callout .a{font-weight:600;text-shadow:none}
+.page-title{font-size:clamp(28px,3.4vw,44px);line-height:1.18;font-variation-settings:'wdth' 75}.sect h2{font-size:clamp(24px,2.2vw,32px);line-height:1.2;font-variation-settings:'wdth' 75}.sect h3{font-size:20px;line-height:1.35;font-variation-settings:'wdth' 75}
+.sect-lede{font-size:14px;line-height:1.85}.nav a,.cta,.textlink{font-family:var(--f-body);font-variation-settings:normal}.nav a{font-size:12px}.cta{font-size:14px}.ledger dd{font-size:14px;line-height:1.8}.sit blockquote{font-size:18px;line-height:1.55;font-family:var(--f-body)}.closing h2{font-size:clamp(28px,3.2vw,44px);line-height:1.25;font-variation-settings:'wdth' 75}
+@media(max-width:760px){.hero-title{font-size:clamp(28px,6.4vw,42px)}.page-title{font-size:clamp(24px,5.8vw,36px)}.page-lede{font-size:15px}.sect h2{font-size:26px}}

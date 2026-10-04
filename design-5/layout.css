@@ -1,0 +1,28 @@
+/* Different compositions, with the same content and navigation. */
+.home .hero--studio{padding-block:56px 64px}
+.home .hero--studio .hero-figure{margin:0;width:100%;min-width:0;max-width:none}
+.hero-depth-ready .hero--studio .hero-grid>div:first-child{transform:none;opacity:1}
+.hero-depth-ready .hero--studio .chrome-stage{transform:none}
+.hero-backdrop .hero-rays,.hero-backdrop .hero-dust{opacity:.35}
+.hero-intro{pointer-events:none}
+.hero-grid>*{min-width:0}
+.cta{max-width:100%;white-space:normal;overflow-wrap:normal}
+.home .cta-note{font-size:14px;line-height:1.6}
+.home .seq p{font-size:13px;line-height:1.6}
+@media(max-width:760px){.home .hero--studio{padding-block:36px 40px}.home .hero-sub{max-width:100%}.hero-grid .hero-figure{width:100%;max-width:100%}.hero-grid .chrome-stage{width:100%}.type-kicker>span{white-space:nowrap}.frame .cell{min-width:0}.design-switch{max-width:calc(100vw - 24px)}.tb,.copyline{min-width:0}.copyline code{overflow-wrap:anywhere}.page-title .dimspan{white-space:normal}.page-title .dim{display:none}.page-head{overflow:hidden}}
+
+/* Orbit: a headline spanning the page, then an asymmetric bento for object and actions. */
+.nav .tab::before{display:none}
+.rx-object{inset:50px 24px}
+.rx-hero-grid{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:32px;align-items:stretch;min-height:0;padding-block:44px 52px}
+.rx-intro{grid-column:1/-1}.rx-intro h1{max-width:none;margin-bottom:12px}.rx-lab{grid-column:1;grid-row:2;height:400px;max-width:none;width:100%;margin:0}
+.rx-hero-note{grid-column:2;grid-row:2;min-width:0;border:1px solid var(--rule);border-radius:14px;padding:32px;background:var(--sheet);display:flex;flex-direction:column}.rx-hero-note>.rx-eyebrow{margin-bottom:18px}.rx-hero-note .rx-summary{max-width:none}.rx-hero-note .rx-actions{flex-direction:column;align-items:start;gap:8px;margin-top:22px}.rx-hero-note .rx-small{margin-top:8px}.rx-note-links{display:grid;gap:0;margin-top:20px}.rx-note-links a{display:flex;justify-content:space-between;gap:14px;border-top:1px solid var(--rule);padding:12px 0;color:var(--graphite);text-decoration:none;font-size:13px;line-height:1.4}.rx-note-links a:hover{color:var(--blueline)}.rx-note-links a span{color:var(--blueline)}
+.rx-services{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px}.rx-service-feature{grid-row:span 2;padding:32px;min-height:580px}.rx-service-feature .rx-wire{height:235px;margin-bottom:24px}.rx-service-feature .rx-window{height:144px;top:35px;padding:15px}.rx-service-feature .rx-window span{height:60px}.rx-service-feature .rx-window span:last-child{height:8px}.rx-service-feature .rx-wire-triangle{top:105px;right:5%;width:90px;height:80px}.rx-service-feature h3{font-size:38px}.rx-service-feature p{max-width:40ch;margin-bottom:30px}
+.rx-service:not(.rx-service-feature){display:grid;grid-template-columns:78px minmax(0,1fr);gap:10px 22px;padding:26px;min-height:265px;align-content:start}.rx-service:not(.rx-service-feature) .rx-card-top{grid-column:1/-1}.rx-service:not(.rx-service-feature) .rx-symbol,.rx-service:not(.rx-service-feature) .rx-bars{grid-column:1;grid-row:2/span 3;width:78px;height:90px;font-size:86px;line-height:90px;margin:4px 0 0}.rx-service:not(.rx-service-feature) .rx-bars{gap:4px;padding-block:8px}.rx-service:not(.rx-service-feature) .rx-bars i{width:15px}.rx-service:not(.rx-service-feature) .rx-bars i:nth-child(4){height:84px}.rx-service:not(.rx-service-feature) h3,.rx-service:not(.rx-service-feature) p,.rx-service:not(.rx-service-feature) .rx-card-meta{grid-column:2}.rx-service:not(.rx-service-feature) h3{font-size:28px;margin:0}.rx-service:not(.rx-service-feature) p{margin:0;max-width:none}.rx-service:not(.rx-service-feature) .rx-card-meta{margin-top:12px}.rx-support{align-items:start}.rx-support>span{font-size:10px}.rx-support p{max-width:46ch}
+.page-head-grid{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}.page-head{padding-block:68px 56px}.page-head-grid>:nth-child(2){padding:26px;background:var(--sheet);border:1px solid var(--rule);border-radius:14px}
+@media(max-width:980px){.rx-hero-grid{gap:24px}.rx-hero-note{padding:24px}.rx-services{grid-template-columns:1fr 1fr}.rx-service:not(.rx-service-feature){grid-template-columns:1fr}.rx-service:not(.rx-service-feature) .rx-symbol,.rx-service:not(.rx-service-feature) .rx-bars{display:none}.rx-service:not(.rx-service-feature) h3,.rx-service:not(.rx-service-feature) p,.rx-service:not(.rx-service-feature) .rx-card-meta{grid-column:1}.page-head-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.rx-hero-grid{grid-template-columns:1fr;gap:20px;padding-block:36px 32px}.rx-intro{grid-column:1}.rx-lab{grid-column:1;grid-row:2;height:330px}.rx-hero-note{grid-column:1;grid-row:3;padding:24px}.rx-services{grid-template-columns:1fr}.rx-service-feature{grid-row:auto;min-height:450px;padding:26px}.rx-service-feature .rx-wire{height:175px}.rx-service-feature h3{font-size:34px}.rx-service:not(.rx-service-feature){min-height:0}.rx-service:not(.rx-service-feature) h3{font-size:28px}.rx-lab-label{font-size:7px}.rx-support{flex-direction:column;gap:12px}.rx-promise{font-size:10px}.page-head{padding-top:42px}.page-head-grid>:nth-child(2){padding:22px}}
+
+/* A review page is available from every design. */
+.design-switch .ds-compare{min-height:32px;padding:0 10px;gap:6px;border-left:1px solid var(--rule-strong);font:11px/1.4 var(--f-note);letter-spacing:0;text-transform:none}.ds-compare i{font-style:normal;font-size:14px}
+@media(max-width:800px){.design-switch .ds-compare span{display:none}.design-switch .ds-compare{padding:0 8px;min-width:28px}}

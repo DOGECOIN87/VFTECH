@@ -1,0 +1,27 @@
+/* Different compositions, with the same content and navigation. */
+.home .hero--studio{padding-block:56px 64px}
+.home .hero--studio .hero-figure{margin:0;width:100%;min-width:0;max-width:none}
+.hero-depth-ready .hero--studio .hero-grid>div:first-child{transform:none;opacity:1}
+.hero-depth-ready .hero--studio .chrome-stage{transform:none}
+.hero-backdrop .hero-rays,.hero-backdrop .hero-dust{opacity:.35}
+.hero-intro{pointer-events:none}
+.hero-grid>*{min-width:0}
+.cta{max-width:100%;white-space:normal;overflow-wrap:normal}
+.home .cta-note{font-size:14px;line-height:1.6}
+.home .seq p{font-size:13px;line-height:1.6}
+@media(max-width:760px){.home .hero--studio{padding-block:36px 40px}.home .hero-sub{max-width:100%}.hero-grid .hero-figure{width:100%;max-width:100%}.hero-grid .chrome-stage{width:100%}.type-kicker>span{white-space:nowrap}.frame .cell{min-width:0}.design-switch{max-width:calc(100vw - 24px)}.tb,.copyline{min-width:0}.copyline code{overflow-wrap:anywhere}.page-title .dimspan{white-space:normal}.page-title .dim{display:none}.page-head{overflow:hidden}}
+
+/* Signal: a graphic manifesto; a broad headline, compact caption, then full-width grid. */
+.closing-grid>*{min-width:0}.closing h2{overflow-wrap:anywhere}
+.home .hero-grid.signal-poster{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:28px 70px;align-items:center}
+.home .signal-poster .signal-title{grid-column:1/-1;grid-row:1}.signal-title .hero-title{max-width:none}.signal-title .type-kicker{color:#fff}.signal-title .type-kicker>span{color:#d7dcff}.home .hero--studio .hero-title .ln:last-child{color:#fff}.signal-title .hero-title .ln{display:block}
+.home .signal-poster .signal-caption{grid-column:1;grid-row:2}.signal-caption .hero-sub{margin:0}.signal-caption .cta-row{margin-top:24px;gap:24px}.signal-caption .seq{margin-top:22px}.home .signal-poster .hero-figure{grid-column:2;grid-row:2;max-width:330px;justify-self:end;align-self:center}.home .signal-poster .chrome-stage{aspect-ratio:1.3/1}.home .hero-backdrop .hero-floor{opacity:.12}
+.home .sect-grid{grid-template-columns:repeat(12,minmax(0,1fr));row-gap:40px}.home .sect-aside{grid-column:1/-1;grid-template-columns:repeat(12,minmax(0,1fr))}.home .sect-aside::before{grid-column:1/span 2;font-size:88px}.home .sect-aside>h2{grid-column:3/span 6}.home .sect-aside>.sect-lede{grid-column:9/span 4;margin:0}.home .sect-grid>:not(.sect-aside){grid-column:1/-1}
+.home .frame{display:grid;grid-template-columns:1fr 1fr;border:3px solid var(--ink)}.home .frame-row{display:contents}.home .cell{padding:38px;min-height:280px}.home .sits{display:grid;grid-template-columns:1fr 1fr;gap:0}.home .sit{border-top:2px solid var(--ink);padding:28px 30px 28px 0}.home .ledger>div{display:grid;grid-template-columns:1fr 2fr;gap:40px;padding-block:26px}.home .ledger dd{font-size:20px;max-width:60ch}.home .prepared{max-width:none}
+.page-head-grid{grid-template-columns:1fr;gap:36px}.page-title{max-width:none}.page-head .toc ul{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}.page-head .toc a{font-size:17px}
+@media(max-width:980px){.home .hero-grid.signal-poster{gap:24px 30px}.home .sect-aside::before{grid-column:1/-1;font-size:64px}.home .sect-aside>h2,.home .sect-aside>.sect-lede{grid-column:1/-1}.home .sect-aside>.sect-lede{font-size:17px}.home .sect-aside{row-gap:20px}}
+@media(max-width:760px){.home .hero-grid.signal-poster{grid-template-columns:1fr;gap:22px}.home .signal-poster .signal-title{grid-column:1;grid-row:1}.home .signal-poster .signal-caption{grid-column:1;grid-row:2}.home .signal-poster .hero-figure{grid-column:1;grid-row:3;justify-self:end;width:230px;max-width:230px}.home .frame,.home .sits{grid-template-columns:1fr}.home .cell{padding:24px;min-height:0}.home .ledger>div{grid-template-columns:1fr;gap:10px}.home .ledger dd{font-size:17px}.page-head .toc ul{grid-template-columns:1fr}.home .sect-grid{row-gap:28px}}
+
+/* A review page is available from every design. */
+.design-switch .ds-compare{min-height:32px;padding:0 10px;gap:6px;border-left:1px solid var(--rule-strong);font:11px/1.4 var(--f-note);letter-spacing:0;text-transform:none}.ds-compare i{font-style:normal;font-size:14px}
+@media(max-width:800px){.design-switch .ds-compare span{display:none}.design-switch .ds-compare{padding:0 8px;min-width:28px}}

@@ -269,6 +269,12 @@
         setTimeout(function () { location.href = a.href; }, root.classList.contains('motion-paused') ? 0 : 230);
       });
     });
+    var compare = document.createElement('a');
+    compare.className = 'ds-compare';
+    compare.href = ROOT + 'compare.html';
+    compare.setAttribute('aria-label', 'Compare all five designs');
+    compare.innerHTML = '<span>Compare</span><i aria-hidden="true">↗</i>';
+    bar.appendChild(compare);
     // the light/dark theme, beside the design choice
     var tb = document.createElement('button');
     tb.type = 'button';

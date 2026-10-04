@@ -1,0 +1,25 @@
+/* Typography is a design system, including measure, hierarchy, and UI text. */
+html{font-synthesis:none;text-rendering:optimizeLegibility}
+body{font-kerning:normal;font-optical-sizing:auto;font-variant-numeric:lining-nums}
+h1,h2,h3,h4{font-stretch:normal;font-variation-settings:normal;text-wrap:balance}
+p,li,dd{overflow-wrap:break-word}
+.prose,.page-lede,.sect-lede,.hero-sub{max-width:62ch}
+.page-head-grid>*,.sect-grid>*{min-width:0}
+.nav a{font-family:var(--f-display);font-size:13px;font-weight:500;letter-spacing:0;line-height:1.4}
+.note,.ds-label,.ds-seg,.ds-theme,.type-kicker{font-family:var(--f-note);font-size:11px;line-height:1.5;letter-spacing:.04em}
+.cta,.textlink{font-size:16px;line-height:1.35}
+.tier,.prepared,.ledger{font-variant-numeric:tabular-nums lining-nums}
+.page-title .dimspan{max-width:100%}
+.type-kicker{display:flex;justify-content:space-between;align-items:center;gap:16px;text-transform:uppercase;color:var(--blueline);margin-bottom:24px}
+.type-kicker>span{color:var(--graphite)}
+@media(max-width:760px){.type-kicker{font-size:10px}.page-title{overflow-wrap:anywhere}.page-title .dim-label{font-size:10px}.sect h2{overflow-wrap:anywhere}.nav.open a{font-size:16px}.head-inner{gap:12px}.brand svg{width:112px}.menu-btn{font-size:12px;padding-inline:8px;gap:6px}.page-lede{font-size:17px;line-height:1.65}}
+
+:root{--f-serif:'Instrument Serif',Georgia,serif;--f-display:'Manrope',Arial,sans-serif;--f-body:'Manrope',Arial,sans-serif;--f-note:'IBM Plex Mono',monospace}
+body{font-size:17px;line-height:1.75}
+.hero-title,.page-title,.sect h2,.closing h2{font-family:var(--f-serif);font-weight:400;letter-spacing:-.025em}
+.hero-title{font-size:clamp(60px,8.2vw,122px);line-height:.98;letter-spacing:-.032em}.hero-title .ln:last-child{font-style:italic}
+.hero-sub{font-size:18px;line-height:1.75;max-width:45ch}.page-title{font-size:clamp(44px,5.9vw,86px);line-height:1.05}
+.sect h2{font-size:clamp(40px,4.5vw,64px);line-height:1.02}.sect h3{font-family:var(--f-display);font-weight:600;font-size:25px;line-height:1.25;letter-spacing:-.035em}
+.sit blockquote{font-family:var(--f-serif);font-size:30px;line-height:1.2;font-style:italic;letter-spacing:-.015em}.closing h2{font-size:clamp(46px,5.8vw,84px);line-height:1.05}
+.nav a{font-weight:600}.cta{font-family:var(--f-body);font-weight:600}.ledger dd{font-size:16px;line-height:1.65}
+@media(max-width:760px){.hero-title{font-size:clamp(48px,9.9vw,74px);line-height:1.02}.hero-sub{font-size:17px}.page-title{font-size:clamp(38px,8vw,62px)}.sect h2{font-size:42px}}

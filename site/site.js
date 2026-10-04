@@ -173,6 +173,22 @@
     var syncHead = function () { head.classList.toggle('scrolled', window.scrollY > 4); };
     window.addEventListener('scroll', syncHead, { passive: true });
     syncHead();
+
+    // reading progress: a dimension line along the header's bottom edge, measuring how far down the sheet you are
+    var prog = document.createElement('div');
+    prog.className = 'read-progress';
+    prog.setAttribute('aria-hidden', 'true');
+    prog.innerHTML = '<i></i>';
+    head.appendChild(prog);
+    var progQueued = false;
+    var syncProgress = function () {
+      progQueued = false;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.setProperty('--p', max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)).toFixed(4) : '0');
+    };
+    window.addEventListener('scroll', function () { if (!progQueued) { progQueued = true; requestAnimationFrame(syncProgress); } }, { passive: true });
+    window.addEventListener('resize', syncProgress);
+    syncProgress();
   }
 
   /* ---- studio hero: aim the key light at the 3D mark, wherever the layout puts it ---- */

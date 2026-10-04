@@ -680,3 +680,42 @@ html{scroll-behavior:smooth}
 
 /* the schematic's pen: a glowing tip that rides the outline while it draws (schematic.js) */
 .schematic-pen{fill:var(--blueline);filter:drop-shadow(0 0 6px var(--blueline)) drop-shadow(0 0 16px var(--blueline));transition:opacity .25s ease;pointer-events:none}
+
+/* ---------- scroll motion, drawn in the sheet's own language ---------- */
+/* reading progress: a blueline dimension along the header's bottom edge, ticked at the start and at the pen */
+.site-head{position:sticky}
+.read-progress{position:absolute;left:0;right:0;bottom:-1px;height:7px;pointer-events:none}
+.read-progress::before{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--blueline);transform-origin:0 50%;transform:scaleX(var(--p,0))}
+.read-progress i{position:absolute;bottom:0;left:calc(var(--p,0) * (100% - 1px));width:1px;height:7px;background:var(--blueline)}
+.read-progress::after{content:"";position:absolute;left:0;bottom:0;width:1px;height:7px;background:var(--blueline)}
+
+/* section headings draw a dimension rule under themselves as they arrive */
+.reveal-ready .sect-aside h2::after,.reveal-ready .closing h2::after{content:"";display:block;margin-top:var(--s3);width:var(--s7);height:7px;
+  border-left:1px solid var(--blueline);border-right:1px solid var(--blueline);
+  background:linear-gradient(var(--blueline),var(--blueline)) center/100% 1px no-repeat;
+  transform-origin:0 50%;transition:transform .9s cubic-bezier(.65,0,.35,1) calc(var(--rd,0s) + .2s)}
+.reveal-ready:not(.motion-paused) .sect-aside h2:not(.in)::after,.reveal-ready:not(.motion-paused) .closing-grid > .reveal:not(.in) h2::after{transform:scaleX(0)}
+
+/* list rows slide in from the left margin, like lines being ruled across the sheet */
+.reveal-ready:not(.motion-paused) :is(.ledger > div,.sits > .sit,.tier,.steps > li,.decl li,.tours > *,.parts > *).reveal:not(.in){transform:translate3d(calc(var(--s4) * -1),0,0)}
+
+/* the triangle markers turn into place on their row */
+.reveal-ready .decl li.reveal::before,.reveal-ready .ledger > div.reveal dt::before{transition:transform .7s cubic-bezier(.16,.84,.3,1) calc(var(--rd,0s) + .15s)}
+.reveal-ready:not(.motion-paused) .ledger > div.reveal:not(.in) dt::before{transform:rotate(-120deg) scale(.2)}
+.reveal-ready:not(.motion-paused) .decl li.reveal:not(.in)::before{transform:translateY(-.22em) scaleX(0)}
+
+/* step numbers count off as each step arrives */
+.reveal-ready .steps > li.reveal::before{transition:opacity .5s ease calc(var(--rd,0s) + .2s),letter-spacing .7s cubic-bezier(.16,.84,.3,1) calc(var(--rd,0s) + .2s)}
+.reveal-ready:not(.motion-paused) .steps > li.reveal:not(.in)::before{opacity:0;letter-spacing:.4em}
+
+/* linked cells: the blueline rule runs across the top once as each cell arrives, then waits for hover */
+.reveal-ready .cell.linked.reveal.in::before{animation:cell-rule 1.1s cubic-bezier(.65,0,.35,1) calc(var(--rd,0s) + .25s) both}
+@keyframes cell-rule{0%{transform:scaleX(0);transform-origin:0 50%}50%{transform:scaleX(1);transform-origin:0 50%}50.01%{transform-origin:100% 50%}100%{transform:scaleX(0);transform-origin:100% 50%}}
+.cell.linked:hover::before{animation:none}
+
+/* the day-one test: its rule draws across, then the answer lands a beat after the question */
+.reveal-ready .callout.reveal{border-top-color:transparent;background:linear-gradient(var(--ink),var(--ink)) 0 0/0 1px no-repeat;transition:opacity .5s ease-out var(--rd,0s),transform .65s cubic-bezier(.16,.84,.3,1) var(--rd,0s),background-size 1.1s cubic-bezier(.65,0,.35,1) calc(var(--rd,0s) + .1s)}
+.reveal-ready .callout.reveal.in,.reveal-ready.motion-paused .callout.reveal{background-size:100% 1px}
+.reveal-ready .callout.reveal .a{transition:opacity .6s ease .55s,transform .7s cubic-bezier(.16,.84,.3,1) .55s}
+.reveal-ready:not(.motion-paused) .callout.reveal:not(.in) .a{opacity:0;transform:translateY(8px)}
+@media print{.read-progress{display:none}}

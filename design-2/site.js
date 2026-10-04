@@ -217,4 +217,16 @@
       if (focusTarget) focusTarget.focus();
     });
   }
+
+  /* ---- design switcher: the same page in the other design (published side by side) ---- */
+  (function () {
+    var file = location.pathname.split('/').pop() || 'index.html';
+    var bar = document.createElement('nav');
+    bar.className = 'design-switch';
+    bar.setAttribute('aria-label', 'Site design');
+    bar.innerHTML = '<span class="ds-label">Design</span>' +
+      '<a href="design-1/' + file + '">1 · Drafting</a>' +
+      '<a href="' + file + '" aria-current="page">2 · Kiln</a>';
+    document.body.appendChild(bar);
+  })();
 })();

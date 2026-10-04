@@ -640,3 +640,13 @@ html{scroll-behavior:smooth}
 .motion-paused.hero-intro-pending .seq-bar span{animation:none}
 .motion-paused.hero-intro-pending .hero-rays{animation:rays-sway 17s ease-in-out infinite}
 
+
+/* ---------- design switcher (site.js): a drafting tab pinned to the bottom-left ---------- */
+.design-switch{position:fixed;left:var(--s3);bottom:calc(var(--s3) + env(safe-area-inset-bottom, 0px));z-index:60;display:flex;align-items:center;gap:2px;
+  padding:4px;background:var(--paper);border:1px solid var(--ink);box-shadow:0 10px 24px -14px rgb(0 0 0/.5);font:500 var(--t-1)/1 var(--f-note);letter-spacing:.04em;text-transform:uppercase}
+.design-switch .ds-label{padding:0 var(--s2);color:var(--blueline)}
+.design-switch a{padding:var(--s2) var(--s3);color:var(--graphite);text-decoration:none;min-height:32px;display:inline-flex;align-items:center}
+.design-switch a:hover{color:var(--ink)}
+.design-switch a[aria-current="page"]{background:var(--ink);color:var(--on-ink)}
+@media (max-width:640px){.design-switch .ds-label{display:none}}
+@media print{.design-switch{display:none}}

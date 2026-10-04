@@ -418,8 +418,8 @@ fieldset.field{border:0;margin:0;padding:0}
 
 /* ---------- scroll reveal: blocks wipe up from a mask, like a plate being pulled ---------- */
 /* (no clip-path on the targets: a fully clipped element never registers as on screen, so it would never reveal) */
-.reveal-ready .reveal{transition:transform .9s var(--ease) var(--rd,0s),opacity .6s ease var(--rd,0s),background-color .2s,color .2s,padding .25s var(--ease)}
-.reveal-ready:not(.motion-paused) .reveal:not(.in){opacity:0;transform:translate3d(0,48px,0)}
+.reveal-ready .reveal{transition:transform .65s var(--ease) var(--rd,0s),opacity .5s ease-out var(--rd,0s),background-color .2s,color .2s,padding .25s var(--ease)}
+.reveal-ready:not(.motion-paused) .reveal:not(.in){opacity:0;transform:translate3d(0,20px,0)}
 .reveal-ready .rule-draw{border-top-color:transparent!important;background-image:linear-gradient(var(--ink),var(--ink));background-repeat:no-repeat;background-origin:border-box;background-position:0 0;background-size:0 var(--rule-w);transition:background-size 1s cubic-bezier(.65,0,.35,1) .05s}
 .reveal-ready .rule-draw.in,.reveal-ready.motion-paused .rule-draw{background-size:100% var(--rule-w)}
 .reveal-ready.motion-paused .reveal,.reveal-ready.motion-paused .rule-draw{transition:none}

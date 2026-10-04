@@ -624,3 +624,14 @@ fieldset.field{border:0;margin:0;padding:0}
 .design-switch .ds-theme svg{width:15px;height:13px}
 .design-switch .ds-theme .half{fill:currentColor}
 .design-switch .ds-theme .outline{fill:none;stroke:currentColor;stroke-width:1.4}
+
+/* the design control is one switch: the ember thumb sits on the design showing; clicking anywhere goes to the other */
+.design-switch .ds-toggle{position:relative;isolation:isolate;display:inline-grid;border-radius:999px;grid-template-columns:1fr 1fr;padding:0;min-height:32px;cursor:pointer}
+.design-switch .ds-toggle::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:0;width:50%;border-radius:999px;background:var(--accent);transition:transform .22s cubic-bezier(.65,0,.35,1)}
+.design-switch .ds-toggle[data-on="2"]::before{transform:translateX(100%)}
+.design-switch .ds-opt{display:grid;place-items:center;padding:0 var(--s3);color:var(--graphite);transition:color .22s}
+.design-switch .ds-toggle[data-on="1"] .ds-opt:first-child,.design-switch .ds-toggle[data-on="2"] .ds-opt:last-child{color:var(--on-accent)}
+.design-switch .ds-toggle:hover .ds-opt{color:var(--ink)}
+.design-switch .ds-toggle:hover[data-on="1"] .ds-opt:first-child,.design-switch .ds-toggle:hover[data-on="2"] .ds-opt:last-child{color:var(--on-accent)}
+.design-switch .ds-toggle:hover[data-on="1"]::before{transform:translateX(6%)}
+.design-switch .ds-toggle:hover[data-on="2"]::before{transform:translateX(94%)}

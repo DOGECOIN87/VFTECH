@@ -228,9 +228,18 @@
     var bar = document.createElement('nav');
     bar.className = 'design-switch';
     bar.setAttribute('aria-label', 'Design and theme');
+    // one switch: clicking anywhere on it opens this page in the other design
+    var here = 2, otherHref = 'design-1/' + file;
     bar.innerHTML = '<span class="ds-label">Design</span>' +
-      '<a href="design-1/' + file + '">1 · Drafting</a>' +
-      '<a href="' + file + '" aria-current="page">2 · Kiln</a>';
+      '<a class="ds-toggle" data-on="' + here + '" href="' + otherHref + '" aria-label="Design 2 is showing. Switch to design 1, Drafting">' +
+      '<span class="ds-opt">1 · Drafting</span><span class="ds-opt">2 · Kiln</span></a>';
+    bar.querySelector('.ds-toggle').addEventListener('click', function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+      e.preventDefault();
+      var href = this.href;
+      this.setAttribute('data-on', String(3 - here));   // slide the thumb across, then go
+      setTimeout(function () { location.href = href; }, root.classList.contains('motion-paused') ? 0 : 220);
+    });
     // the light/dark theme, beside the design choice
     var tb = document.createElement('button');
     tb.type = 'button';

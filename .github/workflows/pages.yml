@@ -36,7 +36,7 @@ jobs:
             src=site; [ "$n" = 2 ] && src=design-2
             mkdir -p _site/design-$n
             cp -r $src/. _site/design-$n/
-            rm -rf _site/design-$n/src _site/design-$n/README.md _site/design-$n/social _site/design-$n/preview-*.png
+            rm -rf _site/design-$n/src _site/design-$n/README.md _site/design-$n/preview-*.png _site/design-$n/social/*.mp4 _site/design-$n/social/*.gif
           done
       # every deploy gets fresh URLs for the stylesheet and scripts, so browsers never mix a new page with old CSS/JS
       - name: Stamp asset URLs

@@ -565,8 +565,8 @@ fieldset.field{border:0;margin:0;padding:0}
 .design-switch{position:fixed;left:var(--s3);bottom:calc(var(--s3) + env(safe-area-inset-bottom, 0px));z-index:60;display:flex;align-items:stretch;
   background:var(--paper);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);font:500 var(--t-1)/1 var(--f-note);text-transform:uppercase}
 .design-switch .ds-label{display:flex;align-items:center;padding:0 var(--s3);background:var(--ink);color:var(--paper)}
-.design-switch .ds-seg{position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(3,1fr)}
-.design-switch .ds-seg::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:0;width:calc(100% / 3);background:var(--accent);
+.design-switch .ds-seg{position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(4,1fr)}
+.design-switch .ds-seg::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:0;width:25%;background:var(--accent);
   transform:translateX(calc((var(--on) - 1) * 100%));transition:transform .25s cubic-bezier(.65,0,.35,1)}
 .design-switch .ds-seg a,.design-switch .ds-seg span{display:flex;align-items:center;justify-content:center;white-space:nowrap;min-width:5.6em;min-height:36px;padding:0 var(--s3);color:var(--ink);text-decoration:none}
 .design-switch .ds-seg [aria-current]{color:var(--on-accent)}
@@ -587,3 +587,6 @@ fieldset.field{border:0;margin:0;padding:0}
 
 /* the schematic's pen: a glowing tip that rides the outline while it draws (schematic.js) */
 .schematic-pen{fill:var(--blueline);filter:drop-shadow(0 0 6px var(--blueline)) drop-shadow(0 0 16px var(--blueline));transition:opacity .25s ease;pointer-events:none}
+
+.design-switch .ds-seg span.ds-name,.design-switch .ds-seg [aria-current] .ds-name{display:inline;min-height:0;min-width:0;padding:0;color:inherit;background:none}
+@media (max-width:640px){.design-switch .ds-name{display:none!important}.design-switch .ds-seg b{margin:0}.design-switch .ds-seg a,.design-switch .ds-seg > span{min-width:38px;padding:0 var(--s2)}}

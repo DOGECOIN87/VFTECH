@@ -1,11 +1,11 @@
-# Publishes design-3/ at the site root, with site/ (design 1) at /design-1/ and design-2/ at /design-2/, to GitHub Pages on every push to main.
+# Publishes design-3/ at the site root, with site/ (design 1) at /design-1/, design-2/ at /design-2/ and design-4/ at /design-4/, to GitHub Pages on every push to main.
 # One-time setup: repository Settings → Pages → Build and deployment → Source: "GitHub Actions".
 name: Deploy site to GitHub Pages
 
 on:
   push:
     branches: [main]
-    paths: ['site/**', 'design-2/**', 'design-3/**', '.github/workflows/pages.yml']
+    paths: ['site/**', 'design-2/**', 'design-3/**', 'design-4/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -26,14 +26,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      # design 3 is the site; designs 1 and 2 are kept alongside it at /design-1/ and /design-2/
+      # design 3 is the site; designs 1, 2 and 4 are kept alongside it at /design-1/, /design-2/ and /design-4/
       - name: Assemble the three designs
         run: |
           mkdir -p _site
           cp -r design-3/. _site/
           rm -rf _site/src _site/README.md
-          for n in 1 2; do
-            src=site; [ "$n" = 2 ] && src=design-2
+          for n in 1 2 4; do
+            src=design-$n; [ "$n" = 1 ] && src=site
             mkdir -p _site/design-$n
             cp -r $src/. _site/design-$n/
             rm -rf _site/design-$n/src _site/design-$n/README.md _site/design-$n/preview-*.png _site/design-$n/social/*.mp4 _site/design-$n/social/*.gif

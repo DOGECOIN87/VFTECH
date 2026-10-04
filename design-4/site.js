@@ -161,10 +161,41 @@
     var ruleObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); ruleObserver.unobserve(e.target); } });
     }, { threshold: 0.05 });
-    document.querySelectorAll('.ledger, .sits, .tiers, .steps, .toc ul, .table-wrap').forEach(function (el) {
+    document.querySelectorAll('.toc ul').forEach(function (el) {
       el.classList.add('rule-draw'); ruleObserver.observe(el);
     });
     root.classList.add('reveal-ready');
+  }
+
+  /* ---- linked cells: an ember glow follows the pointer ---- */
+  document.querySelectorAll('.cell.linked').forEach(function (cell) {
+    cell.addEventListener('pointermove', function (e) {
+      var r = cell.getBoundingClientRect();
+      cell.style.setProperty('--gx', (e.clientX - r.left).toFixed(0) + 'px');
+      cell.style.setProperty('--gy', (e.clientY - r.top).toFixed(0) + 'px');
+    });
+  });
+
+  /* ---- console headings: each section heading types itself out the first time it scrolls into view ---- */
+  if ('IntersectionObserver' in window) {
+    var typeObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        typeObserver.unobserve(e.target);
+        var h = e.target, full = h.textContent;
+        if (root.classList.contains('motion-paused') || h.children.length) return;
+        h.setAttribute('aria-label', full);          // screen readers get the whole heading at once
+        h.classList.add('typing');
+        var n = 0;
+        (function type() {
+          if (root.classList.contains('motion-paused')) n = full.length;
+          h.textContent = full.slice(0, n);
+          if (n++ < full.length) setTimeout(type, 22 + Math.random() * 30);
+          else { h.classList.remove('typing'); h.removeAttribute('aria-label'); }
+        })();
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    document.querySelectorAll('.sect h2, .closing h2').forEach(function (h) { typeObserver.observe(h); });
   }
 
   /* ---- header: a soft shadow lifts it off the sheet once the page scrolls ---- */
@@ -173,22 +204,6 @@
     var syncHead = function () { head.classList.toggle('scrolled', window.scrollY > 4); };
     window.addEventListener('scroll', syncHead, { passive: true });
     syncHead();
-
-    // reading progress: a dimension line along the header's bottom edge, measuring how far down the sheet you are
-    var prog = document.createElement('div');
-    prog.className = 'read-progress';
-    prog.setAttribute('aria-hidden', 'true');
-    prog.innerHTML = '<i></i>';
-    head.appendChild(prog);
-    var progQueued = false;
-    var syncProgress = function () {
-      progQueued = false;
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      prog.style.setProperty('--p', max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)).toFixed(4) : '0');
-    };
-    window.addEventListener('scroll', function () { if (!progQueued) { progQueued = true; requestAnimationFrame(syncProgress); } }, { passive: true });
-    window.addEventListener('resize', syncProgress);
-    syncProgress();
   }
 
   /* ---- studio hero: aim the key light at the 3D mark, wherever the layout puts it ---- */
@@ -242,7 +257,7 @@
 
   /* ---- design switcher: the same page in each of the four designs (published side by side) ---- */
   (function () {
-    var HERE = 1, ROOT = '../';   // this design, and the path from here to the site root
+    var HERE = 4, ROOT = '../';   // this design, and the path from here to the site root
     var file = location.pathname.split('/').pop();
     if (!/^[\w-]+\.html$/.test(file)) file = 'index.html';
     var page = file === 'index.html' ? '' : file;

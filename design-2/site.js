@@ -8,19 +8,22 @@
   function current() { return root.getAttribute('data-theme') || (mqDark.matches ? 'dark' : 'light'); }
   var themeBtn = document.querySelector('.theme-btn');
   function labelTheme() {
-    if (!themeBtn) return;
     var dark = current() === 'dark';
-    themeBtn.setAttribute('aria-pressed', dark ? 'true' : 'false');
-    themeBtn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    document.querySelectorAll('.theme-btn, .ds-theme').forEach(function (btn) {
+      btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+      btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+      if (btn.classList.contains('ds-theme')) btn.querySelector('span').textContent = dark ? 'Dark' : 'Light';
+    });
+  }
+  function toggleTheme() {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('vftech-theme', next); } catch (e) {}
+    labelTheme();
   }
   if (themeBtn) {
     labelTheme();
-    themeBtn.addEventListener('click', function () {
-      var next = current() === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('vftech-theme', next); } catch (e) {}
-      labelTheme();
-    });
+    themeBtn.addEventListener('click', toggleTheme);
     if (mqDark.addEventListener) mqDark.addEventListener('change', labelTheme);
   }
 
@@ -224,10 +227,18 @@
     if (!/^[\w-]+\.html$/.test(file)) file = 'index.html';
     var bar = document.createElement('nav');
     bar.className = 'design-switch';
-    bar.setAttribute('aria-label', 'Site design');
+    bar.setAttribute('aria-label', 'Design and theme');
     bar.innerHTML = '<span class="ds-label">Design</span>' +
       '<a href="design-1/' + file + '">1 · Drafting</a>' +
       '<a href="' + file + '" aria-current="page">2 · Kiln</a>';
+    // the light/dark theme, beside the design choice
+    var tb = document.createElement('button');
+    tb.type = 'button';
+    tb.className = 'ds-theme';
+    tb.innerHTML = '<svg viewBox="0 0 18 16" aria-hidden="true" focusable="false"><path class="half" d="M1 1.5h8v13.3Z"/><path class="outline" d="M1 1.5h16L9 14.8Z"/></svg><span></span>';
+    tb.addEventListener('click', toggleTheme);
+    bar.appendChild(tb);
     document.body.appendChild(bar);
+    labelTheme();
   })();
 })();

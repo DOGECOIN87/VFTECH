@@ -619,3 +619,8 @@ fieldset.field{border:0;margin:0;padding:0}
 .design-switch a[aria-current="page"]{background:var(--accent);color:var(--on-accent)}
 @media (max-width:640px){.design-switch .ds-label{display:none}}
 @media print{.design-switch{display:none}}
+.design-switch .ds-theme{display:inline-flex;align-items:center;gap:var(--s2);min-height:32px;margin-left:2px;padding:0 var(--s3);border:0;border-radius:999px;background:none;color:var(--ink);font:inherit;cursor:pointer;transition:background-color .2s}
+.design-switch .ds-theme:hover{background:color-mix(in srgb,var(--ink) 7%,transparent)}
+.design-switch .ds-theme svg{width:15px;height:13px}
+.design-switch .ds-theme .half{fill:currentColor}
+.design-switch .ds-theme .outline{fill:none;stroke:currentColor;stroke-width:1.4}

@@ -149,11 +149,20 @@
     var ruleObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); ruleObserver.unobserve(e.target); } });
     }, { threshold: 0.05 });
-    document.querySelectorAll('.ledger, .sits, .tiers, .steps, .toc ul, .table-wrap').forEach(function (el) {
+    document.querySelectorAll('.toc ul').forEach(function (el) {
       el.classList.add('rule-draw'); ruleObserver.observe(el);
     });
     root.classList.add('reveal-ready');
   }
+
+  /* ---- linked cells: an ember glow follows the pointer ---- */
+  document.querySelectorAll('.cell.linked').forEach(function (cell) {
+    cell.addEventListener('pointermove', function (e) {
+      var r = cell.getBoundingClientRect();
+      cell.style.setProperty('--gx', (e.clientX - r.left).toFixed(0) + 'px');
+      cell.style.setProperty('--gy', (e.clientY - r.top).toFixed(0) + 'px');
+    });
+  });
 
   /* ---- header: a soft shadow lifts it off the sheet once the page scrolls ---- */
   var head = document.querySelector('.site-head');
@@ -214,7 +223,7 @@
 
   /* ---- design switcher: the same page in each of the three designs (published side by side) ---- */
   (function () {
-    var HERE = 1, ROOT = '../';   // this design, and the path from here to the site root
+    var HERE = 3, ROOT = '';   // this design, and the path from here to the site root
     var file = location.pathname.split('/').pop();
     if (!/^[\w-]+\.html$/.test(file)) file = 'index.html';
     var page = file === 'index.html' ? '' : file;

@@ -221,24 +221,34 @@
     });
   }
 
-  /* ---- design switcher: the same page in the other design (published side by side) ---- */
+  /* ---- design switcher: the same page in each of the three designs (published side by side) ---- */
   (function () {
+    var HERE = 2, ROOT = '../';   // this design, and the path from here to the site root
     var file = location.pathname.split('/').pop();
     if (!/^[\w-]+\.html$/.test(file)) file = 'index.html';
+    var page = file === 'index.html' ? '' : file;
+    function href(n) {
+      if (n === 3) return (ROOT || './') + page;
+      return ROOT + 'design-' + n + '/' + (page || 'index.html');
+    }
+    var names = ['Drafting', 'Kiln', 'Signal'];
+    var seg = names.map(function (name, i) {
+      var n = i + 1, label = '<b>' + n + '</b> ' + name;
+      return n === HERE ? '<span aria-current="page">' + label + '</span>'
+                        : '<a href="' + href(n) + '" aria-label="Open this page in design ' + n + ', ' + name + '">' + label + '</a>';
+    }).join('');
     var bar = document.createElement('nav');
     bar.className = 'design-switch';
     bar.setAttribute('aria-label', 'Design and theme');
-    // one switch: clicking anywhere on it opens this page in the other design
-    var here = 2, otherHref = 'design-1/' + file;
-    bar.innerHTML = '<span class="ds-label">Design</span>' +
-      '<a class="ds-toggle" data-on="' + here + '" href="' + otherHref + '" aria-label="Design 2 is showing. Switch to design 1, Drafting">' +
-      '<span class="ds-opt">1 · Drafting</span><span class="ds-opt">2 · Kiln</span></a>';
-    bar.querySelector('.ds-toggle').addEventListener('click', function (e) {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
-      e.preventDefault();
-      var href = this.href;
-      this.setAttribute('data-on', String(3 - here));   // slide the thumb across, then go
-      setTimeout(function () { location.href = href; }, root.classList.contains('motion-paused') ? 0 : 220);
+    bar.innerHTML = '<span class="ds-label">Design</span><span class="ds-seg" style="--on:' + HERE + '">' + seg + '</span>';
+    bar.querySelectorAll('.ds-seg a').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+        e.preventDefault();
+        var n = [].indexOf.call(a.parentNode.children, a) + 1;
+        a.parentNode.style.setProperty('--on', n);   // slide the highlight across, then go
+        setTimeout(function () { location.href = a.href; }, root.classList.contains('motion-paused') ? 0 : 230);
+      });
     });
     // the light/dark theme, beside the design choice
     var tb = document.createElement('button');

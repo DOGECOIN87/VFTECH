@@ -635,3 +635,12 @@ fieldset.field{border:0;margin:0;padding:0}
 .design-switch .ds-toggle:hover[data-on="1"] .ds-opt:first-child,.design-switch .ds-toggle:hover[data-on="2"] .ds-opt:last-child{color:var(--on-accent)}
 .design-switch .ds-toggle:hover[data-on="1"]::before{transform:translateX(6%)}
 .design-switch .ds-toggle:hover[data-on="2"]::before{transform:translateX(94%)}
+
+/* three designs: a pill whose ember highlight sits on the design showing */
+.design-switch .ds-seg{position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(3,1fr)}
+.design-switch .ds-seg::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:0;width:calc(100% / 3);border-radius:999px;background:var(--accent);transform:translateX(calc((var(--on) - 1) * 100%));transition:transform .23s cubic-bezier(.65,0,.35,1)}
+.design-switch .ds-seg a,.design-switch .ds-seg span{display:flex;align-items:center;justify-content:center;min-height:32px;padding:0 var(--s3);border-radius:999px;color:var(--graphite);text-decoration:none;white-space:nowrap}
+.design-switch .ds-seg a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
+.design-switch .ds-seg [aria-current]{color:var(--on-accent)}
+.design-switch .ds-seg b{font-weight:600;margin-right:.3em}
+@media (max-width:640px){.design-switch .ds-seg a,.design-switch .ds-seg span{padding:0 var(--s2)}.design-switch .ds-theme span{display:none}}

@@ -1,0 +1,6 @@
+# The main site is design 3 at the root. /design-1/, /design-2/, /design-4/ and /design-5/ are
+# alternate designs of the same pages; they carry noindex and point their canonical links here.
+User-agent: *
+Allow: /
+
+Sitemap: https://dogecoin87.github.io/VFTECH/sitemap.xml

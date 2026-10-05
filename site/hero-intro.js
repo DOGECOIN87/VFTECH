@@ -148,10 +148,10 @@
     if (last) t += Math.min((now - last) / 1000, 0.05);   // background tabs don't skip ahead
     last = now;
     if (root.classList.contains('motion-paused')) t = T_END; // pausing ends the intro at once
-    if (!met && t >= T_MEET) { met = true; document.dispatchEvent(new CustomEvent('vftech:intro-arrived')); }
+    if (!met && t >= T_MEET) { met = true; root.dataset.introMet = '1'; document.dispatchEvent(new CustomEvent('vftech:intro-arrived')); }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
-    if (t >= T_END) { if (!met) { met = true; document.dispatchEvent(new CustomEvent('vftech:intro-arrived')); } canvas.remove(); return; }
+    if (t >= T_END) { if (!met) { met = true; root.dataset.introMet = '1'; document.dispatchEvent(new CustomEvent('vftech:intro-arrived')); } canvas.remove(); return; }
     ctx.strokeStyle = LIGHT; ctx.fillStyle = LIGHT; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     drawCells(t);
     ctx.shadowColor = LIGHT; ctx.shadowBlur = 18;

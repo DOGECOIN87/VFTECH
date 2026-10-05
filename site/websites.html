@@ -6,6 +6,7 @@
 <title>Website rebuilds · VFTech</title>
 <meta name="description" content="Website rebuilds and platform migrations: move off a platform you don’t own, onto one you do. Five pricing tiers from $3,500 fixed, and monthly plans from $350 covering hosting, security, backups and availability.">
 <link rel="canonical" href="https://dogecoin87.github.io/VFTECH/websites.html">
+<meta name="robots" content="noindex, follow">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="VFTech">
@@ -66,6 +67,7 @@
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="typography.css">
 <link rel="stylesheet" href="layout.css">
+<link rel="stylesheet" href="extras.css">
 </head>
 <body class="layout-drafting">
 <a class="skip" href="#main">Skip to content</a>
@@ -261,6 +263,87 @@
     </div>
   </section>
 
+  <section class="sect x-sect" id="cost" aria-labelledby="cost-title">
+    <div class="wrap x-wrap">
+      <header class="x-head">
+        <p class="x-kicker">Calculator</p>
+        <h2 id="cost-title">What renting costs you, next to owning.</h2>
+        <p class="x-lede">Put in what you pay your platform today. The example figures are only there to start from: replace them with your own.</p>
+      </header>
+      <form class="x-calc" id="cost-calc" novalidate>
+        <div class="x-fields">
+          <label class="x-field" for="calc-platform"><span>Platform subscription</span>
+            <span class="x-money"><i aria-hidden="true">$</i><input id="calc-platform" name="platform" type="number" inputmode="decimal" min="0" step="1" value="79"><b>/ month</b></span></label>
+          <label class="x-field" for="calc-apps"><span>Paid apps, plugins and add-ons</span>
+            <span class="x-money"><i aria-hidden="true">$</i><input id="calc-apps" name="apps" type="number" inputmode="decimal" min="0" step="1" value="45"><b>/ month</b></span></label>
+          <label class="x-field" for="calc-tier"><span>The rebuild you’d need</span>
+            <select id="calc-tier" name="tier">
+              <option value="3500">Launch · $3,500 fixed</option>
+              <option value="7500" selected>Business · from $7,500</option>
+              <option value="16000">Multi-location · from $16,000</option>
+              <option value="18000">Platform migration · from $18,000</option>
+            </select></label>
+          <label class="x-field" for="calc-keep"><span>Looking after it afterwards</span>
+            <select id="calc-keep" name="keep">
+              <option value="self" selected>On your own (enter your hosting cost)</option>
+              <option value="350">Essentials plan · $350 / month</option>
+              <option value="750">Standard plan · $750 / month</option>
+              <option value="1500">Priority plan · $1,500 / month</option>
+            </select></label>
+          <label class="x-field" for="calc-hosting" data-when-self><span>Your own hosting</span>
+            <span class="x-money"><i aria-hidden="true">$</i><input id="calc-hosting" name="hosting" type="number" inputmode="decimal" min="0" step="1" value="25"><b>/ month</b></span></label>
+          <label class="x-field x-field-range" for="calc-years"><span>Over <output id="calc-years-out" for="calc-years">3 years</output></span>
+            <input id="calc-years" name="years" type="range" min="1" max="6" step="1" value="3"></label>
+        </div>
+        <div class="x-result" aria-live="polite">
+          <div class="x-bars" aria-hidden="true">
+            <div class="x-bar x-bar-rent"><span style="--v:1"></span></div>
+            <div class="x-bar x-bar-own"><span style="--v:1"></span></div>
+          </div>
+          <dl class="x-totals">
+            <div><dt>Renting</dt><dd id="calc-rent">$4,464</dd><small>and you own nothing at the end</small></div>
+            <div><dt>Owning</dt><dd id="calc-own">$8,400</dd><small>code, accounts and data in your name</small></div>
+          </dl>
+          <p class="x-verdict" id="calc-verdict">Over 3 years, owning costs $3,936 more, and you keep everything.</p>
+          <p class="x-fine">The rebuild is the lowest price in its tier; your quote comes after the audit. Plan prices include hosting, security, backups and availability. Plans start with a 12-month term, then run month to month.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="sect x-sect" id="tier-finder" aria-labelledby="finder-title">
+    <div class="wrap x-wrap">
+      <header class="x-head">
+        <p class="x-kicker">Tier finder</p>
+        <h2 id="finder-title">Which tier fits? Three questions.</h2>
+        <p class="x-lede">A starting point, not a quote. The audit comes first, then your fixed quote.</p>
+      </header>
+      <form class="x-finder" id="tier-finder-form">
+        <fieldset class="x-q"><legend>What does the site need to do?</legend>
+          <label><input type="radio" name="kind" value="site" checked> Tell people who you are and bring in leads</label>
+          <label><input type="radio" name="kind" value="many"> Serve many locations, services or listings</label>
+          <label><input type="radio" name="kind" value="app"> Let customers log in, pay, or manage things</label>
+        </fieldset>
+        <fieldset class="x-q" data-for-kind="site"><legend>About how many pages?</legend>
+          <label><input type="radio" name="pages" value="few" checked> Up to 3</label>
+          <label><input type="radio" name="pages" value="some"> Around 5 to 15</label>
+          <label><input type="radio" name="pages" value="lots"> 20 or more</label>
+        </fieldset>
+        <fieldset class="x-q" data-for-kind="site many"><legend>Is it on a platform you want to leave entirely?</legend>
+          <label><input type="radio" name="exit" value="no" checked> No, or I’m not sure</label>
+          <label><input type="radio" name="exit" value="yes"> Yes, I want out of a vendor-controlled platform</label>
+        </fieldset>
+        <div class="x-answer" aria-live="polite">
+          <p class="x-kicker">Likely fit</p>
+          <h3 id="finder-name">Launch</h3>
+          <p class="x-price" id="finder-price">$3,500 fixed</p>
+          <p id="finder-desc">1–3 pages, forms, mobile, analytics, hosting set up in your name.</p>
+          <a class="textlink" href="contact.html">Talk it through in a free 30-minute conversation</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
   <section class="closing" aria-labelledby="closing-title">
     <div class="wrap closing-grid">
       <div>
@@ -315,5 +398,6 @@
   </div>
 </footer>
 <script src="site.js"></script>
+<script src="extras.js"></script>
 </body>
 </html>

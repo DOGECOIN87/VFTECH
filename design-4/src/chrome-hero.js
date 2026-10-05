@@ -25,7 +25,7 @@ function initChrome(stage) {
   let elapsed = root.classList.contains('motion-paused') ? 3.2 : 0;
   // The hero intro (hero-intro.js) runs light along the borders to the triangle's corners first; the
   // mark starts drawing when they meet. A failsafe releases it if the intro never signals.
-  let introHold = root.classList.contains('hero-intro-pending') && !root.classList.contains('motion-paused');
+  let introHold = root.classList.contains('hero-intro-pending') && !root.classList.contains('motion-paused') && !root.dataset.introMet;
   const releaseIntro = () => { introHold = false; };
   document.addEventListener('vftech:intro-arrived', releaseIntro, {once: true});
   setTimeout(releaseIntro, 3000);
@@ -44,9 +44,12 @@ function initChrome(stage) {
   }
 
   try {
-    renderer = new THREE.WebGLRenderer({canvas, alpha: true, antialias: true, powerPreference: 'low-power'});
+    // Phones with little memory, few cores or Data Saver on get a lighter render: lower pixel ratio, no MSAA, 24 fps.
+    const lowPower = !!(navigator.connection && navigator.connection.saveData) ||
+      (navigator.deviceMemory && navigator.deviceMemory <= 4) || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+    renderer = new THREE.WebGLRenderer({canvas, alpha: true, antialias: !lowPower, powerPreference: 'low-power'});
     renderer.setClearColor(0x000000, 0);
-    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, lowPower ? 1.25 : 1.75));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.15;
@@ -162,7 +165,7 @@ function initChrome(stage) {
       if (!running()) { lastTime=0; return; }
       if (lastTime && !introHold) elapsed += Math.min((now-lastTime)/1000, 0.1);
       lastTime = now;
-      if (now-lastDraw >= 1000/30) { render(); lastDraw=now; }
+      if (now-lastDraw >= (lowPower ? 1000/24 : 1000/30)) { render(); lastDraw=now; }
       frame = requestAnimationFrame(tick);
     }
     function syncMotion() {

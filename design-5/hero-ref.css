@@ -87,9 +87,3 @@ body .hero.hero--ref .hero-figure{grid-area:fig;position:relative;justify-self:e
   .hero--ref .hero-strip{flex-direction:column;gap:18px}
   .hero--ref .hero-strip-end{width:100%;max-width:210px}
 }
-}
-
-/* design 5 (Orbit): the hero button in Orbit's own style, a squared blue key */
-.hero--ref .cta{min-height:56px;padding:0 22px;border-radius:7px;background:var(--accent);color:#fff;border:1px solid #5c7aff;box-shadow:0 5px 20px #2446e21a}
-.hero--ref .cta::before{content:none}
-.hero--ref .cta:hover{background:#2547e4;color:#fff}

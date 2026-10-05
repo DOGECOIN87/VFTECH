@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Home hero, shared composition (the same file in every design).
+   One layout for all five designs: copy on the left, the framed mark on the right,
+   a step strip along the bottom. Colour and type come from each design's own tokens
+   (--ink, --graphite, --blueline, --rule-strong, --f-display, --f-note), so the
+   composition is shared and the skin stays each design's own.
+   ========================================================================== */
+
+.hero--ref{padding-block:clamp(40px,4.6vw,68px) clamp(24px,2.6vw,36px);overflow:hidden}
+.hero--ref .hero-ref{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);
+  grid-template-areas:"copy fig" "strip strip";column-gap:clamp(32px,6vw,96px);row-gap:clamp(28px,3.2vw,44px);align-items:center}
+
+/* ---- copy ---- */
+body .hero.hero--ref .hero-copy{grid-area:copy;min-width:0;max-width:34rem;padding:0;border:0;background:none;transform:none}
+.hero--ref .hero-copy::before,.hero--ref .hero-copy::after{content:none}
+.hero--ref .hero-eyebrow{display:flex;align-items:center;gap:10px;margin:0 0 clamp(24px,2.8vw,36px);
+  font:500 11px/1.4 var(--f-note);letter-spacing:.14em;text-transform:uppercase;color:var(--blueline)}
+.hero--ref .hero-eyebrow span{width:5px;height:5px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor;flex:none}
+.hero--ref .hero-title{margin:0;max-width:none;font-size:clamp(48px,6vw,88px);line-height:.98;letter-spacing:-.045em;text-wrap:initial}
+.hero--ref .hero-title .ln{display:block}
+.hero--ref .hero-sub{margin:clamp(24px,2.6vw,36px) 0 0;max-width:30em;font-size:clamp(16px,1.25vw,18px);line-height:1.6;color:var(--graphite)}
+.hero--ref .hero-sub::before{content:none}
+.hero--ref .cta-row{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:12px 18px;margin:clamp(28px,3vw,40px) 0 0;text-align:left}
+.hero--ref .cta{gap:clamp(24px,3vw,44px)}
+.hero--ref .cta .arrow{width:18px;height:12px;flex:none}
+.hero--ref .cta-note{margin:0;max-width:none;text-align:left;font-size:14px;line-height:1.4;color:var(--graphite)}
+.hero--ref .hero-note{margin:18px 0 0;font-size:13px;line-height:1.5;color:var(--graphite);opacity:.85}
+.hero--ref .m-only{display:none}
+
+/* ---- the framed mark ---- */
+body .hero.hero--ref .hero-figure{grid-area:fig;position:relative;justify-self:end;width:min(100%,440px,58vh);margin:0;padding:0;border:0;background:none;order:0}
+.hero--ref .hero-figure::before,.hero--ref .hero-figure::after{content:none}
+.hero--ref .hero-fig-label{position:absolute;left:0;top:-4px;z-index:3;margin:0;font:500 11px/1 var(--f-note);letter-spacing:.12em;color:var(--blueline)}
+.hero--ref .chrome-stage{width:100%;transform:none}
+.hero--ref .hero-caption{display:grid;gap:6px;margin:clamp(8px,1.4vw,18px) 0 0;padding-left:16%;max-width:none;font-size:14px;line-height:1.5;color:var(--ink)}
+.hero--ref .hero-caption-label{font:500 11px/1.4 var(--f-note);letter-spacing:.14em;text-transform:uppercase;color:var(--blueline)}
+.hero--ref .hero-pause{right:0;bottom:4px;width:34px;height:34px;opacity:.7}
+.hero--ref .hero-pause:hover,.hero--ref .hero-pause:focus-visible{opacity:1}
+/* the drawing's framing: quiet, level construction lines */
+.hero--ref .dline-dot{stroke-dasharray:6 10}
+.hero--ref .schematic-lattice{opacity:.55}
+
+/* ---- the step strip ---- */
+.hero--ref .hero-strip{grid-area:strip;display:flex;align-items:flex-start;justify-content:space-between;gap:24px 48px;padding-top:clamp(22px,2.4vw,32px);border-top:1px solid var(--rule-strong)}
+.hero--ref .hero-step{display:flex;align-items:baseline;gap:20px;margin:0}
+.hero--ref .hero-step-num{flex:none;font:500 11px/1.4 var(--f-note);letter-spacing:.12em;color:var(--blueline)}
+.hero--ref .hero-step-text{display:grid;gap:4px}
+.hero--ref .hero-step-text strong{font-weight:500;font-size:16px;line-height:1.4;color:var(--ink)}
+.hero--ref .hero-step-sub{display:block;font-size:14px;line-height:1.5;color:var(--graphite)}
+.hero--ref .hero-strip-end{display:grid;gap:14px;width:min(246px,100%);flex:none}
+.hero--ref .seq-bar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:0}
+.hero--ref .seq-bar::before,.hero--ref .seq-bar::after{content:none}
+.hero--ref .seq-bar span{height:2px;border-radius:0;background:var(--rule-strong);clip-path:none;box-shadow:none}
+.hero--ref .seq-bar span:first-child{background:var(--blueline);width:auto}
+.hero--ref .hero-strip-link{display:inline-flex;align-items:center;gap:12px;font-size:14px;color:var(--ink);text-decoration:none}
+.hero--ref .hero-strip-link svg{width:14px;height:10px;transition:transform .3s ease}
+.hero--ref .hero-strip-link:hover{color:var(--blueline)}
+.hero--ref .hero-strip-link:hover svg{transform:translateX(4px)}
+
+/* ---- intro: the new pieces arrive with the rest of the type ---- */
+@keyframes hero-ref-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero-intro-pending .hero--ref .hero-eyebrow{animation:hero-ref-in .8s cubic-bezier(.16,.84,.3,1) 1.3s both}
+.hero-intro-pending .hero--ref .hero-note{animation:hero-ref-in .8s cubic-bezier(.16,.84,.3,1) 2.45s both}
+.hero-intro-pending .hero--ref .hero-fig-label,.hero-intro-pending .hero--ref .hero-caption{animation:hero-ref-in .8s cubic-bezier(.16,.84,.3,1) 2.2s both}
+.hero-intro-pending .hero--ref .hero-strip{animation:hero-ref-in .9s cubic-bezier(.16,.84,.3,1) 2.6s both}
+.motion-paused.hero-intro-pending .hero--ref .hero-eyebrow,.motion-paused.hero-intro-pending .hero--ref .hero-note,
+.motion-paused.hero-intro-pending .hero--ref .hero-fig-label,.motion-paused.hero-intro-pending .hero--ref .hero-caption,
+.motion-paused.hero-intro-pending .hero--ref .hero-strip{animation:none}
+
+/* ---- tablet and phone: copy, then the mark, then the strip ---- */
+@media (max-width:900px){
+  .hero--ref .hero-ref{grid-template-columns:minmax(0,1fr);grid-template-areas:"copy" "fig" "strip";row-gap:36px}
+  body .hero.hero--ref .hero-copy{max-width:36rem}
+  body .hero.hero--ref .hero-figure{justify-self:center;width:min(100%,420px)}
+  .hero--ref .hero-caption{padding-left:0;text-align:center;justify-items:center}
+}
+@media (max-width:640px){
+  .hero--ref{padding-block:40px 32px}
+  .hero--ref .hero-title{font-size:clamp(44px,13vw,60px);line-height:1}
+  .hero--ref .hero-sub{font-size:16px}
+  .hero--ref .cta-row{flex-direction:column;align-items:stretch;gap:14px}
+  .hero--ref .cta{width:100%;justify-content:space-between}
+  .hero--ref .hero-note{display:none}
+  .hero--ref .d-only{display:none}
+  .hero--ref .m-only{display:inline}
+  body .hero.hero--ref .hero-figure{width:min(100%,330px)}
+  .hero--ref .hero-strip{flex-direction:column;gap:18px}
+  .hero--ref .hero-strip-end{width:100%;max-width:210px}
+}
+}
+
+/* design 5 (Orbit): the hero button in Orbit's own style, a squared blue key */
+.hero--ref .cta{min-height:56px;padding:0 22px;border-radius:7px;background:var(--accent);color:#fff;border:1px solid #5c7aff;box-shadow:0 5px 20px #2446e21a}
+.hero--ref .cta::before{content:none}
+.hero--ref .cta:hover{background:#2547e4;color:#fff}

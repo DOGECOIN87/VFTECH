@@ -5,7 +5,7 @@ name: Deploy site to GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ['site/**', 'design-2/**', 'design-3/**', 'design-4/**', 'design-5/**', '.github/workflows/pages.yml']
+    paths: ['site/**', 'design-2/**', 'design-3/**', 'design-4/**', 'design-5/**', 'scripts/assemble.sh', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -26,22 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      # design 3 is the site; designs 1, 2, 4 and 5 are kept alongside it in their design-N folders
+      # design 3 at the root, designs 1, 2, 4 and 5 in design-N/, asset URLs stamped with the run number
       - name: Assemble the five designs
-        run: |
-          mkdir -p _site
-          cp -r design-3/. _site/
-          rm -rf _site/src _site/README.md
-          for n in 1 2 4 5; do
-            src=design-$n; [ "$n" = 1 ] && src=site
-            mkdir -p _site/design-$n
-            cp -r $src/. _site/design-$n/
-            rm -rf _site/design-$n/src _site/design-$n/README.md _site/design-$n/preview-*.png _site/design-$n/social/*.mp4 _site/design-$n/social/*.gif
-          done
-      # every deploy gets fresh URLs for the stylesheet and scripts, so browsers never mix a new page with old CSS/JS
-      - name: Stamp asset URLs
-        run: |
-          find _site -name '*.html' -exec sed -i -E 's#(href|src)="((\.\./)?(styles\.css|site\.js|hero-intro\.js|hero-depth\.js|schematic\.js|compare\.css|remix\.css|fonts\.css|typography\.css|layout\.css|hero-ref\.css|assets/chrome-hero\.js))"#\1="\2?v=${{ github.run_number }}"#g' {} +
+        run: bash scripts/assemble.sh ${{ github.run_number }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

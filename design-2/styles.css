@@ -654,3 +654,9 @@ fieldset.field{border:0;margin:0;padding:0}
 
 /* Five options fit on tablet and phone screens. */
 @media (max-width:800px){.design-switch .ds-name{display:none!important}.design-switch .ds-seg b{margin:0}.design-switch .ds-seg a,.design-switch .ds-seg > span{min-width:38px;padding:0 8px}.design-switch .ds-theme span{display:none}}
+
+/* ---------- page changes cross-fade (browsers with cross-document view transitions; others just navigate) ---------- */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.32s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.site-head{view-transition-name:site-head}   /* the header holds still while the page under it changes */
+@media (prefers-reduced-motion: reduce){@view-transition{navigation:none}}

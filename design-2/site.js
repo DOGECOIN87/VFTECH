@@ -236,7 +236,7 @@
   /* ---- design switcher: the same page in each of the five designs (published side by side) ---- */
   (function () {
     var HERE = 2, ROOT = '../';   // this design, and the path from here to the site root
-    var file = location.pathname.split('/').pop();
+    var file = root.getAttribute('data-page') || location.pathname.split('/').pop();   // the 404 page names itself index.html
     if (!/^[\w-]+\.html$/.test(file)) file = 'index.html';
     var page = file === 'index.html' ? '' : file;
     function href(n) {

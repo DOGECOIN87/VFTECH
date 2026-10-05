@@ -23,11 +23,13 @@
 <meta name="twitter:image" content="https://dogecoin87.github.io/VFTECH/design-5/social/vftech-card.jpg">
 <script>try{var t=localStorage.getItem('vftech-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
 
+<script>document.documentElement.classList.add('hero-intro-pending')</script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="remix.css">
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="typography.css">
 <link rel="stylesheet" href="layout.css">
+<link rel="stylesheet" href="hero-ref.css">
 </head>
 <body class="home layout-design-5">
 <a class="skip" href="#main">Skip to content</a>
@@ -59,58 +61,71 @@
 </header>
 
 <main id="main">
-<section class="rx-hero" aria-labelledby="hero-title">
- <div class="rx-shell rx-topline"><span>INDEPENDENT TECHNOLOGY PARTNER</span><span>Built to move you forward <i></i></span></div>
- <div class="rx-shell rx-hero-grid">
-  <div class="rx-intro"><p class="rx-eyebrow"><span></span> A BETTER WAY TO BUILD</p>
-   <h1 id="hero-title">Your business. Your systems.<br><em>Your future.</em></h1>
+<section class="hero hero--studio hero--ref" aria-labelledby="hero-title">
+    <div class="hero-backdrop" aria-hidden="true"><div class="hero-spot"></div><div class="hero-rays"></div><div class="hero-floor"></div><div class="hero-pool"></div><canvas class="hero-dust"></canvas></div>
+    <canvas class="hero-intro" aria-hidden="true"></canvas>
+<div class="wrap hero-ref">
+      <div class="hero-copy">
+        <p class="hero-eyebrow"><span aria-hidden="true"></span>Independent by design</p>
+        <h1 class="hero-title" id="hero-title"><span class="ln">Own your</span> <span class="ln">systems.</span></h1>
+        <p class="hero-sub">We rebuild the websites, platforms and tools behind your business on technology you control. With AI built in to keep it current.</p>
+        <div class="cta-row">
+          <a class="cta" href="contact.html">Book a free conversation
+            <svg class="arrow" viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M0 6h15" stroke="currentColor" stroke-width="1.5"/><path d="M11.5 .6 17.6 6 11.5 11.4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+          <p class="cta-note"><span class="d-only">30 min · Free</span><span class="m-only">30 minutes. Free. No pressure.</span></p>
+        </div>
+        <p class="hero-note">What’s broken. What it costs. What comes next.</p>
+      </div>
 
-
-
-  </div>
-  <div class="rx-lab"><div class="rx-lab-label"><span>VF / ENGINEERED FOR OWNERSHIP</span><span>01—05</span></div>
-   <figure class="rx-object hero-figure">
+      <figure class="fig hero-figure">
+        <p class="hero-fig-label" aria-hidden="true">VF / 01</p>
         <div class="chrome-stage" data-chrome-hero data-backdrop="dark">
         <canvas class="chrome-canvas" aria-hidden="true"></canvas>
         <svg class="hero-drawing" viewBox="-190 -250 1380 1300" role="img" aria-labelledby="fig1-title">
-          <title id="fig1-title">The VFTech mark: a dimensioned drawing that becomes a beveled, mirror-polished chrome object rotating clockwise on its vertical axis. A 60-degree lattice shows its construction.</title>
+          <title id="fig1-title">The VFTech mark, drawn to its construction and then turned into a polished, rotating object.</title>
           <defs>
             <pattern id="lat" class="lat" patternUnits="userSpaceOnUse" width="125" height="216.506">
-              <line x1="0" y1="0" x2="125" y2="0"/><line x1="0" y1="108.253" x2="125" y2="108.253"/><line x1="0" y1="216.506" x2="125" y2="216.506"/>
               <line x1="0" y1="0" x2="125" y2="216.506"/><line x1="125" y1="0" x2="0" y2="216.506"/>
             </pattern>
             <pattern id="hatch" class="hatch" patternUnits="userSpaceOnUse" width="40" height="22" patternTransform="rotate(-60)">
               <line x1="-5" y1="11" x2="45" y2="11"/>
             </pattern>
-            <radialGradient id="fade" cx="500" cy="380" r="760" gradientUnits="userSpaceOnUse">
-              <stop offset="0.45" stop-color="#fff"/><stop offset="1" stop-color="#000"/>
+            <radialGradient id="fade" cx="500" cy="380" r="700" gradientUnits="userSpaceOnUse">
+              <stop offset="0.5" stop-color="#fff"/><stop offset="1" stop-color="#000"/>
             </radialGradient>
             <mask id="latmask" maskUnits="userSpaceOnUse" x="-190" y="-250" width="1380" height="1300">
               <rect x="-190" y="-250" width="1380" height="1300" fill="url(#fade)"/>
             </mask>
           </defs>
           <g class="schematic-lattice"><rect x="-190" y="-250" width="1380" height="1300" fill="url(#lat)" mask="url(#latmask)" opacity=".6"/></g>
-          <path class="construct" d="M-120 0H1120M-60 -103.92 560 969.95M1060 -103.92 440 969.95"/>
+          <path class="construct" d="M-60 -103.92 560 969.95M1060 -103.92 440 969.95"/>
           <path class="fig-mark hero-sketch" pathLength="1" d="M0 0 175 0 405 398.37 405 0 1000 0 945.15 95 500 95 500 866.03ZM585 180 896.08 180 585 718.8 585 370 700.93 370 750 285 585 285Z"/>
           <g class="schematic-dimensions">
-          <path class="dline" d="M0 -26V-168M1000 -26V-168M0 -128H1000M-11 -109 11 -147M989 -109 1011 -147"/>
-          <text class="dtext" x="500" y="-146" text-anchor="middle">1000</text>
-          <path class="dline" d="M500 880V830M585 735V830M500 806H585M489 825 511 787M574 825 596 787M585 806H680"/>
-          <text class="dtext" x="694" y="818">85</text>
-          <path class="dline" d="M570 987.27A140 140 0 0 1 430 987.27"/>
-          <text class="dtext" x="500" y="1046" text-anchor="middle">60°</text>
+          <path class="dline dline-dot" d="M0 -110H1000"/>
+          <path class="dline" d="M0 -135V-85M1000 -135V-85M500 -125V-95"/>
+          <text class="dtext" x="500" y="-150" text-anchor="middle">1000</text>
+          <path class="dline" d="M-110 0H-60M-85 -25V25M1060 0H1110M1085 -25V25"/>
+          <path class="dline" d="M-160 780H-60M1060 780H1160"/>
+          <path class="dline" d="M470 900H530M500 866V900M460 935H540"/>
           </g>
-          <g class="schematic-nodes" aria-hidden="true"><circle cx="0" cy="0" r="7"/><circle cx="1000" cy="0" r="7"/><circle cx="500" cy="866.03" r="7"/></g>
+          <g class="schematic-nodes" aria-hidden="true"><circle cx="0" cy="0" r="6"/><circle cx="1000" cy="0" r="6"/><circle cx="500" cy="866.03" r="6"/></g>
         </svg>
         <button class="hero-pause" data-motion-control data-motion-icon type="button" aria-pressed="false" aria-label="Pause motion"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path class="i-pause" d="M4 3h3v10H4zM9 3h3v10H9z"/><path class="i-play" d="M5 3l8 5-8 5z"/></svg></button>
         </div>
+        <figcaption class="hero-caption"><span class="hero-caption-label">Built to hand over</span>Code. Accounts. Data. Documentation.</figcaption>
       </figure>
-   <div class="rx-orbit rx-orbit-one" aria-hidden="true"></div><div class="rx-orbit rx-orbit-two" aria-hidden="true"></div>
-   <div class="rx-lab-bottom"><span><i></i> INDEPENDENCE, BY DESIGN</span><span>60° / VF</span></div>
-  </div>
-<div class="rx-hero-note"><p class="rx-eyebrow">A CLEARER PATH FORWARD</p><p class="rx-summary">Move beyond the platforms holding you back. We rebuild websites, modernize systems, and put AI to work — on technology you own.</p><div class="rx-actions"><a class="rx-button" href="contact.html">Let’s talk about it <span aria-hidden="true">↗</span></a><a class="rx-textlink" href="#services">Explore our work <span aria-hidden="true">↓</span></a></div><p class="rx-small">30 minutes. Free. A real conversation.</p><div class="rx-note-links"><a href="websites.html">Rebuild your website <span aria-hidden="true">↗</span></a><a href="ai.html">Put AI to work <span aria-hidden="true">↗</span></a><a href="advisory.html">Modernize your systems <span aria-hidden="true">↗</span></a></div></div> </div>
- <div class="rx-shell rx-promise"><span>YOUR CODE.</span><span>YOUR ACCOUNTS.</span><span>YOUR DATA.</span><span>YOUR NEXT MOVE. <b aria-hidden="true">↗</b></span></div>
-</section>
+
+      <div class="hero-strip">
+        <p class="hero-step"><span class="hero-step-num">01 / 07</span><span class="hero-step-text"><span class="d-only"><strong>Good systems start with a conversation.</strong> <span class="hero-step-sub">A clear plan begins with the right questions.</span></span><span class="m-only"><strong>Start a conversation.</strong></span></span></p>
+        <div class="hero-strip-end">
+          <div class="seq-bar" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <a class="hero-strip-link" href="process.html">See how we work <svg viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M0 6h15" stroke="currentColor" stroke-width="1.5"/><path d="M11.5 .6 17.6 6 11.5 11.4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+  </section>
 <section id="services" class="rx-section rx-shell" aria-labelledby="services-title">
  <div class="rx-section-head"><p class="rx-eyebrow">01 / WHAT WE DO</p><h2 id="services-title">Better technology.<br><span>Less holding you back.</span></h2><p>From the first rebuild to everyday upkeep, we help your technology keep pace with your business.</p></div>
  <div class="rx-services">
@@ -170,6 +185,9 @@
 
 
 
+<script src="hero-intro.js"></script>
+<script src="schematic.js"></script>
+<script src="hero-depth.js"></script>
 <script type="module" src="assets/chrome-hero.js"></script>
 </body>
 </html>

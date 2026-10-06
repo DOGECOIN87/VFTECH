@@ -12,7 +12,7 @@ rm -rf _site
 mkdir -p _site
 cp -r design-3/. _site/
 rm -rf _site/src _site/README.md
-for n in 1 2 4 5; do
+for n in 1 2 4 5 6 7 8 9 10; do
   src=design-$n; [ "$n" = 1 ] && src=site
   mkdir -p "_site/design-$n"
   cp -r "$src/." "_site/design-$n/"
@@ -21,6 +21,6 @@ for n in 1 2 4 5; do
 done
 
 find _site -name '*.html' -exec sed -i -E \
-  's#(href|src)="((\.\./)?(styles\.css|site\.js|hero-intro\.js|hero-depth\.js|schematic\.js|compare\.css|remix\.css|fonts\.css|typography\.css|layout\.css|hero-ref\.css|chrome-loader\.js|extras\.js|extras\.css|signature\.css|signature\.js|assets/chrome-hero\.js))"#\1="\2?v='"$STAMP"'"#g' {} +
+  's#(href|src)="((\.\./)?(styles\.css|site\.js|hero-intro\.js|hero-depth\.js|schematic\.js|compare\.css|remix\.css|fonts\.css|typography\.css|layout\.css|hero-ref\.css|chrome-loader\.js|extras\.js|extras\.css|switcher\.css|switcher\.js|signature\.css|signature\.js|assets/chrome-hero\.js))"#\1="\2?v='"$STAMP"'"#g' {} +
 
 echo "assembled _site/ (stamp $STAMP)"

@@ -1,0 +1,22 @@
+/* Typography is a design system, including measure, hierarchy, and UI text. */
+html{font-synthesis:none;text-rendering:optimizeLegibility}
+body{font-kerning:normal;font-optical-sizing:auto;font-variant-numeric:lining-nums}
+h1,h2,h3,h4{font-stretch:normal;font-variation-settings:normal;text-wrap:balance}
+p,li,dd{overflow-wrap:break-word}
+.prose,.page-lede,.sect-lede,.hero-sub{max-width:62ch}
+.page-head-grid>*,.sect-grid>*{min-width:0}
+.nav a{font-family:var(--f-display);font-size:13px;font-weight:500;letter-spacing:0;line-height:1.4}
+.note,.ds-label,.ds-seg,.ds-theme,.type-kicker{font-family:var(--f-note);font-size:11px;line-height:1.5;letter-spacing:.04em}
+.cta,.textlink{font-size:16px;line-height:1.35}
+.tier,.prepared,.ledger{font-variant-numeric:tabular-nums lining-nums}
+.page-title .dimspan{max-width:100%}
+.type-kicker{display:flex;justify-content:space-between;align-items:center;gap:16px;text-transform:uppercase;color:var(--blueline);margin-bottom:24px}
+.type-kicker>span{color:var(--graphite)}
+@media(max-width:760px){.type-kicker{font-size:10px}.page-title{overflow-wrap:anywhere}.page-title .dim-label{font-size:10px}.sect h2{overflow-wrap:anywhere}.nav.open a{font-size:16px}.head-inner{gap:12px}.brand svg{width:112px}.menu-btn{font-size:12px;padding-inline:8px;gap:6px}.page-lede{font-size:17px;line-height:1.65}}
+
+:root,:root[data-theme='dark'],:root[data-theme='light']{--f-display:'Space Grotesk',Arial,sans-serif;--f-body:'Inter',Arial,sans-serif;--f-serif:'Inter',Arial,sans-serif;--f-note:'IBM Plex Mono',monospace}
+body{font-size:17px;line-height:1.65}h1,h2,h3,h4{font-family:var(--f-display);font-weight:500;letter-spacing:-.05em}
+.rx-intro h1{font-size:clamp(46px,5.8vw,88px);line-height:1.05;letter-spacing:-.06em;font-weight:500}
+.rx-summary{font-family:var(--f-body);font-size:17px;line-height:1.75;max-width:42ch}.rx-section h2{font-size:clamp(34px,3.7vw,54px);line-height:1.08}.rx-service h3{font-size:30px;line-height:1.15;letter-spacing:-.05em}.rx-service p{font-size:15px;line-height:1.75}.rx-section-head>p:last-child{font-size:16px;line-height:1.75}.rx-eyebrow,.rx-card-top,.rx-card-meta,.rx-stats p,.rx-promise,.rx-topline{font-size:11px;letter-spacing:.02em}.rx-small{font-family:var(--f-body);font-size:12px}.rx-lab-label,.rx-lab-bottom{font-size:10px}.rx-button{font-family:var(--f-display);font-size:16px;font-weight:500}.rx-textlink{font-family:var(--f-body);font-size:14px}.rx-ownership-grid>div>p:not(.rx-eyebrow),.rx-experience>div>p:not(.rx-eyebrow){font-size:16px;line-height:1.75}.rx-ledger dt{font-family:var(--f-display);font-size:18px}.rx-ledger dd{font-size:14px}.rx-stats strong{font-family:var(--f-display)}.rx-support p,.rx-support strong{font-size:14px}.rx-closing p:not(.rx-eyebrow){font-size:16px}.rx-closing h2{font-size:clamp(58px,7.5vw,108px)}
+.page-title{font-size:clamp(38px,5vw,74px);line-height:1.08}.sect h2{font-size:clamp(30px,3.2vw,48px);line-height:1.15}
+@media(max-width:760px){.rx-intro h1{font-size:clamp(35px,7.8vw,62px);line-height:1.08}.rx-summary{font-size:16px}.rx-lab-label,.rx-lab-bottom{font-size:8px}.rx-card-meta{font-size:10px}.rx-section h2{font-size:36px}.page-title{font-size:clamp(30px,7.2vw,50px)}.rx-ownership h2{font-size:42px}}

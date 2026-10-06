@@ -1,11 +1,11 @@
-# Publishes design-3/ at the site root, with site/ (design 1) at /design-1/, design-2/ at /design-2/ and design-4/ at /design-4/ and design-5/ at /design-5/, to GitHub Pages on every push to main.
+# Publishes design-3/ at the site root, with site/ (design 1) at /design-1/, design-2/ at /design-2/ and design-4/ at /design-4/ and design-5/ to design-10/ at /design-N/, to GitHub Pages on every push to main.
 # One-time setup: repository Settings → Pages → Build and deployment → Source: "GitHub Actions".
 name: Deploy site to GitHub Pages
 
 on:
   push:
     branches: [main]
-    paths: ['site/**', 'design-2/**', 'design-3/**', 'design-4/**', 'design-5/**', 'scripts/assemble.sh', '.github/workflows/pages.yml']
+    paths: ['site/**', 'design-2/**', 'design-3/**', 'design-4/**', 'design-5/**', 'design-6/**', 'design-7/**', 'design-8/**', 'design-9/**', 'design-10/**', 'scripts/assemble.sh', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:

@@ -1,0 +1,25 @@
+/* Design 1 (Drafting) signature details: measurement call-outs and the construction overlay (signature.js). */
+
+/* ---- call-outs ---- */
+.frame .cell,.tier,.prepared dl > div{position:relative}
+.d1-dim{position:absolute;inset:0;pointer-events:none;z-index:3}
+.d1-dim i{position:absolute;opacity:0;transition:opacity .25s ease,transform .35s cubic-bezier(.16,.84,.3,1);color:var(--blueline);font:500 10.5px/1 var(--f-note);letter-spacing:.06em;font-style:normal}
+/* width: a dimension line just inside the top edge, ticked at both ends, the figure centred on it */
+.d1-dim-w{left:8px;right:8px;top:8px;height:9px;border-left:1px solid currentColor;border-right:1px solid currentColor;
+  background:linear-gradient(currentColor,currentColor) center/100% 1px no-repeat;transform:scaleX(.6)}
+.d1-dim-w::after{content:attr(data-v);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:0 6px;background:var(--sheet,var(--paper))}
+/* height: the same, down the right edge */
+.d1-dim-h{top:24px;bottom:8px;right:8px;width:9px;border-top:1px solid currentColor;border-bottom:1px solid currentColor;
+  background:linear-gradient(currentColor,currentColor) center/1px 100% no-repeat;transform:scaleY(.6)}
+.d1-dim-h::after{content:attr(data-v);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);padding:0 6px;background:var(--sheet,var(--paper))}
+.d1-measured .d1-dim i{opacity:1;transform:none}
+.motion-paused .d1-dim i{transition:none}
+
+/* ---- construction overlay ---- */
+.d1-construction body::before{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.55;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='62' height='107.39' viewBox='0 0 62 107.39' fill='none' stroke='%238DC1DD' stroke-width='1'%3E%3Cpath d='M0 0H62M0 53.695H62M0 107.39H62M0 0L62 107.39M62 0L0 107.39'/%3E%3C/svg%3E") 0 0/62px 107.39px repeat}
+.d1-construction :is(.sect-grid > *, .cell, .ledger > div, .sit, .tier, .steps > li, .callout, .prepared, .closing-grid > *, .hero-copy, .hero-figure, .tb){
+  outline:1px dashed var(--nonphoto);outline-offset:4px}
+.d1-construction .sect-aside h2::before{content:"SECTION · ";font:500 11px/1 var(--f-note);letter-spacing:.1em;color:var(--blueline);vertical-align:middle}
+.d1-construct-btn[aria-pressed="true"]{background:var(--ink);color:var(--on-ink)}
+@media print{.d1-construction body::before{display:none}}

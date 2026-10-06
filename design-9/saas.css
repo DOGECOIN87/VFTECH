@@ -207,3 +207,10 @@ body .hero.hero--ref .cta:hover,body .cta:hover{background:var(--pu);color:#fff}
 .closing .wrap,.closing-grid{padding-inline:0}
 .site-head,.site-head.scrolled{box-shadow:none!important;border:0!important;background-image:none!important}
 .read-progress{display:none!important}
+.gate .seg{background:var(--li)!important;color:var(--on-li)!important;clip-path:none!important;border-radius:999px;padding-inline:14px}
+.gate .seg::before,.gate .seg::after{background:none!important;border:0!important}
+.gate .seg *{color:var(--on-li)!important}
+.nav a.tab,.nav a.tab[aria-current]{color:#0a0a0a!important;background:var(--li)!important}
+.nav a.tab:hover{background:var(--pu)!important;color:#fff!important}
+.rx-ownership .rx-eyebrow{color:var(--on-li)!important;background:var(--li)!important}
+.rx-service-feature .rx-card-top span{color:#fff!important}

@@ -45,8 +45,9 @@ main>section,.site-foot{background:var(--card);border:1px solid var(--line);bord
 main>section.stat-row{background:none;border:0;overflow:visible}
 main>section.rx-ownership,main>section.rx-closing{border-radius:var(--r)}
 main>section.rx-closing{background:var(--accent);border-color:transparent}
-.page-head,.sect,.rx-section,.rx-ownership,.closing{border-bottom:0;padding-block:clamp(28px,3.4vw,48px);background:none}
-.page-head{background:radial-gradient(ellipse at 100% 0%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 60%)}
+.page-head,.sect,.rx-section,.rx-ownership,.closing{border-bottom:0;padding-block:clamp(28px,3.4vw,48px)}
+.page-head{background:radial-gradient(ellipse at 100% 0%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 60%),var(--card)}
+.sect,.closing,.rx-section{background:var(--card)}
 .rx-ownership{background:var(--card-2)}
 .wrap,.rx-shell{max-width:none;padding-inline:clamp(20px,2.6vw,36px)}
 .page-title{font-size:clamp(32px,3.6vw,52px);line-height:1.08}

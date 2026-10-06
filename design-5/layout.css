@@ -26,7 +26,6 @@
 /* A review page is available from every design. */
 .design-switch .ds-compare{min-height:32px;padding:0 10px;gap:6px;border-left:1px solid var(--rule-strong);font:11px/1.4 var(--f-note);letter-spacing:0;text-transform:none}.ds-compare i{font-style:normal;font-size:14px}
 @media(max-width:800px){.design-switch .ds-compare span{display:none}.design-switch .ds-compare{padding:0 8px;min-width:28px}}
-}
 
 /* design 5 (Orbit): the hero button in Orbit's own style, a squared blue key */
 body .hero.hero--ref .cta{min-height:56px;padding:0 22px;border-radius:7px;background:var(--accent);color:#fff;border:1px solid #5c7aff;box-shadow:0 5px 20px #2446e21a}

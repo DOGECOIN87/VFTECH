@@ -178,3 +178,25 @@ input,select,textarea{font-family:var(--f-body)}
 .rx-closing .rx-button,.rx-closing .rx-button:hover{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
 .rx-ownership{border-block:0}.rx-ownership h2 em{color:var(--graphite)}
 .rx-ownership-grid>div>p:not(.rx-eyebrow){max-width:44ch;font-size:clamp(17px,1.4vw,20px);line-height:1.55}
+.tblock{border-radius:0;border-color:var(--rule-strong)}
+th,.plans th[scope=row]{letter-spacing:.1em;font-weight:500}
+dl.terms dt,.terms dt{text-transform:none}
+.page-head,.hero--ref{background:var(--paper)}
+.page-head::before,.page-head::after{display:none}
+.site-head{background:var(--paper);backdrop-filter:none}
+.cta,button.cta,a.cta,.rx-button{background:var(--ink)!important;color:var(--on-ink)!important;border-radius:999px;clip-path:none;--k:0px}
+.cta::before,.cta::after,button.cta::before,button.cta::after{display:none!important}
+.cta:focus-visible,.rx-button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+/* no 60-degree cuts: everything squared or pill */
+.frame,.cell,.boundary,.frame > .frame-row:last-child > .cell:last-child,.frame > .cell:last-child{clip-path:none!important}
+.frame{padding:0;background:var(--rule-strong);border:1px solid var(--rule-strong)}
+.boundary{border:1px solid var(--rule-strong)}
+.flow .seg::before{transform:none;border-radius:999px}
+.ledger dt::before,.tours li::before,.agenda li::before,.thirds .freeze::before,.sched .yes::before{clip-path:none;border-radius:50%;width:6px;height:6px;background:var(--ink)}
+.decl li::before{clip-path:none;height:1px;width:20px;transform:none;background:var(--ink)}
+.thirds .bar{clip-path:none;height:2px}
+.seq-bar span,.hero--ref .seq-bar span{clip-path:none}
+.table-wrap{border-top:1px solid var(--ink)}
+.callout .a{font:400 clamp(28px,2.8vw,40px)/1.1 var(--f-serif);font-stretch:100%}
+.sect h2::after,.sect h2::before,.sect-aside h2::after,.page-title::after,.x-head h2::after{display:none!important;content:none!important}
+.ledger dt,.rx-ledger dt{text-transform:none;letter-spacing:-.01em}

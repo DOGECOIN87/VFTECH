@@ -20,7 +20,7 @@
       [2, 'Kiln', 'Warm clay and serif type'],
       [3, 'Signal', 'Loud grotesque on black'],
       [4, 'Phosphor', 'A terminal, with a command line'],
-      [5, 'Pulse', 'Soft light and rounded cards']
+      [5, 'Orbit', 'Soft light and rounded cards']
     ]],
     ['SaaS styles', [
       [6, 'Lumen', 'Midnight glow and bento features'],

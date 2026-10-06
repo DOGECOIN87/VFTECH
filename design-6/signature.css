@@ -1,0 +1,6 @@
+/* Design 5 (Lumen) signature detail: tilting cards (signature.js). */
+.o-tilt{position:relative;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.o-tilt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(260px circle at var(--sx,50%) var(--sy2,0%),rgb(255 255 255/.09),transparent 60%)}
+.o-tilt:hover::after{opacity:1}
+.motion-paused .o-tilt{transform:none;transition:none}

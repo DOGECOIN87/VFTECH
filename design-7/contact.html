@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact · VFTech</title>
+<meta name="description" content="Book a free 30-minute conversation with VFTech: what’s broken, what it’s costing you, and whether this is the right firm for it. Email, phone, or a short request form.">
+<link rel="canonical" href="https://dogecoin87.github.io/VFTECH/design-7/contact.html">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="VFTech">
+<meta property="og:title" content="Contact · VFTech">
+<meta property="og:description" content="Book a free 30-minute conversation with VFTech: what’s broken, what it’s costing you, and whether this is the right firm for it. Email, phone, or a short request form.">
+<meta property="og:url" content="https://dogecoin87.github.io/VFTECH/design-7/contact.html">
+<meta property="og:image" content="https://dogecoin87.github.io/VFTECH/design-7/social/vftech-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The VFTech home page in design 7: the headline “Own your systems.” beside the polished VF mark.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact · VFTech">
+<meta name="twitter:description" content="Book a free 30-minute conversation with VFTech: what’s broken, what it’s costing you, and whether this is the right firm for it. Email, phone, or a short request form.">
+<meta name="twitter:image" content="https://dogecoin87.github.io/VFTECH/design-7/social/vftech-card.jpg">
+<script>try{var t=localStorage.getItem('vftech-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
+<link rel="stylesheet" href="styles.css">
+<style>
+/* contact.html only (Sheet 07). Tokens and φ/Fibonacci values only. */
+
+/* page head: what the 30 minutes cover, keyed like the general notes */
+.agenda ul{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.agenda li{display:flex;gap:var(--s3);align-items:baseline;padding-block:var(--s2);border-bottom:1px solid var(--rule-strong);font:560 var(--t1)/1.3 var(--f-display);font-stretch:108%;letter-spacing:-.01em}
+.agenda li::before{content:"";flex:none;width:9px;height:7.79px;background:var(--ink);clip-path:polygon(0 0,100% 0,50% 100%);transform:translateY(-.2em)}
+
+/* the booking section: details left, form right; on one column the form comes before the next steps */
+.book-grid{grid-template-areas:"intro form" "next form";grid-template-rows:auto 1fr;row-gap:var(--s6)}
+.book-intro{grid-area:intro}
+.book-next{grid-area:next}
+.book-main{grid-area:form}
+@media (max-width:900px){.book-grid{grid-template-areas:"intro" "form" "next";grid-template-rows:none}}
+
+/* contact details as a title block: label in the corner of each cell, value below */
+.tblk{margin:var(--s5) 0 0;border:1px solid var(--ink)}
+.tblk > div{position:relative;padding:var(--s3) var(--s4) var(--s4);border-bottom:1px solid var(--rule-strong)}
+.tblk > div:last-child{border-bottom:0}
+.tblk dt{font:500 var(--t-1)/1.5 var(--f-note);letter-spacing:.06em;text-transform:uppercase;color:var(--blueline)}
+.tblk dd{margin:var(--s2) 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s3);font:560 var(--t1)/1.3 var(--f-display);font-stretch:108%}
+.tblk .copyline code{font-size:var(--t1);line-height:1.3}
+.tblk .ph{position:absolute;top:var(--s3);right:var(--s4)} /* a revision tag in the corner of the cell */
+
+/* what happens next: the first three of the seven steps */
+.book-next h3{font-size:var(--t2);font-stretch:110%;line-height:1.2}
+.next{list-style:none;margin:var(--s4) 0 0;padding:0;border-top:2px solid var(--ink)}
+.next li{display:grid;gap:var(--s1);padding-block:var(--s3) var(--s4);border-bottom:1px solid var(--rule-strong)}
+.next strong{font:600 var(--t1)/1.25 var(--f-display);font-stretch:108%;letter-spacing:-.01em}
+.next p{color:var(--graphite)}
+.book-next .textlink{margin-top:var(--s4)}
+
+/* the form */
+.book-main .form{border-top:2px solid var(--ink);padding-top:var(--s5)}
+.req{margin-left:var(--s2);font:500 var(--t-2)/1 var(--f-note);letter-spacing:.08em;text-transform:uppercase;color:var(--blueline);vertical-align:.15em}
+fieldset.field legend{padding:0;margin-bottom:var(--s2)}
+.choices label:has(input:checked){border-color:var(--ink)}
+.submit-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s4) var(--s5);margin-top:var(--s3)}
+.submit-row .hint{max-width:22em;color:var(--graphite);font-size:15px;line-height:1.5}
+button.cta{-webkit-appearance:none;appearance:none;margin:0;border:0;background:none;cursor:pointer;text-align:left}
+.form-out{margin-top:var(--s5)}
+.form-out h2{font-size:var(--t1);font-stretch:108%;line-height:1.25}
+.form-out h2 + p{margin-top:var(--s2);color:var(--graphite)}
+.form-out h2 + p strong{color:var(--ink);font-weight:600}
+</style>
+<link rel="stylesheet" href="remix.css">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="typography.css">
+<link rel="stylesheet" href="layout.css">
+<link rel="stylesheet" href="extras.css">
+<link rel="stylesheet" href="switcher.css">
+<link rel="stylesheet" href="signature.css">
+<link rel="stylesheet" href="saas.css">
+</head>
+<body class="layout-design-7">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="head-inner">
+    <a class="brand" href="index.html" aria-label="VFTech, home">
+      <svg viewBox="156.9 202.8 1192.18 371.2" aria-hidden="true" focusable="false" fill="currentColor"><path d="M180.9 226.8 246.21 226.8 332.04 375.47 332.04 226.8 554.1 226.8 533.63 262.25 367.5 262.25 367.5 550ZM399.22 293.98 515.31 293.98 399.22 495.06 399.22 364.88 442.48 364.88 460.8 333.16 399.22 333.16Z"/><path d="M586.9 253.98 807.7 253.98 779.82 302.28 710.81 302.28 710.81 510 655.91 510 655.91 302.28 559.02 302.28Z"/><path d="M748 414.91Q748 386.38 760.62 363.33Q773.24 340.29 795 327.31Q816.76 314.32 843.09 314.32Q869.43 314.32 890.64 326.76Q911.86 339.2 924.11 361.69Q936.36 384.18 936.36 413.08Q936.36 419.66 935.81 425.51Q935.26 431.36 934.53 435.02H805.79Q807.98 444.53 814.2 451.85Q820.42 459.16 830.11 463.55Q839.8 467.94 852.24 467.94Q863.58 467.94 875.1 463.73Q886.62 459.53 895.03 452.58L922.83 489.88Q909.66 501.95 890.09 508.72Q870.53 515.49 848.58 515.49Q819.69 515.49 796.83 502.5Q773.97 489.52 760.98 466.66Q748 443.8 748 414.91ZM843.09 360.04Q833.22 360.04 825.54 364.25Q817.86 368.45 812.92 376.32Q807.98 384.18 805.79 394.79H877.48Q876.01 379.43 866.32 369.74Q856.63 360.04 843.09 360.04Z"/><path d="M951.56 414.91Q951.56 386.01 964.36 363.15Q977.16 340.29 999.47 327.31Q1021.78 314.32 1049.22 314.32Q1073.72 314.32 1094.75 324.38Q1115.78 334.44 1126.02 349.8L1090.55 380.52Q1083.23 372.48 1073.54 368.09Q1063.85 363.7 1052.87 363.7Q1039.34 363.7 1028.73 370.28Q1018.13 376.87 1012.28 388.39Q1006.42 399.91 1006.42 414.91Q1006.42 429.9 1012.28 441.42Q1018.13 452.94 1028.73 459.53Q1039.34 466.11 1052.87 466.11Q1064.21 466.11 1073.9 461.54Q1083.6 456.97 1091.28 448.19L1127.12 478.91Q1116.88 495 1095.48 505.25Q1074.09 515.49 1049.22 515.49Q1021.78 515.49 999.47 502.5Q977.16 489.52 964.36 466.66Q951.56 443.8 951.56 414.91Z"/><path d="M1149.52 253.98H1204.38V343.58Q1213.16 330.42 1227.79 322.37Q1242.42 314.32 1261.07 314.32Q1279.36 314.32 1293.99 323.28Q1308.62 332.25 1316.85 349.29Q1325.08 366.34 1325.08 389.3V510H1270.22V407.59Q1270.22 396.41 1266.38 388.1Q1262.54 379.79 1255.41 375.4Q1248.27 371.02 1239.24 371.02Q1228.91 371.02 1221.04 375.95Q1213.16 380.89 1208.77 390.06Q1204.38 399.23 1204.38 411.25V510H1149.52Z"/></svg>
+    </a>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <p class="nav-label">Workspace</p>
+      <ul>
+        <li><a href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a></li>
+        <li><a href="websites.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>Website rebuilds</a></li>
+        <li><a href="ai.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg>AI integration</a></li>
+        <li><a href="advisory.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Advisory</a></li>
+        <li><a href="process.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>How we work</a></li>
+        <li><a href="about.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>About</a></li>
+        <li><a href="contact.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact</a></li>
+      </ul>
+      <div class="side-foot"><a class="side-book" href="contact.html">Book a free conversation<small>30 min · Free</small></a></div>
+    </nav>
+    <button class="icon-btn theme-btn" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+      <svg viewBox="0 0 18 16" aria-hidden="true" focusable="false"><path class="half" d="M1 1.5h8v13.3Z"/><path class="outline" d="M1 1.5h16L9 14.8Z"/></svg>
+    </button>
+    <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
+      <svg viewBox="0 0 16 14" aria-hidden="true" focusable="false"><path d="M0 1h16M0 7h16M0 13h16" stroke="currentColor" stroke-width="1.5"/></svg>
+      Menu
+    </button>
+  </div>
+</header>
+<div class="topbar"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">VFTech</a><span aria-hidden="true">/</span><b>Contact</b></nav><span class="chip chip-ok">Free 30-minute conversation</span></div>
+
+<main id="main">
+  <section class="page-head" aria-labelledby="page-title">
+    <div class="wrap page-head-grid">
+      <div>
+        <span class="note">Sheet 07 / 07 · Contact</span>
+        <h1 class="page-title" id="page-title">Book the free 30‑minute conversation.</h1>
+        <p class="page-lede">It’s free, and it’s the first of seven steps in how an engagement runs. If this isn’t the right firm for it, we’ll say so.</p>
+      </div>
+      <div class="agenda">
+        <span class="note">The 30 minutes cover</span>
+        <ul>
+          <li>What’s broken</li>
+          <li>What it’s costing you</li>
+          <li>Whether this is the right firm for it</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect" aria-labelledby="book-title">
+    <div class="wrap sect-grid book-grid">
+      <div class="book-intro">
+        <h2 id="book-title">Request the conversation</h2>
+        <p class="sect-lede">Tell us what’s broken and when suits you. Or skip the form and get in touch directly.</p>
+        <dl class="tblk">
+          <div>
+            <dt>Email</dt>
+            <dd><span class="copyline"><code id="contact-email">hello@vftech.example</code><button class="copy" type="button" data-copy="contact-email" aria-label="Copy email address">Copy</button></span><span class="ph">Placeholder</span></dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd><span class="copyline"><code id="contact-phone">(000) 000-0000</code><button class="copy" type="button" data-copy="contact-phone" aria-label="Copy phone number">Copy</button></span><span class="ph">Placeholder</span></dd>
+          </div>
+          <div>
+            <dt>Based in</dt>
+            <dd>Washington</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="book-next">
+        <h3 id="next-title">What happens next</h3>
+        <ol class="next" aria-labelledby="next-title">
+          <li>
+            <span class="note">Step 01 / 07</span>
+            <strong>Conversation</strong>
+            <p>30 minutes, free: the one you’re requesting on this page.</p>
+          </li>
+          <li>
+            <span class="note">Step 02 / 07</span>
+            <strong>Assessment</strong>
+            <p>A written audit of the current state: what exists, what’s wrong, what it would take. Credited against the build if you proceed.</p>
+          </li>
+          <li>
+            <span class="note">Step 03 / 07</span>
+            <strong>Proposal</strong>
+            <p>Fixed fee, fixed scope, a date, and the risks named rather than discovered later.</p>
+          </li>
+        </ol>
+        <a class="textlink" href="process.html">See all seven steps <svg viewBox="0 0 26 12" aria-hidden="true" focusable="false"><path d="M0 6h24M18.8.8 24.8 6 18.8 11.2"/></svg></a>
+      </div>
+
+      <div class="book-main">
+        <form id="book-form" class="form" aria-labelledby="book-title">
+          <div class="field-row">
+            <div class="field">
+              <label for="f-name">Your name<span class="req" aria-hidden="true">Required</span></label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="f-business">Business</label>
+              <input id="f-business" name="business" type="text" autocomplete="organization">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-email">Email<span class="req" aria-hidden="true">Required</span></label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+          </div>
+          <fieldset class="field" aria-describedby="f-topic-hint">
+            <legend>What’s it about?</legend>
+            <p class="hint" id="f-topic-hint">Pick any that apply.</p>
+            <div class="choices">
+              <label for="f-topic-website"><input id="f-topic-website" type="checkbox" name="topic" value="Website rebuild">Website rebuild</label>
+              <label for="f-topic-migration"><input id="f-topic-migration" type="checkbox" name="topic" value="Platform migration">Platform migration</label>
+              <label for="f-topic-ai"><input id="f-topic-ai" type="checkbox" name="topic" value="AI integration">AI integration</label>
+              <label for="f-topic-support"><input id="f-topic-support" type="checkbox" name="topic" value="Support plan">Support plan</label>
+              <label for="f-topic-advisory"><input id="f-topic-advisory" type="checkbox" name="topic" value="Advisory or fractional leadership">Advisory or fractional leadership</label>
+              <label for="f-topic-unsure"><input id="f-topic-unsure" type="checkbox" name="topic" value="Not sure yet">Not sure yet</label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="f-times">Best times for a call</label>
+            <input id="f-times" name="times" type="text" aria-describedby="f-times-hint">
+            <p class="hint" id="f-times-hint">Days and times that suit you, with your time zone.</p>
+          </div>
+          <div class="field">
+            <label for="f-message">What’s broken, and what is it costing you?<span class="req" aria-hidden="true">Required</span></label>
+            <textarea id="f-message" name="message" rows="6" required aria-describedby="f-message-hint"></textarea>
+            <p class="hint" id="f-message-hint">A few sentences is plenty. Rough numbers help if you have them.</p>
+          </div>
+          <div class="submit-row">
+            <button class="cta" type="submit" aria-describedby="submit-hint">Prepare my request
+              <svg class="arrow" viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M0 6h15" stroke="currentColor" stroke-width="1.5"/><path d="M11.5 .6 17.6 6 11.5 11.4Z" fill="currentColor"/></svg>
+            </button>
+            <p class="hint" id="submit-hint">This form isn’t connected to delivery yet. It prepares your request so you can copy it and email it to us.</p>
+          </div>
+        </form>
+
+        <div class="form-out" id="form-out" hidden><h2 id="form-out-title" tabindex="-1">Your request is ready to copy</h2><p>This form isn’t connected to delivery yet, so nothing has been sent. Copy the request below and email it to <strong>hello@vftech.example</strong>.</p><pre id="form-text"></pre><div class="row"><button class="copy" type="button" data-copy="form-text">Copy request</button></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-pattern" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="tblock">
+      <div class="tb tb-brand">
+        <svg viewBox="156.9 202.8 1192.18 371.2" role="img" aria-label="VFTech" fill="currentColor"><path d="M180.9 226.8 246.21 226.8 332.04 375.47 332.04 226.8 554.1 226.8 533.63 262.25 367.5 262.25 367.5 550ZM399.22 293.98 515.31 293.98 399.22 495.06 399.22 364.88 442.48 364.88 460.8 333.16 399.22 333.16Z"/><path d="M586.9 253.98 807.7 253.98 779.82 302.28 710.81 302.28 710.81 510 655.91 510 655.91 302.28 559.02 302.28Z"/><path d="M748 414.91Q748 386.38 760.62 363.33Q773.24 340.29 795 327.31Q816.76 314.32 843.09 314.32Q869.43 314.32 890.64 326.76Q911.86 339.2 924.11 361.69Q936.36 384.18 936.36 413.08Q936.36 419.66 935.81 425.51Q935.26 431.36 934.53 435.02H805.79Q807.98 444.53 814.2 451.85Q820.42 459.16 830.11 463.55Q839.8 467.94 852.24 467.94Q863.58 467.94 875.1 463.73Q886.62 459.53 895.03 452.58L922.83 489.88Q909.66 501.95 890.09 508.72Q870.53 515.49 848.58 515.49Q819.69 515.49 796.83 502.5Q773.97 489.52 760.98 466.66Q748 443.8 748 414.91ZM843.09 360.04Q833.22 360.04 825.54 364.25Q817.86 368.45 812.92 376.32Q807.98 384.18 805.79 394.79H877.48Q876.01 379.43 866.32 369.74Q856.63 360.04 843.09 360.04Z"/><path d="M951.56 414.91Q951.56 386.01 964.36 363.15Q977.16 340.29 999.47 327.31Q1021.78 314.32 1049.22 314.32Q1073.72 314.32 1094.75 324.38Q1115.78 334.44 1126.02 349.8L1090.55 380.52Q1083.23 372.48 1073.54 368.09Q1063.85 363.7 1052.87 363.7Q1039.34 363.7 1028.73 370.28Q1018.13 376.87 1012.28 388.39Q1006.42 399.91 1006.42 414.91Q1006.42 429.9 1012.28 441.42Q1018.13 452.94 1028.73 459.53Q1039.34 466.11 1052.87 466.11Q1064.21 466.11 1073.9 461.54Q1083.6 456.97 1091.28 448.19L1127.12 478.91Q1116.88 495 1095.48 505.25Q1074.09 515.49 1049.22 515.49Q1021.78 515.49 999.47 502.5Q977.16 489.52 964.36 466.66Q951.56 443.8 951.56 414.91Z"/><path d="M1149.52 253.98H1204.38V343.58Q1213.16 330.42 1227.79 322.37Q1242.42 314.32 1261.07 314.32Q1279.36 314.32 1293.99 323.28Q1308.62 332.25 1316.85 349.29Q1325.08 366.34 1325.08 389.3V510H1270.22V407.59Q1270.22 396.41 1266.38 388.1Q1262.54 379.79 1255.41 375.4Q1248.27 371.02 1239.24 371.02Q1228.91 371.02 1221.04 375.95Q1213.16 380.89 1208.77 390.06Q1204.38 399.23 1204.38 411.25V510H1149.52Z"/></svg>
+        <p>We modernize services, systems and technology with AI.</p>
+      </div>
+      <div class="tb">
+        <dl class="fields">
+          <div><dt>Firm</dt><dd>VFTech</dd></div>
+          <div><dt>Founder</dt><dd>Kevin Van Flandern</dd></div>
+          <div><dt>Based</dt><dd>Washington</dd></div>
+          <div><dt>Owner of record</dt><dd>You. Code, accounts and documentation in your name.</dd></div>
+        </dl>
+      </div>
+      <div class="tb">
+        <dl class="fields">
+          <div><dt>Email</dt><dd><span class="copyline"><code id="foot-email">hello@vftech.example</code><button class="copy" type="button" data-copy="foot-email" aria-label="Copy email address">Copy</button></span><span class="ph">Placeholder</span></dd></div>
+          <div><dt>Phone</dt><dd><span class="copyline"><code id="foot-phone">(000) 000-0000</code><button class="copy" type="button" data-copy="foot-phone" aria-label="Copy phone number">Copy</button></span><span class="ph">Placeholder</span></dd></div>
+          <div><dt>First step</dt><dd><a href="contact.html">A free 30‑minute conversation</a></dd></div>
+        </dl>
+      </div>
+      <nav class="index" aria-label="Sheet index">
+        <span class="note">Sheet index</span>
+        <a href="index.html">Home</a>
+        <a href="websites.html">Website rebuilds</a>
+        <a href="ai.html">AI integration</a>
+        <a href="advisory.html">Advisory</a>
+        <a href="process.html">How we work</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+    </div>
+    <div class="foot-meta">
+      <span>© 2026 VFTech</span>
+      <span>Your code, your accounts, your documentation.</span>
+      <button class="motion-btn" type="button">Pause motion</button>
+    </div>
+  </div>
+</footer>
+<script src="site.js"></script>
+<script src="extras.js"></script>
+<script src="switcher.js"></script>
+<script src="signature.js"></script>
+</body>
+</html>

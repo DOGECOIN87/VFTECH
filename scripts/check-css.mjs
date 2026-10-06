@@ -4,7 +4,7 @@ import { readdirSync } from 'node:fs';
 import { transformSync } from 'esbuild';
 import { readFileSync } from 'node:fs';
 
-const dirs = ['site', 'design-2', 'design-3', 'design-4', 'design-5'];
+const dirs = ['site', 'design-2', 'design-3', 'design-4', 'design-5', 'design-6', 'design-7', 'design-8', 'design-9', 'design-10'];
 let bad = 0;
 for (const d of dirs) for (const f of readdirSync(d).filter(n => n.endsWith('.css'))) {
   const path = `${d}/${f}`;

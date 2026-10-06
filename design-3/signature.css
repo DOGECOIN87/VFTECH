@@ -1,0 +1,5 @@
+/* Design 3 (Signal) signature details (signature.js). */
+.s-scale{transform:scale(var(--k,1));transform-origin:0 100%;will-change:transform}
+.motion-paused .s-scale{transform:none}
+/* figures sit on fixed-width digits, so counting doesn't make the line jitter */
+.tier .price,.sched .price,.prepared dd strong{font-variant-numeric:tabular-nums}

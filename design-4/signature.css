@@ -1,0 +1,25 @@
+/* Design 4 (Phosphor) signature details: the command line and the boot sequence (signature.js). */
+.p-cmd-btn{font:600 13px/1 var(--f-note);color:var(--blueline)}
+.p-cmd{position:fixed;inset:0;z-index:200;display:grid;align-items:start;justify-items:center;padding:clamp(60px,14vh,140px) 16px 16px;background:rgb(6 5 3/.62);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.p-cmd[hidden]{display:none}
+.p-cmd-box{width:min(640px,100%);background:#0E0C08;color:#F3D9A8;border:1px solid #FFB000;box-shadow:0 0 0 1px #0E0C08,0 0 40px -6px rgb(255 176 0/.55);font:400 14px/1.6 var(--f-note)}
+.p-cmd-line{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #5E4B2B}
+.p-cmd-line span{color:#FFB000;white-space:nowrap}
+.p-cmd-line input{flex:1;min-width:0;background:none;border:0;color:#FFE2AE;font:inherit;font-size:16px;caret-color:#FFB000}
+.p-cmd-line input:focus{outline:none}
+.p-cmd-list{list-style:none;margin:0;padding:6px 0;max-height:min(50vh,380px);overflow:auto}
+.p-cmd-list li{display:grid;grid-template-columns:9ch 1fr;gap:14px;padding:7px 16px;cursor:pointer}
+.p-cmd-list li b{color:#FFB000;font-weight:600}
+.p-cmd-list li span{color:#C49A5A}
+.p-cmd-list li[aria-selected="true"],.p-cmd-list li:hover{background:#FFB000;color:#140F05}
+.p-cmd-list li[aria-selected="true"] *,.p-cmd-list li:hover *{color:#140F05}
+.p-cmd-msg{margin:0;padding:10px 16px;border-top:1px dashed #5E4B2B;color:#C49A5A;font-size:12.5px}
+.p-cmd-msg b{color:#FFE2AE}
+.p-cmd-msg span{float:right;opacity:.75}
+@media (max-width:560px){.p-cmd-msg span{display:none}.p-cmd-line span{display:none}}
+
+.p-boot{position:fixed;inset:0;z-index:300;display:grid;place-items:center;background:#0B0906;color:#FFB000;cursor:pointer;transition:opacity .45s ease}
+.p-boot pre{margin:0;min-width:min(28ch,80vw);font:500 clamp(13px,1.4vw,16px)/1.9 var(--f-note);text-shadow:0 0 12px rgb(255 176 0/.55);white-space:pre}
+.p-boot pre::after{content:"";display:inline-block;width:.6em;height:1.05em;margin-left:.15em;vertical-align:-.15em;background:currentColor;animation:p-blink .8s steps(1) infinite}
+.p-boot-off{opacity:0}
+@keyframes p-blink{50%{opacity:0}}

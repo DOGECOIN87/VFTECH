@@ -3,7 +3,9 @@
    Built only from each design's own tokens, so they take on that design's colour and type.
    ========================================================================== */
 .x-sect{--x-accent:var(--accent,var(--blueline));--x-on-accent:var(--on-accent,var(--on-ink));--x-line:var(--rule-strong);--x-soft:var(--rule)}
-.x-wrap{display:grid;gap:clamp(24px,3vw,40px)}
+.x-wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(24px,3vw,40px)}
+.x-wrap > *,.x-calc > *,.x-finder > *,.x-fields > *{min-width:0}
+.x-money input{width:100%}
 .x-head{display:grid;gap:12px;max-width:44rem}
 .x-head h2{margin:0}
 .x-kicker{margin:0;font:500 11px/1.4 var(--f-note);letter-spacing:.14em;text-transform:uppercase;color:var(--blueline)}

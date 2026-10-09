@@ -45,7 +45,7 @@
   contextButton.addEventListener('click',function(){var current=engine.get(context.recordId);if(current){message(current.text.slice(0,900),'answer',[current]);input.focus();}});
   var controls = [
     ['#sc-tab-dash,#ld-search,#ld-stage,.ld-project,.ld-reviews input','feature-dashboard'],
-    ['#sc-tab-chart,[data-chart-range],#cx-chart,#cx-range,[data-cx-metric]','feature-charts'],
+    ['#sc-tab-chart,[data-chart-range],#cx-chart,#cx-metric,.cx-range [data-range]','feature-charts'],
     ['#sc-tab-data,[data-filter],[data-sort],#vfs-stream-toggle','feature-data'],
     ['#sc-tab-acct,[data-signin],[data-signout]','feature-accounts'],
     ['#pl-tabs,[data-add-task],.pl-task,.pl-card,#pl-search,#pl-assignee','feature-board'],

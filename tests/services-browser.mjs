@@ -43,6 +43,6 @@ try{
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`account ${n} ${width} overflow`);
     assert.deepEqual(errors,[],`Design ${n} errors`);await context.close();views+=2;console.log(`Service pages OK · design ${n} · ${width}px`);
   }
-  const context=await browser.newContext(),page=await context.newPage();await page.goto(`${origin}${base}design-6/index.html?demo=chart#showcase`);await page.waitForSelector('#vfg-launch');assert.equal(await page.locator('#sc-tab-chart').getAttribute('aria-selected'),'true');await page.click('#sc-tab-data');assert.equal(await page.evaluate(()=>VFTechGuide.context.recordId),'feature-data');await context.close();
+  const context=await browser.newContext(),page=await context.newPage();await page.goto(`${origin}${base}design-6/index.html?demo=chart#showcase`);await page.waitForSelector('#vfg-launch');assert.equal(await page.locator('#sc-tab-chart').getAttribute('aria-selected'),'true');await page.click('#sc-tab-data');assert.equal(await page.evaluate(()=>VFTechGuide.context.recordId),'feature-data');await page.goto(`${origin}${base}design-8/index.html`);await page.waitForSelector('#vfg-launch');await page.locator('.cx-range [data-range="24h"]').click();assert.equal(await page.evaluate(()=>VFTechGuide.context.recordId),'feature-charts');await context.close();
   console.log(`${views} service page views + offline answers and contextual demo navigation passed.`);
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

@@ -10,7 +10,27 @@
   var moduleURL = new URL('assets/motion-suite.js', rootURL);
   moduleURL.search = new URL(script.src).search;
   var root = document.documentElement, reduce = matchMedia('(prefers-reduced-motion: reduce)');
-  var api = null, loading = null, failed = false;
+  var api = null, loading = null, failed = false, replayButton = null, replayRequested = false;
+  var home = document.querySelector('main[data-vf-home-motion]');
+  if (home && options.home) {
+    var menu = document.querySelector('.design-switch .ds-menu');
+    if (menu) {
+      replayButton = document.createElement('button');
+      replayButton.className = 'ds-motion-replay';
+      replayButton.type = 'button';
+      replayButton.setAttribute('role','menuitem');
+      menu.append(replayButton);
+      replayButton.addEventListener('click',function () {
+        var trigger = document.querySelector('.design-switch .ds-trigger');
+        if (trigger && trigger.getAttribute('aria-expanded') === 'true') trigger.click();
+        if (state() === 'paused') {
+          replayRequested = true;
+          var pause = document.querySelector('.motion-btn,[data-motion-control]');
+          if (pause) pause.click();
+        } else if (api) api.replay();
+      });
+    }
+  }
   function state() {
     if (reduce.matches) return 'reduced';
     if (navigator.connection && navigator.connection.saveData) return 'data-saver';
@@ -21,7 +41,15 @@
   function sync() {
     var next = state();
     root.dataset.vfMotionState = failed ? 'unavailable' : next;
-    if (api) { api.setEnabled(next === 'active'); return; }
+    if (replayButton) {
+      replayButton.disabled = failed || !['active','paused'].includes(next) || (!api && next === 'active');
+      replayButton.textContent = failed ? 'Animation unavailable' : next === 'reduced' ? 'Reduced motion enabled' : next === 'data-saver' ? 'Data saver enabled' : next === 'paused' ? 'Resume page animation' : 'Replay page animation';
+    }
+    if (api) {
+      api.setEnabled(next === 'active');
+      if (replayRequested && next === 'active') { replayRequested = false;api.replay(); }
+      return;
+    }
     if (next !== 'active' || loading || failed) return;
     root.dataset.vfMotionState = 'loading';
     loading = import(moduleURL.href).then(function (module) {

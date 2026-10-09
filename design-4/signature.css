@@ -1,5 +1,6 @@
 /* Design 4 (Phosphor) signature details: the command line and the boot sequence (signature.js). */
 .p-cmd-btn{font:600 13px/1 var(--f-note);color:var(--blueline)}
+@media (max-width:360px){.site-head .head-inner{gap:6px}}
 .p-cmd{position:fixed;inset:0;z-index:200;display:grid;align-items:start;justify-items:center;padding:clamp(60px,14vh,140px) 16px 16px;background:rgb(6 5 3/.62);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 .p-cmd[hidden]{display:none}
 .p-cmd-box{width:min(640px,100%);background:#0E0C08;color:#F3D9A8;border:1px solid #FFB000;box-shadow:0 0 0 1px #0E0C08,0 0 40px -6px rgb(255 176 0/.55);font:400 14px/1.6 var(--f-note)}

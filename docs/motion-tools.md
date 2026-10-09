@@ -23,26 +23,43 @@ These are HTML websites, so the selected component effects are adapted directly
 to existing elements rather than adding a React renderer or changing layouts.
 AnimatedContent supplies the GSAP entrance pattern; Magnet moves only a CTA's
 arrow so its hit area stays fixed; SpotlightCard supplies pointer/focus lighting
-on card borders. Border Beam is adapted to a single CSS sweep on hover or focus
-in the technical designs. The original typography, content and palette remain.
+on card borders. On touch screens, homepage cards light up briefly when they enter
+the viewport or are tapped. Border Beam supplies one bounded sweep in the
+technical designs. The original typography, content and palette remain.
 
 ## Design tuning
 
 Each design is applied, checked and committed separately with
 `node scripts/apply-motion-design.mjs NUMBER`.
 
-| Design | Entrance | Duration | Card treatment |
+The actual homepage heading animates on entry. Each homepage explicitly names
+its own section and card components; feature-page selectors are not reused as a
+substitute for the homepage. The entrance values below apply to homepages.
+
+| Design | Heading entrance | Duration | Homepage cards |
 | --- | ---: | ---: | --- |
-| Drafting | 12px | 0.48s | Precise border light |
-| Kiln | 22px | 0.70s | Soft border light |
-| Signal | 24px | 0.60s | Firm rise and border light |
-| Phosphor | 8px | 0.36s | Single border sweep |
-| Orbit | 30px | 0.70s | Longer rise and border light |
-| Lumen | 18px | 0.56s | Gentle rise and border light |
-| Ledger | 12px | 0.40s | Short, clear entrances |
-| Console | 8px | 0.36s | Single border sweep |
-| Pulse | 14px | 0.48s | Short entrances; board controls keep their positions |
-| Mono | 10px | 0.50s | Quiet article entrances |
+| Drafting | 20px | 0.65s | Service cells and situation cards |
+| Kiln | 32px | 0.80s | Service cells and situation cards |
+| Signal | 32px | 0.72s | Service cells and situation cards |
+| Phosphor | 18px | 0.60s | Cells, situations and the process figure; single border sweep |
+| Orbit | 32px | 0.80s | Service and support panels |
+| Lumen | 28px | 0.75s | Product window, features, stats and plans |
+| Ledger | 24px | 0.65s | Metrics and project panels |
+| Console | 22px | 0.65s | Metrics and control panels; single border sweep |
+| Pulse | 24px | 0.65s | Task columns |
+| Mono | 22px | 0.70s | Callouts and route links |
+
+Ledger, Console and Pulse panels fade without moving, so interactive workspace
+controls keep their positions. Phone entrance travel is capped at 20px. Secondary
+pages retain their compact entrance profiles. Once GSAP owns an entrance, the
+old CSS entrance is suppressed only on those elements, avoiding animation-fill
+rules that otherwise mask replay.
+
+On a design homepage, open the bottom-left design menu and choose **Replay page
+animation**. Replay returns to the heading and restarts the entrance and card
+sequence. If the visitor paused motion, the action reads **Resume page
+animation**. Reduced motion and Save-Data show a disabled explanation instead of
+silently overriding the visitor's preference.
 
 ## Runtime and verification
 
@@ -53,8 +70,9 @@ collection, enable email delivery or activate real accounts.
 
 Lenis smooths desktop wheel input only. Touch, keyboard navigation, native
 anchors and nested scrolling remain available. Its GSAP ticker is attached
-only during scrolling and removed when settled. Entrances run once; card
-effects run only during interaction. Mobile entrances use smaller distances.
+only during scrolling and removed when settled. Entrances run once unless
+explicitly replayed. Touch card lighting ends after 1.6 seconds; technical border
+sweeps end after 2.5 seconds. No new permanent animation loop is added.
 
 Reduced-motion, the existing pause control, hidden tabs and Save-Data suppress
 enhancements. Reduced-motion and Save-Data avoid loading the optional bundle.
@@ -63,9 +81,15 @@ any pending content immediately. Existing 3D hero animation is not duplicated.
 
 Build: `npm run build:motion`, then `node scripts/sync-shared.mjs`.
 Check: `node scripts/build-motion.mjs --check`.
-Browser checks: assemble the site, then `ONLY=3 node tests/motion-browser.mjs`;
-repeat with each individual design number. The existing full site checks cover
-every original page and the feature/account interactions.
+Browser checks: assemble the site, then run
+`ONLY=3 node tests/motion-home-browser.mjs` and
+`ONLY=3 node tests/motion-browser.mjs`; repeat with each individual design number.
+The new homepage suite checks 40 actual homepage views across desktop, a narrow
+touch phone, a touch tablet and reduced motion. It measures rendered heading
+opacity, card border visibility, replay, pause/resume, native touch scrolling,
+overflow, and workspace controls. Earlier feature-page checks missed the absent
+homepage selectors and desktop-only card coverage. CI now runs both suites, plus
+the existing original-page and feature/account checks.
 
 The motion checks also exercise chart controls while card effects are active,
 native chat-history scrolling, runtime changes to the reduced-motion preference,

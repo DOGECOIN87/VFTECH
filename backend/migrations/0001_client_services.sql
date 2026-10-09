@@ -1,0 +1,10 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE customers (id TEXT PRIMARY KEY,email TEXT NOT NULL UNIQUE,name TEXT NOT NULL DEFAULT '',created_at INTEGER NOT NULL);
+CREATE TABLE auth_challenges (id TEXT PRIMARY KEY,email TEXT NOT NULL,name TEXT NOT NULL,code_hash TEXT NOT NULL,attempts INTEGER NOT NULL DEFAULT 0,consumed INTEGER NOT NULL DEFAULT 0,expires_at INTEGER NOT NULL,created_at INTEGER NOT NULL);
+CREATE INDEX challenges_expiry ON auth_challenges(expires_at);
+CREATE TABLE sessions (token_hash TEXT PRIMARY KEY,customer_id TEXT NOT NULL REFERENCES customers(id) ON DELETE CASCADE,expires_at INTEGER NOT NULL,created_at INTEGER NOT NULL);
+CREATE INDEX sessions_expiry ON sessions(expires_at);
+CREATE TABLE contact_requests (id TEXT PRIMARY KEY,idempotency_key TEXT NOT NULL UNIQUE,body_hash TEXT NOT NULL,email TEXT NOT NULL,name TEXT NOT NULL,business TEXT NOT NULL,phone TEXT NOT NULL,topics TEXT NOT NULL,times TEXT NOT NULL,message TEXT NOT NULL,plan_id TEXT NOT NULL,status TEXT NOT NULL CHECK(status IN ('pending','sent','failed')),created_at INTEGER NOT NULL);
+CREATE INDEX contact_email_date ON contact_requests(email,created_at);
+CREATE TABLE rate_limits (key TEXT PRIMARY KEY,hits INTEGER NOT NULL,expires_at INTEGER NOT NULL);
+CREATE INDEX rate_expiry ON rate_limits(expires_at);

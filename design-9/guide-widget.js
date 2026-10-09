@@ -18,7 +18,7 @@
   var header=node('header','vfg-head'), heading=node('div');heading.append(node('strong','','VFTech guide'),node('p','','Answers from this site. Chat stays in this tab.'));
   var close=node('button','vfg-close','×');close.type='button';close.setAttribute('aria-label','Close site guide');header.append(heading,close);
   var contextBox=node('div','vfg-context'), followLabel=node('label','vfg-follow'), follow=node('input');follow.type='checkbox';follow.checked=true;followLabel.append(follow,document.createTextNode('Follow this page'));
-  var contextButton=node('button','vfg-context-button');contextButton.type='button';contextBox.append(followLabel,contextButton);
+  var contextButton=node('button','vfg-context-button');contextButton.type='button';var contextPreview=node('p','vfg-context-preview');contextBox.append(followLabel,contextButton,contextPreview);
   var log=node('div','vfg-log');log.id='vfg-log';log.setAttribute('role','log');log.setAttribute('aria-live','polite');log.setAttribute('aria-relevant','additions');
   var prompts=node('div','vfg-prompts');
   ['What can VFTech build?','What are the prices?','Are the demos real data?'].forEach(function (question) {var button=node('button','',question);button.type='button';button.addEventListener('click',function(){ask(question);});prompts.append(button);});
@@ -31,7 +31,7 @@
   var navigation=node('nav','vfs-discover');navigation.setAttribute('aria-label','VFTech features and customer services');
   [['Explore features','features.html'],['Pricing','features.html#prices'],['Customer account','account.html']].forEach(function(pair){var a=node('a','',pair[0]);a.href=pair[1];navigation.append(a);});
   var footer=document.querySelector('footer');if(footer && !footer.closest('main'))footer.before(navigation);else document.querySelector('main')?.after(navigation);
-  function describe() {var current=engine.get(context.recordId);contextButton.textContent=current ? 'About: '+current.title : 'About this page';}
+  function describe() {var current=engine.get(context.recordId);contextButton.textContent=current ? 'About: '+current.title : 'About this page';contextPreview.textContent=current ? current.text.slice(0,180)+(current.text.length>180?'…':'') : '';}
   function open(on) {panel.hidden=!on;launch.setAttribute('aria-expanded',String(on));if(on)input.focus();else launch.focus();}
   launch.addEventListener('click',function(){open(panel.hidden);});close.addEventListener('click',function(){open(false);});
   panel.addEventListener('keydown',function(event){if(event.key==='Escape'){event.preventDefault();open(false);}});

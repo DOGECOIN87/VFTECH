@@ -34,7 +34,12 @@ try{
    assert.equal(await page.evaluate(()=>document.documentElement.classList.contains('lenis')),false);
    assert.equal(await page.locator('[data-vf-reveal="pending"]').count(),0);
    await page.locator('.foot-meta .motion-btn').first().click();await page.waitForFunction(()=>VFTechMotion.diagnostics().enabled);
-   await page.evaluate(()=>scrollTo(0,0));await page.locator('.vfs-subnav a[href="features.html#prices"]').click();
+   await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await page.waitForFunction(()=>scrollY<2);
+   try { await page.locator('.vfs-subnav a[href="features.html#prices"]').click({timeout:5000}); }
+   catch(error) {
+    console.log(await page.evaluate(()=>({width:innerWidth,height:innerHeight,scrollY,header:document.querySelector('.site-head').getBoundingClientRect().toJSON(),nav:document.querySelector('.vfs-subnav').getBoundingClientRect().toJSON(),main:document.querySelector('main').getBoundingClientRect().toJSON()})));
+    await page.screenshot({path:`checks-out/motion-nav-failure-${n}-${width}.png`});throw error;
+   }
    await page.waitForFunction(()=>location.hash==='#prices');await page.waitForTimeout(750);
    assert.ok(await page.locator('#prices').evaluate(el=>Math.abs(el.getBoundingClientRect().top)<250),'Native price anchor');
    if(n===3&&width===1440){
@@ -43,7 +48,7 @@ try{
     await page.fill('#vfg-question','What are the prices?');await page.locator('.vfg-form button').click();assert.match(await page.locator('.vfg-answer').last().textContent(),/\$3,500/);
     await page.fill('#vfg-question','What is the weather in Paris?');await page.locator('.vfg-form button').click();assert.match(await page.locator('.vfg-answer').last().textContent(),/only answer from VFTech/);
     assert.deepEqual(requests,[]);await context.setOffline(false);await page.keyboard.press('Escape');
-    await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:'checks-out/motion-signal-features.png'});
+    await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await page.waitForFunction(()=>scrollY<2);await page.screenshot({path:'checks-out/motion-signal-features.png'});
    }
    assert.deepEqual(errors,[]);await context.close();views++;
   }

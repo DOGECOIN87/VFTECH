@@ -1,7 +1,7 @@
 // Captures each design's 1200x630 link-preview card from its own home page, as the site is actually served.
 // Run after scripts/assemble.sh:   node scripts/capture-cards.mjs
 // Writes design-3/social/, site/social/, design-2/social/, design-4/social/ and design-5/social/ vftech-card.jpg.
-// Each card is taken once the 3D mark faces the camera, with motion stopped and the switcher and pause button hidden.
+// Each card is taken once the 3D mark faces the camera (where a design has one), with motion stopped and the switcher and pause button hidden.
 import http from 'node:http';
 import { readFile, mkdir } from 'node:fs/promises';
 import { existsSync, statSync } from 'node:fs';
@@ -29,14 +29,15 @@ for (const [url, out] of CARDS.filter(([, o]) => !ONLY || ONLY.includes(o))) {
   await page.route(u => !u.href.startsWith('http://localhost'), r => r.abort());
   await page.goto(ORIGIN + url, { waitUntil: 'domcontentloaded' });
   await page.addStyleTag({ content: '.design-switch,.hero-pause,.x-bookbar{display:none!important}' });
-  await page.waitForFunction(() => document.fonts.status === 'loaded' && document.querySelector('.chrome-solid'), null, { timeout: 120000 });
+  // designs with the 3D mark wait for it to turn solid; designs without one (6 onward use a hero image) only wait for fonts
+  await page.waitForFunction(() => document.fonts.status === 'loaded' && (!document.querySelector('[data-chrome-hero]') || document.querySelector('.chrome-solid')), null, { timeout: 120000 });
   await page.waitForTimeout(1200);
   // wait for the mark to face the camera, then freeze everything on that frame
   await page.waitForFunction(() => {
     const el = document.querySelector('.hero-pool'); if (!el) return true;
     return +getComputedStyle(el).getPropertyValue('--mark-turn') > 0.985;
   }, null, { timeout: 90000, polling: 30 });
-  await page.evaluate(() => document.querySelector('[data-motion-control]').click());
+  await page.evaluate(() => document.querySelector('[data-motion-control]')?.click());
   await page.waitForTimeout(1200);
   await mkdir(path.join(out, 'social'), { recursive: true });
   const dest = path.join(out, 'social', 'vftech-card.jpg');

@@ -1,22 +1,37 @@
-/* Typography is a design system, including measure, hierarchy, and UI text. */
+/* Lumen (design 6) type system: Geist for everything a visitor reads, Geist Mono for labels and figures.
+   Proportion: the golden ratio. The scale climbs in steps of φ from a 16 px base, with √φ half-steps:
+     16 · 20.4 · 25.9 · 32.9 · 41.9 · 53.3 · 67.8 · 86.3 · 109.7
+   Body text runs at line-height 1.618 (φ); display type tightens toward 1 as it grows. */
 html{font-synthesis:none;text-rendering:optimizeLegibility}
-body{font-kerning:normal;font-optical-sizing:auto;font-variant-numeric:lining-nums}
-h1,h2,h3,h4{font-stretch:normal;font-variation-settings:normal;text-wrap:balance}
+:root,:root[data-theme='dark'],:root[data-theme='light']{
+  --f-display:'Geist',ui-sans-serif,system-ui,sans-serif;--f-body:'Geist',ui-sans-serif,system-ui,sans-serif;
+  --f-serif:'Geist',ui-sans-serif,system-ui,sans-serif;--f-note:'Geist Mono',ui-monospace,monospace;
+  --lm-0:16px;--lm-h:20.4px;--lm-1:25.9px;--lm-1h:32.9px;--lm-2:41.9px;--lm-2h:53.3px;--lm-3:67.8px;--lm-3h:86.3px;--lm-4:109.7px;
+  --lh-body:1.618}
+body{font-family:var(--f-body);font-size:var(--lm-0);line-height:var(--lh-body);font-kerning:normal;font-feature-settings:'ss01','ss03';font-variant-numeric:lining-nums}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:600;letter-spacing:-.04em;text-wrap:balance;font-stretch:normal;font-variation-settings:normal}
 p,li,dd{overflow-wrap:break-word}
-.prose,.page-lede,.sect-lede,.hero-sub{max-width:62ch}
+.prose,.page-lede,.sect-lede,.hero-sub{max-width:61.8ch}
 .page-head-grid>*,.sect-grid>*{min-width:0}
-.nav a{font-family:var(--f-display);font-size:13px;font-weight:500;letter-spacing:0;line-height:1.4}
-.note,.ds-label,.ds-seg,.ds-theme,.type-kicker{font-family:var(--f-note);font-size:11px;line-height:1.5;letter-spacing:.04em}
-.cta,.textlink{font-size:16px;line-height:1.35}
-.tier,.prepared,.ledger{font-variant-numeric:tabular-nums lining-nums}
-.page-title .dimspan{max-width:100%}
-.type-kicker{display:flex;justify-content:space-between;align-items:center;gap:16px;text-transform:uppercase;color:var(--blueline);margin-bottom:24px}
-.type-kicker>span{color:var(--graphite)}
-@media(max-width:760px){.type-kicker{font-size:10px}.page-title{overflow-wrap:anywhere}.page-title .dim-label{font-size:10px}.sect h2{overflow-wrap:anywhere}.nav.open a{font-size:16px}.head-inner{gap:12px}.brand svg{width:112px}.menu-btn{font-size:12px;padding-inline:8px;gap:6px}.page-lede{font-size:17px;line-height:1.65}}
+.nav a{font-family:var(--f-body);font-size:14px;font-weight:500;letter-spacing:-.005em;line-height:1.4;text-transform:none}
+.note,.ds-label,.type-kicker,.lm-label{font-family:var(--f-note);font-size:12px;line-height:1.5;letter-spacing:.02em;text-transform:none}
+.cta,.textlink{font-size:var(--lm-0);line-height:1.35}
+.tier,.prepared,.ledger,.lm-price,.lm-stat strong{font-variant-numeric:tabular-nums lining-nums}
 
-:root,:root[data-theme='dark'],:root[data-theme='light']{--f-display:'Space Grotesk',Arial,sans-serif;--f-body:'Inter',Arial,sans-serif;--f-serif:'Inter',Arial,sans-serif;--f-note:'IBM Plex Mono',monospace}
-body{font-size:17px;line-height:1.65}h1,h2,h3,h4{font-family:var(--f-display);font-weight:500;letter-spacing:-.05em}
-.rx-intro h1{font-size:clamp(46px,5.8vw,88px);line-height:1.05;letter-spacing:-.06em;font-weight:500}
-.rx-summary{font-family:var(--f-body);font-size:17px;line-height:1.75;max-width:42ch}.rx-section h2{font-size:clamp(34px,3.7vw,54px);line-height:1.08}.rx-service h3{font-size:30px;line-height:1.15;letter-spacing:-.05em}.rx-service p{font-size:15px;line-height:1.75}.rx-section-head>p:last-child{font-size:16px;line-height:1.75}.rx-eyebrow,.rx-card-top,.rx-card-meta,.rx-stats p,.rx-promise,.rx-topline{font-size:11px;letter-spacing:.02em}.rx-small{font-family:var(--f-body);font-size:12px}.rx-lab-label,.rx-lab-bottom{font-size:10px}.rx-button{font-family:var(--f-display);font-size:16px;font-weight:500}.rx-textlink{font-family:var(--f-body);font-size:14px}.rx-ownership-grid>div>p:not(.rx-eyebrow),.rx-experience>div>p:not(.rx-eyebrow){font-size:16px;line-height:1.75}.rx-ledger dt{font-family:var(--f-display);font-size:18px}.rx-ledger dd{font-size:14px}.rx-stats strong{font-family:var(--f-display)}.rx-support p,.rx-support strong{font-size:14px}.rx-closing p:not(.rx-eyebrow){font-size:16px}.rx-closing h2{font-size:clamp(58px,7.5vw,108px)}
-.page-title{font-size:clamp(38px,5vw,74px);line-height:1.08}.sect h2{font-size:clamp(30px,3.2vw,48px);line-height:1.15}
-@media(max-width:760px){.rx-intro h1{font-size:clamp(35px,7.8vw,62px);line-height:1.08}.rx-summary{font-size:16px}.rx-lab-label,.rx-lab-bottom{font-size:8px}.rx-card-meta{font-size:10px}.rx-section h2{font-size:36px}.page-title{font-size:clamp(30px,7.2vw,50px)}.rx-ownership h2{font-size:42px}}
+/* hierarchy */
+.hero-title,.lm-hero h1{font-size:clamp(48px,7.6vw,var(--lm-4));line-height:1;letter-spacing:-.055em;font-weight:600}
+.page-title{font-size:clamp(40px,5.4vw,var(--lm-3));line-height:1.04;letter-spacing:-.05em}
+.lm-h2,.rx-section h2,.sect h2,.x-head h2{font-size:clamp(32px,3.6vw,var(--lm-2h));line-height:1.08;letter-spacing:-.045em}
+.lm-h3,.rx-service h3,.cell h3{font-size:var(--lm-1);line-height:1.18;letter-spacing:-.035em}
+.lm-lede,.hero-sub,.page-lede{font-size:var(--lm-h);line-height:1.55;letter-spacing:-.01em}
+.sect-lede{font-size:var(--lm-0);line-height:var(--lh-body)}
+
+@media(max-width:760px){
+  .hero-title,.lm-hero h1{font-size:clamp(44px,13vw,var(--lm-3));line-height:1.02}
+  .page-title{font-size:clamp(34px,10vw,var(--lm-2h));overflow-wrap:anywhere}
+  .lm-h2,.rx-section h2,.sect h2,.x-head h2{font-size:var(--lm-1h)}
+  .lm-lede,.hero-sub,.page-lede{font-size:17px}
+  .nav.open a{font-size:var(--lm-h)}
+  .head-inner{gap:12px}
+  .menu-btn{font-size:13px;padding-inline:10px;gap:6px}
+}

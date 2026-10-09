@@ -23,7 +23,7 @@
       [5, 'Orbit', 'Soft light and rounded cards']
     ]],
     ['SaaS styles', [
-      [6, 'Lumen', 'Midnight glow and bento features'],
+      [6, 'Lumen', 'A launch page with a live product demo'],
       [7, 'Ledger', 'A dashboard shell: sidebar, stats, table'],
       [8, 'Console', 'A dark usage console'],
       [9, 'Pulse', 'Black panels, purple and lime'],

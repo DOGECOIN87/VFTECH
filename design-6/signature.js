@@ -1,17 +1,15 @@
-/* Design 5 (Lumen) signature detail: cards tilt a few degrees toward the pointer, with a light sheen that follows it. */
+/* Lumen (design 6) signature detail: glass cards catch the light. On devices with a mouse, a soft light
+   follows the pointer around each card's edge, so the card nearest your hand reads as the one in focus. */
 (function () {
   if (!(window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches)) return;
   var root = document.documentElement;
-  document.querySelectorAll('.rx-service, .rx-support, .x-answer, .x-result, .sit, .tier').forEach(function (el) {
-    el.classList.add('o-tilt');
+  document.querySelectorAll('.lm-card, .lm-plan, .lm-checklist, .ledger, .tier, .cell, .callout, .lm-closing-card, .x-result, .x-answer, .form, .table-wrap').forEach(function (el) {
+    el.classList.add('lm-glow');
     el.addEventListener('pointermove', function (e) {
       if (root.classList.contains('motion-paused')) return;
-      var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-      el.style.setProperty('--ry', ((x - 0.5) * 6).toFixed(2) + 'deg');
-      el.style.setProperty('--rx', ((0.5 - y) * 5).toFixed(2) + 'deg');
-      el.style.setProperty('--sx', (x * 100).toFixed(1) + '%');
-      el.style.setProperty('--sy2', (y * 100).toFixed(1) + '%');
+      var r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', (e.clientX - r.left).toFixed(0) + 'px');
+      el.style.setProperty('--my', (e.clientY - r.top).toFixed(0) + 'px');
     });
-    el.addEventListener('pointerleave', function () { el.style.setProperty('--ry', '0deg'); el.style.setProperty('--rx', '0deg'); });
   });
 })();

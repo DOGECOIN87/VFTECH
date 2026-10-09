@@ -74,7 +74,7 @@ try{
     await page.keyboard.press('Escape');
    }
    if(n===9&&!touch){
-    await page.locator('[data-add-task]').click();await page.waitForFunction(()=>Boolean(document.querySelector('dialog[open]')));
+    await page.locator('[data-add-task]').first().click();await page.waitForFunction(()=>Boolean(document.querySelector('dialog[open]')));
     await page.keyboard.press('Escape');
    }
    // Pause from the existing control, then resume/replay from the design menu.

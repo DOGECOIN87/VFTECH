@@ -29,11 +29,19 @@ try{
    await page.waitForTimeout(150);assert.equal(await page.evaluate(()=>VFTechMotion.diagnostics().lenisFrames),idle.lenisFrames,'Idle Lenis work');
    await page.evaluate(()=>scrollTo(0,document.documentElement.scrollHeight));await page.waitForTimeout(800);
    assert.equal(await page.locator('[data-vf-reveal="pending"]').count(),0,'Content stayed hidden after a scroll jump');
-   await page.locator('.foot-meta .motion-btn').first().click();
+   try { await page.locator('.foot-meta .motion-btn').first().click({timeout:5000}); }
+   catch(error) {
+    console.log('Pause control',n,width,height,await page.locator('.foot-meta .motion-btn').first().boundingBox());
+    await page.screenshot({path:`checks-out/motion-pause-failure-${n}-${width}.png`});throw error;
+   }
    await page.waitForFunction(()=>!VFTechMotion.diagnostics().enabled);
    assert.equal(await page.evaluate(()=>document.documentElement.classList.contains('lenis')),false);
    assert.equal(await page.locator('[data-vf-reveal="pending"]').count(),0);
-   await page.locator('.foot-meta .motion-btn').first().click();await page.waitForFunction(()=>VFTechMotion.diagnostics().enabled);
+   try { await page.locator('.foot-meta .motion-btn').first().click({timeout:5000}); }
+   catch(error) {
+    console.log('Pause control',n,width,height,await page.locator('.foot-meta .motion-btn').first().boundingBox());
+    await page.screenshot({path:`checks-out/motion-pause-failure-${n}-${width}.png`});throw error;
+   }await page.waitForFunction(()=>VFTechMotion.diagnostics().enabled);
    await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await page.waitForFunction(()=>scrollY<2);
    try { await page.locator('.vfs-subnav a[href="features.html#prices"]').click({timeout:5000}); }
    catch(error) {

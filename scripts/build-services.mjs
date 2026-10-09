@@ -50,6 +50,7 @@ for(const [i,folder] of folders.entries()){
   for(const [file,title,desc,main] of [['features.html','Features and pricing','Try dashboards, charts, dynamic data and customer account examples. Compare VFTech’s published build tiers and maintenance plans.',features(root)],['account.html','Customer account','Create a VFTech customer account or sign in with an email verification code when live delivery is enabled.',account(root)]]){
     let html=readFileSync(`${folder}/about.html`,'utf8');
     html=html.replace(/<main\b[\s\S]*?<\/main>/,main).replace(' aria-current="page"','');
+    if(html.includes('data-vf-motion-suite'))html=html.replace('<main id="main"','<main id="main" tabindex="-1"');
     html=html.replaceAll('About · VFTech',`${title} · VFTech`).replace(/(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")[^"]*(")/g,`$1${esc(desc)}$2`);
     html=html.replaceAll('/about.html',`/${file}`).replace(/<style>[\s\S]*?<\/style>/,'');
     if(!html.includes('services.css'))html=html.replace('</head>','<link rel="stylesheet" href="services.css">\n</head>');

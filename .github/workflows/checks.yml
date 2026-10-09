@@ -30,6 +30,8 @@ jobs:
         run: bash scripts/assemble.sh ci
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Check motion, native navigation and graceful fallback
+        run: node tests/motion-browser.mjs
       - name: Check every page
         run: node scripts/check-site.mjs
       - name: Keep the screenshots

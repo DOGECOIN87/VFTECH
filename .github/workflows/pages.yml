@@ -10,27 +10,68 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+    outputs:
+      artifact_name: ${{ steps.artifact-name.outputs.name }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      # design 3 at the root, designs 1, 2, 4 and 5 in design-N/, asset URLs stamped with the run number
-      - name: Assemble the five designs
+      - name: Assemble all ten designs
         run: bash scripts/assemble.sh ${{ github.run_number }}
+      - name: Name this build artifact
+        id: artifact-name
+        run: echo "name=github-pages-${{ github.run_id }}-${{ github.run_attempt }}" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+          name: ${{ steps.artifact-name.outputs.name }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      PAGES_ARTIFACT: ${{ needs.build.outputs.artifact_name }}
+    steps:
+      # Artifact metadata can lag behind upload completion. A deploy-only retry
+      # reuses this build output instead of uploading duplicate artifacts.
+      - name: Wait for the uploaded artifact
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const name = process.env.PAGES_ARTIFACT;
+            for (let attempt = 0; attempt < 15; attempt++) {
+              const { data } = await github.rest.actions.listWorkflowRunArtifacts({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: context.runId,
+                name,
+                per_page: 100
+              });
+              const matches = data.artifacts.filter(a => a.name === name && !a.expired);
+              if (matches.length === 1) return;
+              if (matches.length > 1) throw new Error('Build artifact name is not unique.');
+              core.info('Waiting for Pages artifact metadata.');
+              await new Promise(resolve => setTimeout(resolve, 2000));
+            }
+            throw new Error('The uploaded Pages artifact is not visible yet. Retry the deploy job.');
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ needs.build.outputs.artifact_name }}

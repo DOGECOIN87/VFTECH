@@ -27,7 +27,7 @@
       [7, 'Ledger', 'A project dashboard with reviews and handover'],
       [8, 'Console', 'Service monitoring, charts and an event stream'],
       [9, 'Pulse', 'A shared project board with editable sample tasks'],
-      [10, 'Mono', 'Black and white editorial']
+      [10, 'Mono', 'A searchable library of guides and documentation']
     ]]
   ];
   var byN = {};

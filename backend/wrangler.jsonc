@@ -1,0 +1,12 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "vftech-client-services",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "assets": {"directory": "../_site", "binding": "ASSETS", "run_worker_first": true},
+  "d1_databases": [{"binding": "DB", "database_name": "vftech-clients", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "migrations"}],
+  "vars": {"SITE_URL": "", "TURNSTILE_SITE_KEY": "", "TURNSTILE_HOSTNAME": "", "EMAIL_FROM": "", "CONTACT_TO": ""},
+  "triggers": {"crons": ["17 3 * * *"]},
+  "observability": {"enabled": false}
+}

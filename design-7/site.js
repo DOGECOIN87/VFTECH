@@ -222,6 +222,7 @@
         'Request: free 30-minute conversation',
         'Name: ' + (fd.get('name') || ''),
         'Business: ' + (fd.get('business') || '—'),
+        'Plan: ' + (fd.get('planId') || 'Not selected'),
         'Email: ' + (fd.get('email') || ''),
         'Phone: ' + (fd.get('phone') || '—'),
         'Topic: ' + (fd.getAll('topic').join(', ') || '—'),

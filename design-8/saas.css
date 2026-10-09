@@ -330,7 +330,7 @@ button:not(.icon-btn):not(.hero-pause):not(.copy):not(.motion-btn){border-radius
 .cta[type=submit],button.cta{background:var(--green);color:var(--on-accent);border:1px solid var(--green);clip-path:none}
 
 /* ---- footer ---- */
-.site-foot{background:none;border:0;padding:12px 0 0}
+.site-foot{background:none;border:0;padding:12px 0 calc(88px + env(safe-area-inset-bottom,0px))}
 .foot-pattern{display:none}
 .site-foot .wrap{max-width:min(1240px,100% - 32px);padding:0}
 .tblock{overflow:hidden;background:var(--sheet)}

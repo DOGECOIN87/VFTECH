@@ -48,6 +48,7 @@ for(const file of readdirSync(dir).filter(f=>f.endsWith('.html')&&!['compare.htm
 const path=dir+'/site.js';let js=readFileSync(path,'utf8');
 const start=js.indexOf('/* ---- scroll reveal:');
 if(start<0)throw Error('Missing existing reveal block in '+path);
-const before=js.slice(0,start),after=js.slice(start).replace("if ('IntersectionObserver' in window) {", "if ('IntersectionObserver' in window && !document.querySelector('script[data-vf-motion-suite]')) {");
-writeFileSync(path,before+after);
+const before=js.slice(0,start),after=js.slice(start),commentEnd=after.indexOf('*/')+2;
+const block=after.slice(commentEnd).replace(/^(\s*)if \('IntersectionObserver' in window\) \{/, "$1if ('IntersectionObserver' in window && !document.querySelector('script[data-vf-motion-suite]')) {");
+writeFileSync(path,before+after.slice(0,commentEnd)+block);
 console.log('Motion applied to '+profiles[n].name+' only.');

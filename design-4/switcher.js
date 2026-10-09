@@ -72,7 +72,7 @@
   bar.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !menu.hidden) { open(false); trigger.focus(); }
     if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && !menu.hidden) {
-      var items = [].slice.call(menu.querySelectorAll('a'));
+      var items = [].slice.call(menu.querySelectorAll('a,button[role="menuitem"]:not(:disabled)'));
       var i = items.indexOf(document.activeElement);
       i = e.key === 'ArrowDown' ? (i + 1) % items.length : (i - 1 + items.length) % items.length;
       items[i].focus(); e.preventDefault();

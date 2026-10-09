@@ -24,6 +24,14 @@ try{
    await page.goto(url);await page.waitForFunction(()=>window.VFTechMotion?.diagnostics().enabled);
    assert.equal(await page.evaluate(()=>VFTechMotion.diagnostics().lenis),!touch&&width>=900);
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Sideways scrolling at '+n+'/'+width);
+   if(!touch){
+    const card=page.locator('.vf-card-effects').first();
+    await card.hover();await page.waitForTimeout(280);
+    assert.ok(await card.locator('.vf-spotlight,.vf-border-beam').evaluate(el=>Number(getComputedStyle(el).opacity)>0),'Card hover did not render');
+    if(n===4||n===8)assert.equal(await card.locator('.vf-border-beam>i').evaluate(el=>getComputedStyle(el).animationIterationCount),'1','Border sweep repeats indefinitely');
+    await page.locator('[data-vfs-range="30"]').click();
+    assert.match(await page.locator('#vfs-chart-label').textContent(),/30 days/,'Motion blocked the chart control');
+   }
    await page.mouse.move(width/2,height/2);await page.mouse.wheel(0,420);await page.waitForTimeout(1000);
    const idle=await page.evaluate(()=>VFTechMotion.diagnostics());assert.equal(idle.tickerActive,false);
    await page.waitForTimeout(150);assert.equal(await page.evaluate(()=>VFTechMotion.diagnostics().lenisFrames),idle.lenisFrames,'Idle Lenis work');
@@ -55,8 +63,19 @@ try{
     const requests=[];page.on('request',r=>requests.push(r.url()));await context.setOffline(true);
     await page.fill('#vfg-question','What are the prices?');await page.locator('.vfg-form button').click();assert.match(await page.locator('.vfg-answer').last().textContent(),/\$3,500/);
     await page.fill('#vfg-question','What is the weather in Paris?');await page.locator('.vfg-form button').click();assert.match(await page.locator('.vfg-answer').last().textContent(),/only answer from VFTech/);
+    const log=page.locator('.vfg-log');
+    await log.evaluate(el=>el.scrollTop=0);await log.hover();
+    const before=await page.evaluate(()=>scrollY);
+    await page.mouse.wheel(0,180);await page.waitForTimeout(250);
+    assert.ok(await log.evaluate(el=>el.scrollTop>0),'Chat history did not scroll');
+    assert.equal(await page.evaluate(()=>scrollY),before,'Scrolling the chat moved the page');
     assert.deepEqual(requests,[]);await context.setOffline(false);await page.keyboard.press('Escape');
     await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await page.waitForFunction(()=>scrollY<2);await page.screenshot({path:'checks-out/motion-signal-features.png'});
+   }
+   if(!touch){
+    await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>!VFTechMotion.diagnostics().enabled);
+    assert.equal(await page.evaluate(()=>document.documentElement.classList.contains('lenis')),false);
+    await page.emulateMedia({reducedMotion:'no-preference'});await page.waitForFunction(()=>VFTechMotion.diagnostics().enabled);
    }
    assert.deepEqual(errors,[]);await context.close();views++;
   }

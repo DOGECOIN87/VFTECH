@@ -67,6 +67,11 @@ Browser checks: assemble the site, then `ONLY=3 node tests/motion-browser.mjs`;
 repeat with each individual design number. The existing full site checks cover
 every original page and the feature/account interactions.
 
+The motion checks also exercise chart controls while card effects are active,
+native chat-history scrolling, runtime changes to the reduced-motion preference,
+and the guide's offline boundary. They caught and corrected sticky-header
+overlap in Kiln and mobile footer-control overlap in Lumen and Console.
+
 ## Notices
 
 React Bits application adaptations retain David Haz's MIT + Commons Clause

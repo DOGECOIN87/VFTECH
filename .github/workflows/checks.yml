@@ -1,4 +1,4 @@
-# Opens every page of all five designs in a real browser before anything reaches main.
+# Opens every page of all ten designs in a real browser before anything reaches main.
 # Fails on script errors, missing files, sideways scrolling, content that never appears, unreadable
 # text contrast, or shared files that have drifted between designs. Screenshots of every page are
 # attached to the run as the "site-screenshots" artifact.

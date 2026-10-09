@@ -4,7 +4,7 @@
 // Files that are meant to differ per design (site.js, styles, hero-intro/hero-depth colours) are not listed.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 
-const SHARED = ['hero-ref.css', 'schematic.js', 'extras.js', 'extras.css', 'chrome-loader.js', 'switcher.js', 'switcher.css'];
+const SHARED = ['hero-ref.css', 'schematic.js', 'extras.js', 'extras.css', 'chrome-loader.js', 'switcher.js', 'switcher.css', 'guide-engine.js', 'guide-knowledge.js', 'guide-widget.js', 'guide-widget.css', 'services-config.js', 'service-catalog.js', 'services.css', 'feature-showcase.js', 'services.js'];
 const DESIGNS = ['design-2', 'design-3', 'design-4', 'design-5', 'design-6', 'design-7', 'design-8', 'design-9', 'design-10'];
 const check = process.argv.includes('--check');
 let drift = 0;

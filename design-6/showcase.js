@@ -316,5 +316,8 @@
   document.addEventListener('vftech:motion-change', sync);
 
   drawDash(); drawFeed(false); drawRows(); drawCharts();
+  var requested = new URLSearchParams(location.search).get('demo');
+  var requestedTab = document.getElementById('sc-tab-' + requested);
+  if (requestedTab && tabs.indexOf(requestedTab) >= 0) select(requestedTab, false);
   sync();
 })();

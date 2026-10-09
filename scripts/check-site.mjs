@@ -106,3 +106,4 @@ await browser.close();
 server.close();
 console.log(`\n${checked} page views checked, ${failures.length} with problems. Screenshots: ${path.relative(process.cwd(), OUT)}/`);
 if (failures.length) { console.error('\n' + failures.join('\n\n')); process.exit(1); }
+await import('../tests/services-browser.mjs');

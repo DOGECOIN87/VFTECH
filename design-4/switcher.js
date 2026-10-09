@@ -25,7 +25,7 @@
     ['SaaS styles', [
       [6, 'Lumen', 'A launch page with a live product demo'],
       [7, 'Ledger', 'A project dashboard with reviews and handover'],
-      [8, 'Console', 'A dark usage console'],
+      [8, 'Console', 'Service monitoring, charts and an event stream'],
       [9, 'Pulse', 'Black panels, purple and lime'],
       [10, 'Mono', 'Black and white editorial']
     ]]

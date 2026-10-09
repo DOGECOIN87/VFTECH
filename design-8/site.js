@@ -125,7 +125,7 @@
   /* ---- scroll reveal: sheet content rises into place as it enters the viewport ----
      Rows of a list reveal one by one; otherwise each block reveals whole. Items entering together are
      staggered in reading order. Nothing is hidden until this runs, so content never depends on it. */
-  if ('IntersectionObserver' in window) {
+  if ('IntersectionObserver' in window && !document.querySelector('script[data-vf-motion-suite]')) {
     var ROWS = '.ledger > div, .sits > .sit, .tier, .steps > li, .decl li, .frame .cell, .tours > *, .parts > *';
     var BLOCKS = '.page-head-grid > div > *, .page-head-grid > :not(div), .sect-aside > *, .sect-grid > :not(.sect-aside) > *, .closing-grid > *, .tblock, .foot-meta';
     var revealEls = [];

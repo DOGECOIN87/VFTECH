@@ -1,4 +1,4 @@
-# Opens every page of all five designs in a real browser before anything reaches main.
+# Opens every page of all ten designs in a real browser before anything reaches main.
 # Fails on script errors, missing files, sideways scrolling, content that never appears, unreadable
 # text contrast, or shared files that have drifted between designs. Screenshots of every page are
 # attached to the run as the "site-screenshots" artifact.
@@ -30,6 +30,8 @@ jobs:
         run: bash scripts/assemble.sh ci
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Check motion, native navigation and graceful fallback
+        run: node tests/motion-browser.mjs
       - name: Check every page
         run: node scripts/check-site.mjs
       - name: Keep the screenshots

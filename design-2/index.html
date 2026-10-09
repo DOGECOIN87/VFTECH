@@ -34,6 +34,7 @@
 <link rel="stylesheet" href="hero-ref.css">
 <link rel="stylesheet" href="guide-widget.css">
 <link rel="stylesheet" href="services.css">
+<link rel="stylesheet" href="motion.css">
 </head>
 <body class="home layout-design-2">
 <a class="skip" href="#main">Skip to content</a>
@@ -64,7 +65,7 @@
   </div>
 </header>
 
-<main id="main">
+<main id="main" tabindex="-1">
   <section class="hero hero--studio hero--ref" aria-labelledby="hero-title">
     <div class="hero-backdrop" aria-hidden="true"><div class="hero-spot"></div><div class="hero-rays"></div><div class="hero-floor"></div><div class="hero-pool"></div><canvas class="hero-dust"></canvas></div>
     <canvas class="hero-intro" aria-hidden="true"></canvas>
@@ -346,5 +347,6 @@
 <script src="guide-knowledge.js" defer></script>
 <script src="guide-widget.js" defer></script>
 <script src="services.js" defer></script>
+<script src="motion-loader.js" defer data-vf-motion-suite data-motion-options="{&quot;name&quot;:&quot;Kiln&quot;,&quot;distance&quot;:22,&quot;duration&quot;:0.7,&quot;stagger&quot;:0.06,&quot;magnet&quot;:4,&quot;beam&quot;:false}"></script>
 </body>
 </html>

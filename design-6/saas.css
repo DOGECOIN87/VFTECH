@@ -355,7 +355,8 @@ body .cta:hover .arrow{transform:translateX(4px)}
 .lm-closing-card .lm-sec-lede{margin:21px auto 34px}
 
 /* ---------- footer: product-style columns ---------- */
-.site-foot.lm-foot{background:none;border-top:1px solid var(--rule);padding:89px 0 34px}
+/* Keep the final controls above the pinned design selector, including on phones. */
+.site-foot.lm-foot{background:none;border-top:1px solid var(--rule);padding:89px 0 calc(88px + env(safe-area-inset-bottom,0px))}
 .lm-foot-grid{display:grid;grid-template-columns:minmax(0,1.618fr) repeat(2,minmax(0,.618fr)) minmax(0,1fr);gap:34px 55px}
 .lm-foot-logo{display:inline-block;width:144px;color:var(--ink)}
 .lm-foot-logo svg{display:block;width:100%;height:auto}

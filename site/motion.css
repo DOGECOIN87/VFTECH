@@ -1,6 +1,8 @@
 /* Native touch/keyboard scrolling remains available; Lenis only smooths desktop wheels. */
 html.lenis, html.lenis body { height:auto; }
 .lenis [data-lenis-prevent] { overscroll-behavior:contain; }
+/* Once the new entrance owns an element, its old CSS fill must not cover GSAP. */
+.home main[data-vf-home-motion] :is([data-vf-intro],[data-vf-reveal],[data-vf-intro] .ln,[data-vf-intro].cta-row>*) { animation:none; }
 .vf-card-effects { position:relative;isolation:isolate; }
 .vf-spotlight-glow { position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;opacity:0;background:radial-gradient(320px circle at var(--vf-light-x,50%) var(--vf-light-y,50%),var(--blueline,var(--accent,currentColor)),transparent 75%);transition:opacity .25s ease; }
 .vf-card-active>.vf-spotlight-glow { opacity:.14; }

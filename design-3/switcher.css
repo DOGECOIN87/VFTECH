@@ -1,5 +1,5 @@
 /* The design switcher menu, shared by every design. Fixed neutral colours, so it reads the same on all of them. */
-.design-switch.ds-popup{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:stretch;gap:0;
+.design-switch.ds-popup{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:stretch;gap:0;padding:0;overflow:visible;
   background:#111418;color:#f4f5f7;border:1px solid #3a4048;border-radius:999px;box-shadow:0 10px 30px -12px rgb(0 0 0/.6);font:500 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;
   letter-spacing:0;text-transform:none}
 .ds-popup .ds-trigger{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 14px 0 16px;border:0;border-radius:999px 0 0 999px;background:none;color:inherit;font:inherit;cursor:pointer}

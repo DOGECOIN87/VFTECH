@@ -71,9 +71,10 @@ async function checkPage(label, url, [w, h], { expectStatus = 200 } = {}) {
   if (state.overflow > 1) problems.push(`page scrolls sideways by ${state.overflow}px`);
   if (state.hidden.length) problems.push(`${state.hidden.length} block(s) never revealed: ${state.hidden.slice(0, 3).join(' | ')}`);
 
-  // the main hero button must have a visible fill (axe can't see backgrounds painted by pseudo-elements)
+  // the main hero button must have a visible fill (axe can't see backgrounds painted by pseudo-elements);
+  // designs 6–10 compose their own heroes, so any .hero counts, not only the shared .hero--ref
   const cta = await page.evaluate(() => {
-    const c = document.querySelector('.hero--ref .cta'); if (!c) return null;
+    const c = document.querySelector('.hero--ref .cta, main .hero .cta'); if (!c) return null;
     const alpha = col => { const m = col.match(/rgba?\(([^)]+)\)/); if (!m) return 0; const v = m[1].split(',').map(x => parseFloat(x)); return v.length > 3 ? v[3] : 1; };
     const s = getComputedStyle(c), b = getComputedStyle(c, '::before');
     return { own: alpha(s.backgroundColor), pseudo: b.content !== 'none' && b.content !== 'normal' ? alpha(b.backgroundColor) : 0, hasImage: s.backgroundImage !== 'none' || (b.content !== 'none' && b.backgroundImage !== 'none') };

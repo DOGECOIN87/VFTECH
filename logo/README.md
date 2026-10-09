@@ -5,10 +5,25 @@
 | File | Use |
 |---|---|
 | `vftech-logo.svg` | Horizontal lockup (monogram + wordmark), transparent |
+| `vftech-vector-master.svg` | The newer lockup, a finished vector, used by designs 6–10 only (see below) |
 | `vftech-monogram.svg` | Monogram master, 1000-unit grid, no transforms |
 | `vftech-icon.svg` | Square 1254 px icon, white background, optically centred |
 | `vftech-logo-ttnorms.svg` | **Evaluation only.** Same lockup with TT Norms Pro Mono lowercase (see below) |
 | `build.py` | Regenerates all of these from the construction below |
+
+## New vector master (designs 6–10 only)
+
+`vftech-vector-master.svg` is the newer lockup, supplied as a finished vector. Designs 6–10 use it, and only
+they do; designs 1–5 keep the lockup above. Its six paths are, in order: the V with the F's top bar, the F's
+middle bar and stem, the T, then e, c, h. The F's top bar and the T's crossbar share one line and parallel
+cuts. The tight bounds of the whole lockup are `50 50 889 201`; of the monogram alone, `50 63 312 184`.
+
+**Motion.** `design-N/logo-motion.js` animates it from that geometry: the V rises out of its point; one sweep
+runs along the top line, drawing the F's bar and carrying straight on into the T's crossbar; the T's stem
+drops and the F's middle bar springs home; "ech" rises out of the baseline; a glint crosses at the cuts'
+angle. Every frame is a pure function of time, so the same choreography can be rendered frame-exact to
+video. It plays once per visit in the header, replays the glint on hover, and shows the finished logo when
+motion is paused.
 
 ## Construction
 

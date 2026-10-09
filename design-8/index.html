@@ -67,7 +67,7 @@
   </div>
 </header>
 
-<main id="main" tabindex="-1">
+<main id="main" data-vf-home-motion tabindex="-1">
 <div class="cx-topline"><span>VFTECH / <b id="cx-env-label">production</b> / overview</span><span class="cx-sample">SAMPLE ENVIRONMENT</span></div>
 <div class="cx-heading"><div><h1>Systems at a glance.</h1><p>A clear view of the services your business runs on.</p></div><div class="cx-controls"><label for="cx-environment">ENVIRONMENT<select id="cx-environment"><option value="production">Production</option><option value="staging">Staging</option></select></label><button class="cx-button cx-refresh" id="cx-refresh" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6v5h-5M5 18v-5h5M19 11a7 7 0 0 0-12-5M5 13a7 7 0 0 0 12 5"/></svg>Refresh sample</button></div></div>
 <section aria-label="Sample operational summary"><div class="cx-metrics"><article class="cx-metric"><p class="cx-label">SERVICE HEALTH</p><strong class="cx-good">4 <small>/ 4</small></strong><p>All services operational</p></article><article class="cx-metric"><p class="cx-label">P95 RESPONSE</p><strong id="cx-latency">126<small> ms</small></strong><p>Within the 200 ms target</p></article><article class="cx-metric"><p class="cx-label">REQUESTS / HOUR</p><strong id="cx-requests">12,846</strong><p>Across the sample environment</p></article><article class="cx-metric"><p class="cx-label">AUTOMATION QUEUE</p><strong>1 <small>review</small></strong><p class="cx-warn">Waiting for a person</p></article></div></section>
@@ -92,5 +92,5 @@
 <script src="guide-knowledge.js" defer></script>
 <script src="guide-widget.js" defer></script>
 <script src="services.js" defer></script>
-<script src="motion-loader.js" defer data-vf-motion-suite data-motion-options="{&quot;name&quot;:&quot;Console&quot;,&quot;distance&quot;:8,&quot;duration&quot;:0.36,&quot;stagger&quot;:0.02,&quot;magnet&quot;:0,&quot;beam&quot;:true}"></script>
+<script src="motion-loader.js" defer data-vf-motion-suite data-motion-options="{&quot;name&quot;:&quot;Console&quot;,&quot;distance&quot;:8,&quot;duration&quot;:0.36,&quot;stagger&quot;:0.02,&quot;magnet&quot;:0,&quot;beam&quot;:true,&quot;home&quot;:{&quot;intro&quot;:&quot;.cx-topline,.cx-heading h1,.cx-heading p,.cx-controls&quot;,&quot;reveal&quot;:&quot;.cx-metric,.cx-panel&quot;,&quot;cards&quot;:&quot;.cx-metric,.cx-panel&quot;,&quot;distance&quot;:22,&quot;panelDistance&quot;:0,&quot;duration&quot;:0.65}}"></script>
 </body></html>

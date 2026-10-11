@@ -34,3 +34,8 @@
 .motion-paused .ds-popup .ds-menu{animation:none}
 @media (max-width:640px){.ds-popup .ds-count,.ds-popup .ds-theme span{display:none}.design-switch.ds-popup{left:12px}}
 @media print{.design-switch{display:none}}
+
+.design-switch.ds-popup{left:max(16px,env(safe-area-inset-left,0px))}
+.ds-popup .ds-menu{width:min(340px,calc(100vw - max(16px,env(safe-area-inset-left,0px)) - max(16px,env(safe-area-inset-right,0px))));max-height:min(70dvh,calc(100dvh - 90px - env(safe-area-inset-bottom,0px)),560px);overscroll-behavior:contain}
+@media(max-width:640px){.design-switch.ds-popup{left:max(12px,env(safe-area-inset-left,0px))}}
+.has-bookbar .ds-popup .ds-menu{max-height:min(70dvh,calc(100dvh - 158px - env(safe-area-inset-bottom,0px)),560px)}

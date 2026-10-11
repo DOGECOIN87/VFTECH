@@ -17,6 +17,7 @@
     "build:d10": "esbuild design-10/src/chrome-hero.js --bundle --minify --format=esm --target=es2020 --outfile=design-10/assets/chrome-hero.js --legal-comments=linked",
     "generate:services": "node scripts/build-services.mjs && node scripts/build-knowledge.mjs && node scripts/sync-shared.mjs",
     "test": "node --test tests/*.test.mjs",
+    "test:homepage": "bash scripts/assemble.sh homepage && node tests/homepage-browser.mjs",
     "backend:dev": "wrangler dev --config backend/wrangler.jsonc",
     "backend:check": "wrangler deploy --dry-run --config backend/wrangler.jsonc --outdir /tmp/vftech-worker-build",
     "build:motion": "node scripts/build-motion.mjs"

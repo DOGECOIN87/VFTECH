@@ -243,7 +243,7 @@ main{counter-reset:sect}
 
 /* the day-one test: a blue block */
 .callout{margin:var(--s6) 0 0;padding:var(--s5);background:var(--accent);color:var(--on-accent)}
-.callout .note{display:block;margin-bottom:var(--s3);color:inherit;opacity:.8}
+.callout .note{display:block;margin-bottom:var(--s3);color:inherit}
 .callout .q{font:700 clamp(var(--t2), 3.2vw, var(--t4))/1 var(--f-display);letter-spacing:-.008em;font-variation-settings:"wdth" 78;opacity:.72;max-width:18em}
 .callout .a{margin-top:var(--s2);font:800 clamp(var(--t2), 3.2vw, var(--t4))/1 var(--f-display);letter-spacing:-.008em;font-variation-settings:"wdth" 78}
 .callout .a + p{margin-top:var(--s4);max-width:34em}

@@ -19,6 +19,12 @@ test('Unsupported facts and instructions cannot create an answer',()=>{
     const answer=engine.answer(question);assert.equal(answer.found,false,question);assert.equal(answer.sources.length,0);
   }
 });
+test('The homepage pricing prompt returns the published price list',()=>{
+  for(const design of [1,3]){
+    const reply=engine.answer('What are the prices?',{page:'index.html',design});
+    assert.equal(reply.sources[0].id,'guide-pricing');assert.match(reply.text,/\$3,500/);
+  }
+});
 test('Contextual help uses only the selected published section',()=>{
   const reply=engine.answer('How does this chart work?',{recordId:'feature-charts'});
   assert.equal(reply.sources[0].id,'feature-charts');assert.match(reply.text,/sample visits/);

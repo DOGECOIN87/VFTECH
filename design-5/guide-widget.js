@@ -32,7 +32,20 @@
   [['Explore features','features.html'],['Pricing','features.html#prices'],['Customer account','account.html']].forEach(function(pair){var a=node('a','',pair[0]);a.href=pair[1];navigation.append(a);});
   var footer=document.querySelector('footer');if(footer && !footer.closest('main'))footer.before(navigation);else document.querySelector('main')?.after(navigation);
   function describe() {var current=engine.get(context.recordId);contextButton.textContent=current ? 'About: '+current.title : 'About this page';contextPreview.textContent=current ? current.text.slice(0,180)+(current.text.length>180?'…':'') : '';}
-  function open(on) {panel.hidden=!on;launch.setAttribute('aria-expanded',String(on));if(on)input.focus();else launch.focus();}
+  // On mobile the keyboard can resize only visualViewport, leaving CSS viewport
+  // units unchanged. Keep the focused conversation inside the visible area.
+  function fitGuide() {
+    var viewport=window.visualViewport;
+    var keyboard=!!(viewport && !panel.hidden && viewport.height<window.innerHeight-120);
+    panel.classList.toggle('vfg-keyboard',keyboard);
+    if(keyboard){
+      panel.style.setProperty('--vfg-viewport-top',(viewport.offsetTop+10)+'px');
+      panel.style.setProperty('--vfg-viewport-height',Math.max(0,viewport.height-20)+'px');
+    }
+  }
+  if(window.visualViewport){window.visualViewport.addEventListener('resize',fitGuide);window.visualViewport.addEventListener('scroll',fitGuide);}
+  input.addEventListener('focus',fitGuide);input.addEventListener('blur',fitGuide);
+  function open(on) {panel.hidden=!on;launch.setAttribute('aria-expanded',String(on));if(on)input.focus();else launch.focus();fitGuide();}
   launch.addEventListener('click',function(){open(panel.hidden);});close.addEventListener('click',function(){open(false);});
   panel.addEventListener('keydown',function(event){if(event.key==='Escape'){event.preventDefault();open(false);}});
   function message(text,kind,sources) {

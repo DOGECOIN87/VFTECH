@@ -3,7 +3,12 @@
 const stage = document.querySelector('[data-chrome-hero]');
 if (stage) {
   const stamp = new URL(import.meta.url).search;            // carry the deploy's ?v= stamp to the renderer
-  const load = () => import('./assets/chrome-hero.js' + stamp);
+  const load = () => import('./assets/chrome-hero.js' + stamp).catch(() => {
+    // A failed optional download must leave the local SVG usable.
+    stage.closest('figure')?.classList.add('chrome-fallback');
+    const canvas = stage.querySelector('.chrome-canvas');
+    if (canvas) canvas.hidden = true;
+  });
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(entries => {
       if (entries.some(e => e.isIntersecting)) { io.disconnect(); load(); }

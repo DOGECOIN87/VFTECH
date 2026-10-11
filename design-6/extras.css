@@ -88,3 +88,6 @@
 }
 @media (max-width:420px){.x-totals{grid-template-columns:1fr}.x-bookbar small{display:none}}
 @media print{.x-bookbar{display:none}}
+
+.x-bookbar a{min-width:0;white-space:nowrap;font-size:clamp(13px,4.5vw,16px)}
+.x-bookbar{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}

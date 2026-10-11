@@ -18,7 +18,6 @@
       replayButton = document.createElement('button');
       replayButton.className = 'ds-motion-replay';
       replayButton.type = 'button';
-      replayButton.setAttribute('role','menuitem');
       menu.append(replayButton);
       replayButton.addEventListener('click',function () {
         var trigger = document.querySelector('.design-switch .ds-trigger');

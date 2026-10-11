@@ -30,12 +30,24 @@
   /* ---- menu (under 1100px) ---- */
   var menuBtn = document.querySelector('.menu-btn');
   var nav = document.getElementById('site-nav');
+  var mobileNav = matchMedia('(max-width: 1100px)');
   function setMenu(open) {
     if (!menuBtn || !nav) return;
+    open = !!open && mobileNav.matches;
     menuBtn.setAttribute('aria-expanded', String(open));
     nav.classList.toggle('open', open);
   }
   if (menuBtn && nav) {
+    // Reset disclosure state across desktop/mobile and orientation changes.
+    function resetMenu() {
+      var focused = nav.contains(document.activeElement);
+      setMenu(false);
+      if (focused && mobileNav.matches) menuBtn.focus();
+    }
+    if (mobileNav.addEventListener) mobileNav.addEventListener('change', resetMenu);
+    else mobileNav.addListener(resetMenu);
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+    root.classList.add('nav-ready');
     menuBtn.addEventListener('click', function () {
       var open = menuBtn.getAttribute('aria-expanded') !== 'true';
       setMenu(open);

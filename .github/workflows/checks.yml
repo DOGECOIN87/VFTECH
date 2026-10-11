@@ -34,6 +34,8 @@ jobs:
         run: node tests/motion-browser.mjs
       - name: Verify visible animation on the actual homepages
         run: node tests/motion-home-browser.mjs
+      - name: Check homepage layouts, rotation and open controls
+        run: node tests/homepage-browser.mjs
       - name: Check every page
         run: node scripts/check-site.mjs
       - name: Keep the screenshots

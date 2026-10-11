@@ -16,7 +16,7 @@
   }
   function create(records) {
     var indexed = records.map(function (record) {
-      return {record:record, title:tokens(record.title + ' ' + (record.tags || []).join(' ')), words:tokens(record.text)};
+      return {record:record, title:tokens(record.title + ' ' + (record.tags || []).join(' ')), tags:tokens((record.tags || []).join(' ')), words:tokens(record.text)};
     });
     var vocabulary = new Set(indexed.flatMap(function (item) { return item.title.concat(item.words); }));
     function get(id) { return records.find(function (record) { return record.id === id; }); }
@@ -40,6 +40,9 @@
       var ranked = indexed.map(function (item) {
         var matches = known.filter(function (word) { return item.title.includes(word) || item.words.includes(word); });
         var score = matches.length * 3 + known.filter(function (word) { return item.title.includes(word); }).length * 5;
+        // Explicit topic tags distinguish the published price list from a
+        // similarly titled explanation of payment terms.
+        score += known.filter(function (word) { return item.tags.includes(word); }).length * 2;
         if (context && item.record.page === context.page) score += matches.length ? 1 : 0;
         if (context && item.record.design === context.design) score += matches.length ? 1 : 0;
         return {record:item.record, score:score, coverage:matches.length/known.length};

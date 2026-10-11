@@ -41,21 +41,21 @@
   bar.className = 'design-switch ds-popup';
   bar.setAttribute('aria-label', 'Design and theme');
   var here = byN[HERE] || [HERE, 'Design ' + HERE, ''];
-  var html = '<button type="button" class="ds-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="ds-menu">' +
+  var html = '<button type="button" class="ds-trigger" aria-expanded="false" aria-controls="ds-menu">' +
     '<span class="ds-dot" aria-hidden="true"></span><span class="ds-cur"><b>' + HERE + '</b> ' + here[1] + '</span>' +
     '<span class="ds-count">of 10</span><i aria-hidden="true">▴</i></button>' +
-    '<div class="ds-menu" id="ds-menu" role="menu" hidden>';
+    '<div class="ds-menu" id="ds-menu" hidden>';
   GROUPS.forEach(function (g) {
     html += '<p class="ds-group">' + g[0] + '</p><ul>';
     g[1].forEach(function (d) {
       var inner = '<b>' + d[0] + '</b><span class="ds-t"><span class="ds-n">' + d[1] + '</span><span class="ds-d">' + d[2] + '</span></span>';
       html += '<li>' + (d[0] === HERE
-        ? '<span class="ds-item" role="menuitem" aria-current="page">' + inner + '</span>'
-        : '<a class="ds-item" role="menuitem" href="' + href(d[0]) + '" aria-label="Open this page in design ' + d[0] + ', ' + d[1] + '">' + inner + '</a>') + '</li>';
+        ? '<span class="ds-item" aria-current="page">' + inner + '</span>'
+        : '<a class="ds-item" href="' + href(d[0]) + '" aria-label="Open this page in design ' + d[0] + ', ' + d[1] + '">' + inner + '</a>') + '</li>';
     });
     html += '</ul>';
   });
-  html += '<a class="ds-all" role="menuitem" href="' + ROOT + 'compare.html">Compare all side by side <i aria-hidden="true">↗</i></a></div>';
+  html += '<a class="ds-all" href="' + ROOT + 'compare.html">Compare all side by side <i aria-hidden="true">↗</i></a></div>';
   bar.innerHTML = html;
   if (theme) bar.appendChild(theme);
   old.parentNode.replaceChild(bar, old);
@@ -69,10 +69,12 @@
   }
   trigger.addEventListener('click', function () { open(menu.hidden); });
   document.addEventListener('click', function (e) { if (!menu.hidden && !bar.contains(e.target)) open(false); });
+  document.addEventListener('focusin', function (e) { if (!menu.hidden && !bar.contains(e.target)) open(false); });
   bar.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !menu.hidden) { open(false); trigger.focus(); }
     if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && !menu.hidden) {
-      var items = [].slice.call(menu.querySelectorAll('a,button[role="menuitem"]:not(:disabled)'));
+      var items = [].slice.call(menu.querySelectorAll('a,button:not(:disabled)'));
+      if (!items.length) return;
       var i = items.indexOf(document.activeElement);
       i = e.key === 'ArrowDown' ? (i + 1) % items.length : (i - 1 + items.length) % items.length;
       items[i].focus(); e.preventDefault();

@@ -21,7 +21,7 @@ body .hero.hero--ref .hero-copy{grid-area:copy;min-width:0;max-width:34rem;paddi
 .hero--ref .hero-sub{margin:clamp(24px,2.6vw,36px) 0 0;max-width:30em;font-size:clamp(16px,1.25vw,18px);line-height:1.6;color:var(--graphite)}
 .hero--ref .hero-sub::before{content:none}
 .hero--ref .cta-row{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:12px 18px;margin:clamp(28px,3vw,40px) 0 0;text-align:left}
-.hero--ref .cta{gap:clamp(24px,3vw,44px)}
+.hero--ref .cta{gap:clamp(12px,1.5vw,24px);white-space:nowrap}
 .hero--ref .cta .arrow{width:18px;height:12px;flex:none}
 .hero--ref .cta-note{margin:0;max-width:none;text-align:left;font-size:14px;line-height:1.4;color:var(--graphite)}
 .hero--ref .hero-note{margin:18px 0 0;font-size:13px;line-height:1.5;color:var(--graphite);opacity:.85}
@@ -34,7 +34,7 @@ body .hero.hero--ref .hero-figure{grid-area:fig;position:relative;justify-self:e
 .hero--ref .chrome-stage{width:100%;transform:none}
 .hero--ref .hero-caption{display:grid;gap:6px;margin:clamp(8px,1.4vw,18px) 0 0;padding-left:16%;max-width:none;font-size:14px;line-height:1.5;color:var(--ink)}
 .hero--ref .hero-caption-label{font:500 11px/1.4 var(--f-note);letter-spacing:.14em;text-transform:uppercase;color:var(--blueline)}
-.hero--ref .hero-pause{right:0;bottom:4px;width:34px;height:34px;opacity:.7}
+.hero--ref .hero-pause{right:0;bottom:4px;width:44px;height:44px;opacity:.7}
 .hero--ref .hero-pause:hover,.hero--ref .hero-pause:focus-visible{opacity:1}
 /* the drawing's framing: quiet, level construction lines */
 .hero--ref .dline-dot{stroke-dasharray:6 10}
@@ -86,4 +86,29 @@ body .hero.hero--ref .hero-figure{grid-area:fig;position:relative;justify-self:e
   body .hero.hero--ref .hero-figure{width:min(100%,330px)}
   .hero--ref .hero-strip{flex-direction:column;gap:18px}
   .hero--ref .hero-strip-end{width:100%;max-width:210px}
+}
+
+/* Keep action labels intact, including the angled buttons in Drafting. */
+.home .closing .cta{white-space:nowrap}
+@media (max-width:640px){
+  .home .hero--ref .cta,.home .closing .cta{
+    --h:48px;min-height:48px;gap:8px;padding-block:12px;
+    font-size:clamp(13px,4.5vw,16px);
+  }
+  .home.layout-drafting .cta{padding-inline:calc(var(--k) + 6px)}
+}
+
+/* Keep navigation usable without scripts, without flashing an expanded menu
+   while JavaScript loads. The visible viewport also bounds landscape menus. */
+.wrap{padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
+.site-head .nav a{white-space:nowrap}
+@media (max-width:1100px){
+  .site-head .nav{max-height:calc(100dvh - var(--head-h) - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overscroll-behavior:contain}
+}
+@media (max-width:1100px) and (scripting:none){
+  .site-head{position:relative}
+  .head-inner{flex-wrap:wrap}
+  .site-head .nav{position:static;display:block;flex:1 0 100%;order:1;max-height:none;overflow:visible}
+  .site-head .nav ul{height:auto}
+  .theme-btn,.menu-btn{display:none}
 }

@@ -113,5 +113,5 @@ body .hero.hero--ref .hero-figure{grid-area:fig;position:relative;justify-self:e
   .theme-btn,.menu-btn{display:none}
 }
 
-/* home hero background image */
-.hero--ref .hero-backdrop{background:linear-gradient(180deg,rgba(2,4,14,.55) 0%,rgba(2,4,14,.35) 45%,rgba(2,4,14,.75) 100%),url("assets/hero-bg.webp") center bottom/cover no-repeat}
+/* home hero background image: above the studio light, beneath the floor, rays, dust and 3D mark */
+.hero--ref .hero-photo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,4,14,.55) 0%,rgba(2,4,14,.3) 45%,rgba(2,4,14,.7) 100%),url("assets/hero-bg.webp") center bottom/cover no-repeat}

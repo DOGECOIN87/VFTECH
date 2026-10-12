@@ -3,3 +3,6 @@
 .layout-design-2 .vfs-main{padding-top:calc(var(--head-h) + 2*var(--head-gap))}
 @media(max-width:600px){.vfs-main{padding-inline:16px}.vfs-intro{padding:38px 0 28px;gap:20px}.vfs-intro>p{font-size:17px}.vfs-demo-grid,.vfs-account-layout,.vfs-prices,.vfs-projects{grid-template-columns:1fr}.vfs-card,.vfs-callout,.vfs-price{padding:22px}.vfs-subnav{gap:12px 18px;font-size:12px}.vfs-mini-metrics strong{font-size:23px}.vfs-account-preview{gap:8px}.vfs-account-preview .vfs-chip{display:none}.vfs-section{padding-top:18px}.vfs-actions{gap:14px}}
 @media(max-width:360px){body:has(.vfs-main) .head-inner{padding-inline:16px;gap:10px}body:has(.vfs-main) .brand{min-width:0;flex:1 1 auto}body:has(.vfs-main) .brand svg{width:112px;max-width:100%}body:has(.vfs-main) .icon-btn{padding-inline:8px}body:has(.vfs-main) .theme-btn{width:38px}}
+/* live desktop preview inside a project card: a 1440×756 viewport scaled to the card width */
+.vfs-live-frame{display:block;position:relative;aspect-ratio:1200/630;overflow:hidden;background:#0C1013 url("assets/daiquiri-depot-card.svg") center/cover}
+.vfs-live-frame iframe{position:absolute;top:0;left:0;width:1440px;height:756px;border:0;transform:scale(var(--s,.38));transform-origin:0 0;pointer-events:none;background:transparent}

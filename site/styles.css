@@ -731,3 +731,6 @@ html{scroll-behavior:smooth}
 ::view-transition-old(root),::view-transition-new(root){animation-duration:.32s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
 .site-head{view-transition-name:site-head}   /* the header holds still while the page under it changes */
 @media (prefers-reduced-motion: reduce){@view-transition{navigation:none}}
+
+/* the design selector is retired on this site */
+.design-switch,.vf-switcher{display:none!important}

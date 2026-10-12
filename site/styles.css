@@ -734,3 +734,6 @@ html{scroll-behavior:smooth}
 
 /* the design selector is retired on this site */
 .design-switch,.vf-switcher{display:none!important}
+/* About: founder headshot */
+.founder-photo{display:block;width:100%;max-width:240px;height:auto;aspect-ratio:1;object-fit:cover;margin:var(--s5,32px) 0 var(--s4,20px);border-radius:50%;border:2px solid var(--blueline,#8CC6E6);background:radial-gradient(circle at 50% 35%,#1d3a4f,#0C1013 75%);box-shadow:0 0 0 6px rgb(140 198 230/.12)}
+.founder-bio{margin:0;max-width:28em;color:var(--graphite)}

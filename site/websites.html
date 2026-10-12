@@ -146,6 +146,21 @@
     </div>
   </section>
 
+  <section class="sect" id="work" aria-labelledby="work-title">
+    <div class="wrap sect-grid">
+      <div class="sect-aside">
+        <h2 id="work-title">Recent work</h2>
+        <p class="sect-lede">A live site, running now. This is the real thing, not a mock-up.</p>
+      </div>
+      <div>
+        <a class="work-card" href="https://daiquiri-depot.vercel.app/" target="_blank" rel="noopener">
+          <span class="work-frame" aria-hidden="true"><iframe src="https://daiquiri-depot.vercel.app/" title="Daiquiri Depot live preview" loading="lazy" tabindex="-1" sandbox="allow-scripts allow-same-origin" scrolling="no"></iframe></span>
+          <span class="work-meta"><strong>Sip Society + Daiquiri Depot</strong><span>New Braunfels, Texas · Live website</span><span class="work-link">Visit the site ↗<span class="vh"> (opens in a new tab)</span></span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="sect" id="pricing" aria-labelledby="pricing-title">
     <div class="wrap sect-grid">
       <div class="sect-aside">
@@ -410,5 +425,11 @@
 <script src="guide-widget.js" defer></script>
 <script src="services.js" defer></script>
 <script src="motion-loader.js" defer data-vf-motion-suite data-motion-options="{&quot;name&quot;:&quot;Drafting&quot;,&quot;distance&quot;:12,&quot;duration&quot;:0.48,&quot;stagger&quot;:0.03,&quot;magnet&quot;:2,&quot;beam&quot;:false}"></script>
+<script>
+/* scale the live preview: render at desktop width, shrink to the card */
+(function(){var f=document.querySelectorAll('.work-frame');if(!f.length||!window.ResizeObserver)return;
+var ro=new ResizeObserver(function(es){es.forEach(function(e){e.target.style.setProperty('--s',e.contentRect.width/1440)})});
+f.forEach(function(el){ro.observe(el)})})();
+</script>
 </body>
 </html>

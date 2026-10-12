@@ -737,3 +737,12 @@ html{scroll-behavior:smooth}
 /* About: founder headshot */
 .founder-photo{display:block;width:100%;max-width:240px;height:auto;aspect-ratio:1;object-fit:cover;margin:var(--s5,32px) 0 var(--s4,20px);border-radius:50%;border:2px solid var(--blueline,#8CC6E6);background:radial-gradient(circle at 50% 35%,#1d3a4f,#0C1013 75%);box-shadow:0 0 0 6px rgb(140 198 230/.12)}
 .founder-bio{margin:0;max-width:28em;color:var(--graphite)}
+/* Website rebuilds: live work card, a 1440×810 desktop viewport scaled to the card width */
+.work-card{display:block;border:1px solid var(--rule-strong,#44525B);color:inherit;text-decoration:none;background:var(--sheet,#141B20)}
+.work-frame{display:block;position:relative;aspect-ratio:16/9;overflow:hidden;background:#0C1013 url("assets/daiquiri-depot-card.jpg") top center/cover}
+.work-frame iframe{position:absolute;top:0;left:0;width:1440px;height:810px;border:0;transform:scale(var(--s,.45));transform-origin:0 0;pointer-events:none}
+.work-meta{display:grid;gap:4px;padding:18px 20px}
+.work-meta strong{font-size:1.15em}
+.work-meta span{color:var(--graphite)}
+.work-card .work-link{color:var(--ink);text-decoration:underline;text-underline-offset:3px;margin-top:6px}
+.work-card:hover .work-link,.work-card:focus-visible .work-link{color:var(--blueline,#8CC6E6)}

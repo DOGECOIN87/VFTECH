@@ -108,9 +108,9 @@
   }
   // A pause lasts for this visit only, so motion is back on the next one. (The old permanent
   // preference is cleared, so nobody stays stuck on a pause made while testing.)
-  var savedMotion = null;
-  try { localStorage.removeItem('vftech-pattern'); savedMotion = sessionStorage.getItem('vftech-motion'); } catch (e) {}
-  setPaused(savedMotion === 'paused' || (savedMotion !== 'moving' && matchMedia('(prefers-reduced-motion: reduce)').matches));
+  // Motion always plays by default; there is no on-page pause control.
+  try { localStorage.removeItem('vftech-pattern'); sessionStorage.removeItem('vftech-motion'); } catch (e) {}
+  setPaused(false);
   motionButtons.forEach(function (btn) {
     btn.addEventListener('click', function () {
       var paused = !root.classList.contains('motion-paused');

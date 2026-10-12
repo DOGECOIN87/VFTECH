@@ -126,5 +126,4 @@ body .hero.hero--ref .hero-figure{grid-area:fig;position:relative;justify-self:e
   animation:cube-glow 5.5s ease-in-out infinite}
 @keyframes cube-glow{50%{opacity:.55}}
 .motion-paused .hero--ref .hero-photo-glow{animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){.hero--ref .hero-photo-glow{animation:none;opacity:.3}}
 .hero--ref .hero-sub{color:#D3DCE0;text-shadow:0 1px 2px rgb(12 16 19/.9),0 0 18px rgb(12 16 19/.8)}

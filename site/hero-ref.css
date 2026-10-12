@@ -112,3 +112,6 @@ body .hero.hero--ref .hero-figure{grid-area:fig;position:relative;justify-self:e
   .site-head .nav ul{height:auto}
   .theme-btn,.menu-btn{display:none}
 }
+
+/* home hero background image */
+.hero--ref .hero-backdrop{background:linear-gradient(180deg,rgba(2,4,14,.55) 0%,rgba(2,4,14,.35) 45%,rgba(2,4,14,.75) 100%),url("assets/hero-bg.webp") center bottom/cover no-repeat}
